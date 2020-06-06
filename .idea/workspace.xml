@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +53,34 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -63,7 +93,7 @@
       <updated>1591394529117</updated>
       <workItem from="1591394532966" duration="942000" />
       <workItem from="1591470942565" duration="308000" />
-      <workItem from="1591472322612" duration="4877000" />
+      <workItem from="1591472322612" duration="6896000" />
     </task>
     <servers />
   </component>
@@ -86,22 +116,26 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="659" y="387" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1200@0.0.1920.1200" timestamp="1591474484245" />
-    <state width="1868" height="327" key="GridCell.Tab.0.bottom" timestamp="1591396428089">
+    <state width="1868" height="327" key="GridCell.Tab.0.bottom" timestamp="1591479181851">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1868" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1591396428089" />
-    <state width="1868" height="327" key="GridCell.Tab.0.center" timestamp="1591396428088">
+    <state width="1868" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1591479181851" />
+    <state width="1868" height="327" key="GridCell.Tab.0.center" timestamp="1591479181850">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1868" height="327" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1591396428088" />
-    <state width="1868" height="327" key="GridCell.Tab.0.left" timestamp="1591396428087">
+    <state width="1868" height="327" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1591479181850" />
+    <state width="1868" height="327" key="GridCell.Tab.0.left" timestamp="1591479181849">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1868" height="327" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1591396428087" />
-    <state width="1868" height="327" key="GridCell.Tab.0.right" timestamp="1591396428088">
+    <state width="1868" height="327" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1591479181849" />
+    <state width="1868" height="327" key="GridCell.Tab.0.right" timestamp="1591479181850">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1868" height="327" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1591396428088" />
+    <state width="1868" height="327" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1591479181850" />
+    <state x="445" y="281" key="IDE.errors.dialog" timestamp="1591479325063">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="445" y="281" key="IDE.errors.dialog/0.0.1920.1200@0.0.1920.1200" timestamp="1591479325063" />
     <state x="868" y="105" width="838" height="1032" key="search.everywhere.popup" timestamp="1591477164706">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
