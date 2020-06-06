@@ -25,6 +25,7 @@ usuarioSchema.statics.encontrarUsuario = async (correo, password) => {
     }
 
     // verificamos si su password es el correcto
+    // primero desencriptamos el password para verificar
     const coincide = await bcrypt.compare( password, usuario.password );
     if ( !coincide ) {
         // en caso de que este mal su password lanzamos un error
@@ -34,6 +35,20 @@ usuarioSchema.statics.encontrarUsuario = async (correo, password) => {
     // retornamos el usuario una vez verificado
     return usuario;
 }
+
+// antes de guardar los datos del usuario
+// se van a encriptar los passwords
+usuarioSchema.pre('save', async function(next) {
+    const usuario  = this
+
+    // verificamos si el password ha sido modificado
+    if ( usuario.isModified('password') ) {
+        // hasheamos el password nuevo
+        usuario.password = await bcrypt.hash( usuario.password, 8 );
+    }
+    // next se lo llama cuando finalizamos esta funcion
+    next();
+});
 
 const Usuario = mongoose.model('Usuario', usuarioSchema);
 module.exports = Usuario;

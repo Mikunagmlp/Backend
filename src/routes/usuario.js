@@ -4,6 +4,19 @@ const router = new express.Router();
 
 const Usuario = require('../models/usuario');
 
+// registar Usuario
+router.post('/usuario/registrar', async (req, res) => {
+    const usuario = Usuario(req.body);
+
+    try {
+        // guardamos al usuario
+        await usuario.save();
+
+        res.status(201).send(usuario);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
 
 // Login Usuario
 router.post('/usuario/login', async (req, res) => {
