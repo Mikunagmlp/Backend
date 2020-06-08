@@ -32,4 +32,8 @@ router.post('/user/login', async (req, res) => {
     }
 });
 
+router.get('/user/edit',async(req,res)=>{
+    res.send('Estamos en user Edit');
+} )
+
 module.exports = router;
