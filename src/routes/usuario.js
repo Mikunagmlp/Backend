@@ -2,31 +2,31 @@ const express = require('express');
 // creamos el router para todas nuestras peticiones
 const router = new express.Router();
 
-const Usuario = require('../models/usuario');
+const User = require('../models/usuario');
 
 // registar Usuario
-router.post('/usuario/registrar', async (req, res) => {
-    const usuario = Usuario(req.body);
+router.post('/user/registrar', async (req, res) => {
+    const user = User(req.body);
 
     try {
         // guardamos al usuario
-        await usuario.save();
+        await user.save();
 
-        res.status(201).send(usuario);
+        res.status(201).send(user);
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
 // Login Usuario
-router.post('/usuario/login', async (req, res) => {
-    const correo = req.body.correo;
+router.post('/user/login', async (req, res) => {
+    const email = req.body.email;
     const password = req.body.password;
 
     try {
-        const usuario = await Usuario.encontrarUsuario( correo, password );
+        const user = await User.encontrarUsuario( email, password );
 
-        res.send( usuario );
+        res.send( user );
     } catch (e) {
         res.status(400).send();
     }
