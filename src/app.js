@@ -11,6 +11,8 @@ const posicionRouter=require('./routes/posicion');
 const productoRouter= require('./routes/producto');
 const proveedorRouter=require('./routes/proveedor');
 
+const homeRouter= require('./routes/home');
+
 const cors = require('cors');
 const app = express();
 
@@ -19,6 +21,7 @@ app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 // registramos nuestro router para poder usarlo
+app.use(homeRouter);
 app.use(usuarioRouter);
 app.use(entidadRouter);
 app.use(administracionRouter);
