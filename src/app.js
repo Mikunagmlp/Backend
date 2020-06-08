@@ -2,6 +2,7 @@ const express = require('express');
 
 require('./db/mongoose'); // importa la DB
 const usuarioRouter = require('./routes/usuario');
+const entidadRouter = require('./routes/entidad');
 
 const cors = require('cors');
 const app = express();
@@ -12,5 +13,6 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 
 // registramos nuestro router para poder usarlo
 app.use(usuarioRouter);
+app.use(entidadRouter);
 
 module.exports = app;
