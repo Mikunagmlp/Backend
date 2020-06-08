@@ -20,8 +20,8 @@ router.post('/user/registrar', async (req, res) => {
 
 // Login Usuario
 router.post('/user/login', async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.body.Email;
+    const password = req.body.Password;
 
     try {
         const user = await User.encontrarUsuario( email, password );

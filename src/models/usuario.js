@@ -42,38 +42,44 @@ const userSchema = new mongoose.Schema({
 
 // buscamos al usuario que se quiere registrar
 userSchema.statics.encontrarUsuario = async (email, password) => {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ Email: email });
 
     // si no encontramos al user lanzamos un error
     if ( !user ) {
-        throw new Error('Usuario no encontrado');
+        throw new Error('Usuario invalido');
     }
 
-    // verificamos si su password es el correcto
-    // primero desencriptamos el password para verificar
-    const coincide = await bcrypt.compare( password, user.password );
-    if ( !coincide ) {
-        // en caso de que este mal su password lanzamos un error
-        throw new Error('Usuario no encontrado!');
+    if ( password !== user.Password ) {
+        throw  new Error('Usuario invalido');
     }
 
-    // retornamos el user una vez verificado
     return user;
+
+    // // verificamos si su password es el correcto
+    // // primero desencriptamos el password para verificar
+    // const coincide = await bcrypt.compare( password, user.password );
+    // if ( !coincide ) {
+    //     // en caso de que este mal su password lanzamos un error
+    //     throw new Error('Usuario no encontrado!');
+    // }
+    //
+    // // retornamos el user una vez verificado
+    // return user;
 }
 
 // antes de guardar los datos del usuario
 // se van a encriptar los passwords
-userSchema.pre('save', async function(next) {
-    const user = this;
-
-    // verificamos si el password ha sido modificado
-    if ( user.isModified('password') ) {
-        // hasheamos el password nuevo
-        user.password = await bcrypt.hash( user.password, 8 );
-    }
-    // next se lo llama cuando finalizamos esta funcion
-    next();
-});
+// userSchema.pre('save', async function(next) {
+//     const user = this;
+//
+//     // verificamos si el password ha sido modificado
+//     if ( user.isModified('password') ) {
+//         // hasheamos el password nuevo
+//         user.password = await bcrypt.hash( user.password, 7 );
+//     }
+//     // next se lo llama cuando finalizamos esta funcion
+//     next();
+// });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

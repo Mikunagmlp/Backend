@@ -43,6 +43,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -95,7 +96,8 @@
       <workItem from="1591470942565" duration="308000" />
       <workItem from="1591472322612" duration="9503000" />
       <workItem from="1591493264108" duration="283000" />
-      <workItem from="1591587169337" duration="1789000" />
+      <workItem from="1591587169337" duration="2287000" />
+      <workItem from="1591639018643" duration="925000" />
     </task>
     <servers />
   </component>
