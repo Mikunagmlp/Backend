@@ -3,7 +3,7 @@ const express = require('express');
 require('./db/mongoose'); // importa la DB
 const usuarioRouter = require('./routes/usuario');
 const entidadRouter = require('./routes/entidad');
-const administracionRouter= require('./routes/administracion');
+const administracionRouter= require('./routes/administrador/administracion');
 const almacenRouter= require('./routes/almacen');
 const categoriaRouter = require('./routes/categoria');
 const colegioRouter=require('./routes/colegio');
