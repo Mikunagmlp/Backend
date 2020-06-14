@@ -1,7 +1,7 @@
 const express = require('express');
 
 require('./db/mongoose'); // importa la DB
-const usuarioRouter = require('./routes/usuario');
+const usuarioRouter = require('./routes/usuario/usuario');
 const entidadRouter = require('./routes/entidad');
 const administracionRouter= require('./routes/administrador/administracion');
 const almacenRouter= require('./routes/almacen');
@@ -10,6 +10,7 @@ const colegioRouter=require('./routes/colegio');
 const posicionRouter=require('./routes/posicion');
 const productoRouter= require('./routes/producto');
 const proveedorRouter=require('./routes/proveedor');
+const recoveryRouter = require('./routes/recovery_password');
 
 const homeRouter= require('./routes/home');
 
@@ -31,5 +32,6 @@ app.use(colegioRouter);
 app.use(posicionRouter);
 app.use(productoRouter);
 app.use(proveedorRouter);
+app.use(recoveryRouter);
 
 module.exports = app;
