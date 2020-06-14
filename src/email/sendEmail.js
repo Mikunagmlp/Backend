@@ -6,6 +6,8 @@ const enviarEmail = async (email, password) => {
         port: 465,
         secure: true,
         // TODO: aqui deben poner su correo electronico y su password para hacer la prueba
+        // TODO: antes de hacer la prueba deben activar esto en la cuenta de gmail que enviara
+        // https://myaccount.google.com/lesssecureapps entren a este link y lo activan
         auth: {
             user: 'xxx@gmail.com',
             pass: 'xxx'
