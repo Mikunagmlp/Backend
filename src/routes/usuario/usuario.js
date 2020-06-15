@@ -4,7 +4,7 @@ const router = new express.Router();
 
 const User = require('../../models/usuario');
 // token
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs');
 
 /* 
 Nueva entrada
