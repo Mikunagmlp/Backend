@@ -4,5 +4,6 @@ const mongoose = require('mongoose');
 mongoose.connect( process.env.MONGODB_URL , {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false // elimina el warning de DeprecationWarning
+    useFindAndModify: false, // elimina el warning de DeprecationWarning
+    useUnifiedTopology:true
 });
