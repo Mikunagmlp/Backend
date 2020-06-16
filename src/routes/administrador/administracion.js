@@ -1,18 +1,19 @@
-const express= require('express');
+const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
 
-router.post('/administracion/user/registro',async(req,res)=>{
-    const user = User(req.body);
-
+router.post('/administracion/user/registro', async (req, res) => {
+    const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado } = req.body;
+    //const user = User(req.body);
     try {
-        await user.save();
-
-        res.status(201).send(user);
+        const newUser = new User({ NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado });
+        newUser.Password = await newUser.encryptPassword(Password);
+        await newUser.save();
+        res.status(201).json(newUser);
     } catch (e) {
         res.status(400).send(e);
     }
-} );
+});
 
 router.get('/administracion/users', async (req, res) => {
     try {
@@ -24,15 +25,15 @@ router.get('/administracion/users', async (req, res) => {
     }
 });
 
-router.patch('/administracion/user/editar/:id',async(req,res)=>{
+router.patch('/administracion/user/editar/:id', async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreCompleto','Email','Telefono','Direccion','Genero'];
+    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
 
     if (!isValidOperation) {
-        return res.status(400).send({error: 'Actualizaciones invalidas!'})
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
     }
 
     try {
@@ -56,7 +57,7 @@ router.patch('/administracion/user/editar/:id',async(req,res)=>{
 
 router.delete('/administracion/user/eliminar/:id', async (req, res) => {
     try {
-        const usuario =  await User.findOneAndDelete({ _id: req.params.id });
+        const usuario = await User.findOneAndDelete({ _id: req.params.id });
         if (!usuario) {
             return res.status(404).send();
         }
@@ -66,11 +67,11 @@ router.delete('/administracion/user/eliminar/:id', async (req, res) => {
     }
 });
 
-router.get('/administracion/user/permisos',async(req,res)=>{
+router.get('/administracion/user/permisos', async (req, res) => {
     res.send('Estamos en administracion permisos de usuari')
 });
 
-router.post('/administracion/user/crearrol',async(req,res)=>{
+router.post('/administracion/user/crearrol', async (req, res) => {
     res.send('Estamos en administracion Crear nuevo rol')
 });
-module.exports= router;
+module.exports = router;
