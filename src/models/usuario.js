@@ -81,6 +81,12 @@ userSchema.statics.encontrarUsuario = async (email, password) => {
 //     // next se lo llama cuando finalizamos esta funcion
 //     next();
 // });
+userSchema.methods.encryptPassword = (password) => {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
 
+userSchema.methods.comparePassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+};
 const User = mongoose.model('User', userSchema);
 module.exports = User;
