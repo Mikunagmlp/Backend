@@ -54,6 +54,18 @@ router.patch('/administracion/user/editar/:id',async(req,res)=>{
     }
 });
 
+router.delete('/administracion/user/eliminar/:id', async (req, res) => {
+    try {
+        const usuario =  await User.findOneAndDelete({ _id: req.params.id });
+        if (!usuario) {
+            return res.status(404).send();
+        }
+        res.send({ message: 'Usuario eliminado' });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 router.get('/administracion/user/permisos',async(req,res)=>{
     res.send('Estamos en administracion permisos de usuari')
 });
