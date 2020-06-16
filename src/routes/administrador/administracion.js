@@ -12,10 +12,46 @@ router.post('/administracion/user/registro',async(req,res)=>{
     } catch (e) {
         res.status(400).send(e);
     }
-} )
+} );
 
-router.patch('/administracion/user/editar',async(req,res)=>{
- res.send('Estamos en administracion Editar de usuario')
+router.get('/administracion/users', async (req, res) => {
+    try {
+        const usuarios = await User.find();
+
+        res.status(200).send(usuarios);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
+
+router.patch('/administracion/user/editar/:id',async(req,res)=>{
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['NombreCompleto','Email','Telefono','Direccion','Genero'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+
+    if (!isValidOperation) {
+        return res.status(400).send({error: 'Actualizaciones invalidas!'})
+    }
+
+    try {
+        const usuario = await User.findOne({ _id: req.params.id });
+
+        if (!usuario) {
+            return res.status(404).send();
+        }
+
+        updates.forEach((update) => {
+            usuario[update] = req.body[update];
+        });
+        await usuario.save();
+
+        res.send(usuario);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
 router.get('/administracion/user/permisos',async(req,res)=>{
