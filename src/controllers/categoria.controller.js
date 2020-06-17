@@ -1,2 +1,2 @@
 const categoriaCtrl = {};
-const Categoria = require();
+const Categoria = require('../models/categoria');
