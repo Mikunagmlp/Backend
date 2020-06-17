@@ -74,4 +74,40 @@ router.get('/administracion/user/permisos', async (req, res) => {
 router.post('/administracion/user/crearrol', async (req, res) => {
     res.send('Estamos en administracion Crear nuevo rol')
 });
+//localhost:3000/administracion/user/search?q=test
+router.get('/administracion/user/search', function (req, res, next) {
+    let q = req.query.q;
+    User.find({
+        NombreCompleto: {
+            $regex: new RegExp(q),
+            $options: 'i'
+        }
+    }
+        , {
+            __v: 0
+        }, function (err, data) {
+            var result = [];
+            if (!err) {
+                if (data && data.length && data.length > 0) {
+                    data.forEach(user => {
+                        let obj = {
+                            idUser: user._id,
+                            NombreCompleto: user.NombreCompleto,
+                            Email: user.Email,
+                            Password: user.Password,
+                            Telefono: user.Telefono,
+                            Direccion: user.Direccion,
+                            Genero: user.Genero,
+                            Estado: user.Estado,
+                        };
+                        result.push(obj);
+                    });
+
+                }
+
+            }
+
+            res.json(result);
+        }).limit(10);
+});
 module.exports = router;
