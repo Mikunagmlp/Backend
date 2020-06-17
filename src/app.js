@@ -30,7 +30,7 @@ const homeRouter = require('./routes/home');
 
 const TIME_SESSIONS = 1 * 24 * 60 * 60 ;
 const {
-    SESS_NAME='fofo',
+    SESS_NAME='mikuna',
     SESS_LIFETIME = TIME_SESSIONS
 } = process.env;
 
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 app.use(methodOverride('_method'));
 app.use(session({
-    secret: 'fofo',
+    secret: 'mikuna',
     resave: false,
     saveUninitialized: false,
     name: SESS_NAME,
@@ -71,6 +71,8 @@ app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 // registramos nuestro router para poder usarlo
+app.use('/', require('./routes/index'));
+
 app.use(homeRouter);
 app.use(usuarioRouter);
 app.use(entidadRouter);
