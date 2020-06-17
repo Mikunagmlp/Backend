@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
 // creamos el modelado del usuario
 const userSchema = new mongoose.Schema({
-    NombreCompleto : {
+    NombreCompleto: {
         type: String,
         required: true
     },
@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        trim: true
+        trim: true,
+        lowercase: true
     },
     Password: {
         type: String,
@@ -37,8 +38,13 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-
+    creationDate: {
+        type: Date,
+        default: Date.now
+    },
     // TODO: aqui haremos la relacion de N usuarios con la entidad
+}, {
+    timestamps: true
 });
 
 // buscamos al usuario que se quiere registrar
@@ -46,12 +52,12 @@ userSchema.statics.encontrarUsuario = async (email, password) => {
     const user = await User.findOne({ Email: email });
 
     // si no encontramos al user lanzamos un error
-    if ( !user ) {
+    if (!user) {
         throw new Error('Usuario invalido');
     }
 
-    if ( password !== user.Password ) {
-        throw  new Error('Usuario invalido');
+    if (password !== user.Password) {
+        throw new Error('Usuario invalido');
     }
 
     return user;
@@ -81,6 +87,12 @@ userSchema.statics.encontrarUsuario = async (email, password) => {
 //     // next se lo llama cuando finalizamos esta funcion
 //     next();
 // });
+userSchema.methods.encryptPassword = (Password) => {
+    return bcrypt.hashSync(Password, bcrypt.genSaltSync(10));
+};
 
+userSchema.methods.comparePassword = function (Password) {
+    return bcrypt.compareSync(Password, this.Password);
+};
 const User = mongoose.model('User', userSchema);
 module.exports = User;
