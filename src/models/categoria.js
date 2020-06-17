@@ -20,7 +20,12 @@ const categoriaSchema = new Schema({
         type: String,
         required: true
     },
-    roles: [Permiso]
+    Permiso: [
+        {
+            NombrePermiso: String,
+            Idpermiso: String,   
+        }
+    ]
 }, {
     timestamps: true
 });

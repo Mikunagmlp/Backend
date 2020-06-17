@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+var ToySchema = new Schema({ name: String });
 const permisoSchema = new Schema({
     NombrePermiso: {
         type: String,
@@ -12,12 +12,13 @@ const permisoSchema = new Schema({
     },
     Estado: {
         type: Boolean,
-        default: true
+        default: true,
+        required: true
     },
     IdUser: {
         type: String,
         required: true
-    },
+    }
 }, {
     timestamps: true
 });
