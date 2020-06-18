@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
+const { getSearch } = require('../../controllers/administrador.controller');
 
 router.post('/administracion/user/registro', async (req, res) => {
     const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado } = req.body;
@@ -74,4 +75,6 @@ router.get('/administracion/user/permisos', async (req, res) => {
 router.post('/administracion/user/crearrol', async (req, res) => {
     res.send('Estamos en administracion Crear nuevo rol')
 });
+//localhost:3000/administracion/user/search?q=test
+router.get('/administracion/user/search', getSearch);
 module.exports = router;
