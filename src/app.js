@@ -24,13 +24,12 @@ const posicionRouter = require('./routes/posicion');
 const productoRouter = require('./routes/producto');
 const proveedorRouter = require('./routes/proveedor');
 const recoveryRouter = require('./routes/recovery_password');
-const homeRouter = require('./routes/home');
-
+const rolRouter = require('./routes/rol');
 // cargar middlewares
 
-const TIME_SESSIONS = 1 * 24 * 60 * 60 ;
+const TIME_SESSIONS = 1 * 24 * 60 * 60;
 const {
-    SESS_NAME='mikuna',
+    SESS_NAME = 'mikuna',
     SESS_LIFETIME = TIME_SESSIONS
 } = process.env;
 
@@ -73,7 +72,6 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 // registramos nuestro router para poder usarlo
 app.use('/', require('./routes/index'));
 
-app.use(homeRouter);
 app.use(usuarioRouter);
 app.use(entidadRouter);
 app.use(administracionRouter);
@@ -84,5 +82,5 @@ app.use(posicionRouter);
 app.use(productoRouter);
 app.use(proveedorRouter);
 app.use(recoveryRouter);
-
+app.use(rolRouter);
 module.exports = app;

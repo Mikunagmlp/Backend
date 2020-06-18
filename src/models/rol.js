@@ -1,12 +1,12 @@
+const mongoose = require('mongoose');
 const { Schema, model } = require('mongoose');
 
-const Permiso = require('./permiso');
-
-const categoriaSchema = new Schema({
+const rolSchema = new Schema({
     NombreRol: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
     Description: {
         type: String,
@@ -23,11 +23,11 @@ const categoriaSchema = new Schema({
     Permiso: [
         {
             NombrePermiso: String,
-            Idpermiso: String,   
+            Idpermiso: String,
         }
     ]
 }, {
     timestamps: true
 });
-
-module.exports = model('Categoria', categoriaSchema);
+const Rol = mongoose.model('Rol', rolSchema);
+module.exports = Rol;

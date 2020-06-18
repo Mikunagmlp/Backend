@@ -1,8 +1,9 @@
 const express= require('express');
 const router = new express.Router();
-const {createCategoria }= require('../controllers/categoria.controller');
-// get registro
-router.post('/categoria/crearCategoria',createCategoria)
+
+router.get('/categoria/registrar',async(req,res)=>{
+    res.send('Estamos en categoria Registro');
+} )
 
 router.get('/categoria/editar',async(req,res)=>{
  res.send('Estamos en categoria Editar')
