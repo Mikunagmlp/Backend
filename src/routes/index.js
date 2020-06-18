@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/user/edit',
+    successRedirect: '/user/profile',
     failureRedirect: '/signin',
     passReqToCallback: true
 }));
@@ -16,13 +16,6 @@ router.get('/logout', (req, res, next) => {
     res.send('Logout');
 })
 
-router.get('/profile',passportConfig.isAuthenticated, (req, res, next) => {
-    const user = req.user;
-    console.log(user);
-    res.json({
-        status: 'ok',
-        Email:user.Email,
-    })
-});
+
 
 module.exports = router;
