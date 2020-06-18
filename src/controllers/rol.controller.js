@@ -15,7 +15,7 @@ rolCtrl.createRol = async (req, res) => {
 };
 
 rolCtrl.getRoles = async (req, res) => {
-    const roles = await Rol.find();
+    const roles = await Rol.find({ Estado: true });
     res.json(roles);
 };
 
@@ -38,7 +38,7 @@ rolCtrl.updateRol = async (req, res) => {
 
 rolCtrl.disableRol = async (req, res) => {
     const { Estado } = req.body;
-    await Categoria.findOneAndUpdate(req.params.id, {
+    await Rol.findOneAndUpdate(req.params.id, {
         Estado
     });
     res.json(200);
@@ -74,6 +74,4 @@ rolCtrl.getSearch = async (req, res, next) => {
         }).limit(10);
 
 }
-
-
 module.exports = rolCtrl;

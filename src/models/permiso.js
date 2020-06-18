@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-var ToySchema = new Schema({ name: String });
 const permisoSchema = new Schema({
     NombrePermiso: {
         type: String,

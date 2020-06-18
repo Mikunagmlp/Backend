@@ -25,6 +25,7 @@ const productoRouter = require('./routes/producto');
 const proveedorRouter = require('./routes/proveedor');
 const recoveryRouter = require('./routes/recovery_password');
 const rolRouter = require('./routes/rol');
+const permisoRouter=require('./routes/permiso');
 // cargar middlewares
 
 const TIME_SESSIONS = 1 * 24 * 60 * 60;
@@ -83,4 +84,5 @@ app.use(productoRouter);
 app.use(proveedorRouter);
 app.use(recoveryRouter);
 app.use(rolRouter);
+app.use(permisoRouter);
 module.exports = app;
