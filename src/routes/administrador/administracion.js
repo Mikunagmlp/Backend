@@ -2,12 +2,13 @@ const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
 const { getSearch } = require('../../controllers/administrador.controller');
+const Rol = require('../../models/rol');
 
 router.post('/administracion/user/registro', async (req, res) => {
-    const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado } = req.body;
-    //const user = User(req.body);
+    const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, IdRol } = req.body;
+
     try {
-        const newUser = new User({ NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado });
+        const newUser = new User({ NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, IdRol });
         newUser.Password = await newUser.encryptPassword(Password);
         await newUser.save();
         res.status(201).json(newUser);
@@ -18,9 +19,28 @@ router.post('/administracion/user/registro', async (req, res) => {
 
 router.get('/administracion/users', async (req, res) => {
     try {
-        const usuarios = await User.find();
+        let userPermiso = [];
+        await User.find({ Estado: true })
+            .populate('IdRol')
+            .exec((err, userRol) => {
+                console.log(userRol)
+                if (!err) {
+                    if (userRol && userRol.length && userRol.length > 0) {
+                        userRol.forEach(data => {
+                            let obj = {
+                                IdUser: data._id,
+                                NombreCompleto: data.NombreCompleto,
+                                Email: data.Email,
+                                IdRol: data.IdRol
+                            };
 
-        res.status(200).send(usuarios);
+                            userPermiso.push(obj);
+                        });
+                    }
+                }
+                res.status(200).json(userPermiso);
+            });
+
     } catch (e) {
         res.status(400).send(e);
     }
@@ -28,7 +48,7 @@ router.get('/administracion/users', async (req, res) => {
 
 router.patch('/administracion/user/editar/:id', async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero'];
+    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero', 'IdRol'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
@@ -68,13 +88,6 @@ router.delete('/administracion/user/eliminar/:id', async (req, res) => {
     }
 });
 
-router.get('/administracion/user/permisos', async (req, res) => {
-    res.send('Estamos en administracion permisos de usuari')
-});
-
-router.post('/administracion/user/crearrol', async (req, res) => {
-    res.send('Estamos en administracion Crear nuevo rol')
-});
 //localhost:3000/administracion/user/search?q=test
 router.get('/administracion/user/search', getSearch);
 module.exports = router;
