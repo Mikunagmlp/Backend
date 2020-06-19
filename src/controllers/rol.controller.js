@@ -55,7 +55,6 @@ rolCtrl.getSearch = async (req, res, next) => {
         , {
             __v: 0
         }, function (err, data) {
-            console.log(data);
             var result = [];
             if (!err) {
                 if (data && data.length && data.length > 0) {

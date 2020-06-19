@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     },
     Estado: {
         type: Boolean,
-        default: false
+        default: true
     },
     IdRol: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Rol'

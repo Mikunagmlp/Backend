@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
-const { getSearch } = require('../../controllers/administrador.controller');
+const { getSearch, getUsuario } = require('../../controllers/administrador.controller');
 const Rol = require('../../models/rol');
 
 router.post('/administracion/user/registro', async (req, res) => {
@@ -23,7 +23,6 @@ router.get('/administracion/users', async (req, res) => {
         await User.find({ Estado: true })
             .populate('IdRol')
             .exec((err, userRol) => {
-                console.log(userRol)
                 if (!err) {
                     if (userRol && userRol.length && userRol.length > 0) {
                         userRol.forEach(data => {
@@ -31,6 +30,10 @@ router.get('/administracion/users', async (req, res) => {
                                 IdUser: data._id,
                                 NombreCompleto: data.NombreCompleto,
                                 Email: data.Email,
+                                Telefono: data.Telefono,
+                                Direccion: data.Direccion,
+                                Genero: data.Genero,
+                                Estado: data.Estado,
                                 IdRol: data.IdRol
                             };
 
@@ -76,17 +79,19 @@ router.patch('/administracion/user/editar/:id', async (req, res) => {
     }
 });
 
-router.delete('/administracion/user/eliminar/:id', async (req, res) => {
+router.put('/administracion/user/eliminar/:id', async (req, res) => {
     try {
-        const usuario = await User.findOneAndDelete({ _id: req.params.id });
-        if (!usuario) {
-            return res.status(404).send();
-        }
-        res.send({ message: 'Usuario eliminado' });
+        const { Estado } = req.body;
+        await User.findByIdAndUpdate(req.params.id, {
+            Estado: Estado
+        });
+        res.json({ message: 'Usuario Desactivado' });
     } catch (error) {
         res.status(500).send(error);
     }
 });
+
+router.get('/administracion/user/:id', getUsuario);
 
 //localhost:3000/administracion/user/search?q=test
 router.get('/administracion/user/search', getSearch);
