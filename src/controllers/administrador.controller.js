@@ -42,7 +42,6 @@ administradorCtrl.getUsuario = async (req, res) => {
         await User.find({ _id: req.params.id, Estado: true })
             .populate('IdRol')
             .exec((err, userRol) => {
-                console.log(userRol);
                 userRol.forEach(data => {
                      obj = {
                         IdUser: data._id,
