@@ -1,20 +1,18 @@
 const express = require('express');
 // creamos el router para todas nuestras peticiones
 const passportConfig = require('../../passport/local-auth');
-
 const router = new express.Router();
+const { updateUser } = require('../../controllers/user.controller');
 
-const User = require('../../models/usuario');
-// token
-const bcrypt = require('bcryptjs');
+router.put('/user/edit/:id', passportConfig.isAuthenticated, updateUser);
 
-router.get('/user/edit', passportConfig.isAuthenticated, (req, res, next) => {
+
+router.get('/user/profile',passportConfig.isAuthenticated, (req, res, next) => {
     const user = req.user;
     console.log(user);
     res.json({
         status: 'ok',
-        message:'estamos en User/edit',
-        Email: user.Email,
+        Email:user.Email,
     })
 });
 

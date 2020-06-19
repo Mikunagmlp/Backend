@@ -3,36 +3,64 @@ const User = require('../models/usuario');
 
 administradorCtrl.getSearch = async (req, res, next) => {
     let q = req.query.q;
-    await User.find({
-        NombreCompleto: {
-            $regex: new RegExp(q),
-            $options: 'i'
-        }
-    }
-        , {
-            __v: 0
-        }, function (err, data) {
-            var result = [];
-            if (!err) {
-                if (data && data.length && data.length > 0) {
-                    data.forEach(user => {
-                        let obj = {
-                            idUser: user._id,
-                            NombreCompleto: user.NombreCompleto,
-                            Email: user.Email,
-                            Password: user.Password,
-                            Telefono: user.Telefono,
-                            Direccion: user.Direccion,
-                            Genero: user.Genero,
-                            Estado: user.Estado,
-                        };
-                        result.push(obj);
-                    });
-
-                }
-
+    let userPermiso = [];
+    await User.find(
+        {
+            NombreCompleto: {
+                $regex: new RegExp(q),
+                $options: 'i'
             }
-            res.json(result);
-        }).limit(10);
+        }, { __v: 0 })
+        .populate('IdRol')
+        .exec((err, userRol) => {
+            if (!err) {
+                if (userRol && userRol.length && userRol.length > 0) {
+                    userRol.forEach(data => {
+                        let obj = {
+                            IdUser: data._id,
+                            NombreCompleto: data.NombreCompleto,
+                            Email: data.Email,
+                            Telefono: data.Telefono,
+                            Direccion: data.Direccion,
+                            Genero: data.Genero,
+                            Estado: data.Estado,
+                            IdRol: data.IdRol
+                        };
+
+                        userPermiso.push(obj);
+                    });
+                }
+            }
+            res.status(200).json(userPermiso);
+        });
+
 }
+
+administradorCtrl.getUsuario = async (req, res) => {
+    try {
+        let obj;
+        await User.find({ _id: req.params.id, Estado: true })
+            .populate('IdRol')
+            .exec((err, userRol) => {
+                userRol.forEach(data => {
+                     obj = {
+                        IdUser: data._id,
+                        NombreCompleto: data.NombreCompleto,
+                        Email: data.Email,
+                        Telefono: data.Telefono,
+                        Direccion: data.Direccion,
+                        Genero: data.Genero,
+                        Estado: data.Estado,
+                        IdRol: data.IdRol
+                    }
+                });
+                res.status(200).json(obj);
+            });
+
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+
 module.exports = administradorCtrl;
