@@ -37,12 +37,11 @@ const userSchema = new mongoose.Schema({
     },
     Estado: {
         type: Boolean,
-        default: false
+        default: true
     },
-    creationDate: {
-        type: Date,
-        default: Date.now
-    },
+    IdRol: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Rol'
+    }
     // TODO: aqui haremos la relacion de N usuarios con la entidad
 }, {
     timestamps: true
