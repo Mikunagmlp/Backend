@@ -7,13 +7,10 @@ const { updateUser } = require('../../controllers/user.controller');
 router.put('/user/edit/:id', passportConfig.isAuthenticated, updateUser);
 
 
-router.get('/user/profile',passportConfig.isAuthenticated, (req, res, next) => {
+router.get('/user/profile',passportConfig.isAuthenticated, (req, res ) => {
     const user = req.user;
-    console.log(user);
-    res.json({
-        status: 'ok',
-        Email:user.Email,
-    })
+    // console.log(user);
+    res.status(200).send(user);
 });
 
 module.exports = router;

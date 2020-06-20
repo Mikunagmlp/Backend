@@ -11,6 +11,7 @@ router.post('/signin', passport.authenticate('local-signin', {
     failureRedirect: '/signin',
     passReqToCallback: true
 }));
+
 router.get('/logout', (req, res, next) => {
     req.logout();
     res.send('Logout');

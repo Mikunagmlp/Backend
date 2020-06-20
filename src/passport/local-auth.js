@@ -21,9 +21,9 @@ passport.use('local-signin', new LocalStrategy({
     }
   
     if (!user.comparePassword(Password)) {
-        return done(null, false, req.flash('signinMessage', 'Incorrect Psssword'));
+        return done(null, false, req.flash('signinMessage', 'Incorrect Password'));
     }
-    
+
     return done(null, user);
 }));
 
