@@ -17,7 +17,7 @@ administradorCtrl.getSearch = async (req, res, next) => {
                 if (userRol && userRol.length && userRol.length > 0) {
                     userRol.forEach(data => {
                         let obj = {
-                            IdUser: data._id,
+                            _id: data._id,
                             NombreCompleto: data.NombreCompleto,
                             Email: data.Email,
                             Telefono: data.Telefono,
@@ -44,7 +44,7 @@ administradorCtrl.getUsuario = async (req, res) => {
             .exec((err, userRol) => {
                 userRol.forEach(data => {
                      obj = {
-                        IdUser: data._id,
+                        _id: data._id,
                         NombreCompleto: data.NombreCompleto,
                         Email: data.Email,
                         Telefono: data.Telefono,
