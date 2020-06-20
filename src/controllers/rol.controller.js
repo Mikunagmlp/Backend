@@ -60,7 +60,7 @@ rolCtrl.getSearch = async (req, res, next) => {
                 if (data && data.length && data.length > 0) {
                     data.forEach(rol => {
                         let obj = {
-                            IdRol: rol._id,
+                            _id: rol._id,
                             NombreRol: rol.NombreRol,
                             Description: rol.Description,
                             Permiso: rol.Permiso
