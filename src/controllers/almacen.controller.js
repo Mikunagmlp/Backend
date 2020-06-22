@@ -50,7 +50,7 @@ almacenCtrl.updateAlmacen = async (req, res) => {
             Descripcion,
             IdUser
         })
-        return res.status(400).json({ update: true });
+        return res.status(200).json({ update: true });
     } catch (error) {
         res.status(400).send(error);
     }
@@ -62,9 +62,9 @@ almacenCtrl.desableAlmacen = async (req, res) => {
         await Almacen.findByIdAndUpdate(req.params.id, {
             Estado
         });
-        return res.status(400).json({ update: true });
+        return res.status(200).json({ update: true });
     } catch (error) {
-        res.status(200).send(error);
+        res.status(400).send(error);
     }
 }
 
