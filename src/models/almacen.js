@@ -5,7 +5,6 @@ const almacenSchema = new Schema({
     NombreAlmacen: {
         type: String,
         require: true,
-        unique: true,
         trim: true
     },
     CodigoAlmacen: {

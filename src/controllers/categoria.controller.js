@@ -43,10 +43,9 @@ categoriaCtrl.getCategoria = async (req, res) => {
 
 categoriaCtrl.updateCategoria = async (req, res) => {
     try {
-        const { NombreCategoria, CodigoCategoria, Descripcion, IdUser } = req.body;
+        const { NombreCategoria, Descripcion, IdUser } = req.body;
         await Categoria.findByIdAndUpdate(req.params.id, {
             NombreCategoria,
-            CodigoCategoria,
             Descripcion,
             IdUser
         })

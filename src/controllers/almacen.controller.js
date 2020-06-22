@@ -43,10 +43,9 @@ almacenCtrl.getAlmacen = async (req, res) => {
 
 almacenCtrl.updateAlmacen = async (req, res) => {
     try {
-        const { NombreAlmacen, CodigoAlmacen, Descripcion, IdUser } = req.body;
+        const { NombreAlmacen, Descripcion, IdUser } = req.body;
         await Almacen.findByIdAndUpdate(req.params.id, {
             NombreAlmacen,
-            CodigoAlmacen,
             Descripcion,
             IdUser
         })

@@ -43,10 +43,9 @@ proveedorCtrl.getProveedor = async (req, res) => {
 
 proveedorCtrl.updateProveedor = async (req, res) => {
     try {
-        const { NombreProveedor, CodigoProveedor, NombreEmpresa, Direccion, Descripcion, IdUser } = req.body;
+        const { NombreProveedor, NombreEmpresa, Direccion, Descripcion, IdUser } = req.body;
         await Proveedor.findByIdAndUpdate(req.params.id, {
             NombreProveedor,
-            CodigoProveedor,
             NombreEmpresa,
             Direccion,
             Descripcion,
