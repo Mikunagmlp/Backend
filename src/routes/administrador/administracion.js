@@ -5,7 +5,7 @@ const { getSearch, getUsuario } = require('../../controllers/administrador.contr
 const Rol = require('../../models/rol');
 const passportConfig = require('../../passport/local-auth');
 
-router.post('/administracion/user/registro', async (req, res) => {
+router.post('/administracion/user/registro', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminCreate'), async (req, res) => {
     const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, IdRol } = req.body;
 
     try {
@@ -18,7 +18,7 @@ router.post('/administracion/user/registro', async (req, res) => {
     }
 });
 
-router.get('/administracion/users',passportConfig.verifiToken,passportConfig.isValiAdminCreate, async (req, res) => {
+router.get('/administracion/users', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminList'), async (req, res) => {
     try {
         let userPermiso = [];
         await User.find({ Estado: true })

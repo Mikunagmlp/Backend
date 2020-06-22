@@ -40,14 +40,14 @@ exports.verifiToken = async (req, res, next) => {
     return next();
 }
 
-exports.isValiAdminCreate = async (req, res) => {
+exports.isValiPermiso =(p)=> async (req, res,next) => {
     const data = await User.find({ _id: req.user.id })
         .populate('IdRol').exec();
 
     if (data[0].IdRol.Permiso.length > 0) {
         for (i in data[0].IdRol.Permiso) {
-            if (data[0].IdRol.Permiso[i].Idpermiso == 'AdminCreate') {
-                return res.status(200).json(data);
+            if (data[0].IdRol.Permiso[i].Idpermiso == p) {
+                return next();
             }
         }
         return res.status(401).json({
