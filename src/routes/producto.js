@@ -1,12 +1,15 @@
-const express= require('express');
+const express = require('express');
 const router = new express.Router();
+const { createProducto, updateProducto, getProducto, getProductos, desableProducto } = require('../controllers/producto.controller');
 
-router.get('/producto/registrar',async(req,res)=>{
-    res.send('Estamos en Producto Registro');
-} )
+router.post('/producto/registrar', createProducto);
 
-router.get('/producto/editar',async(req,res)=>{
- res.send('Estamos en Producto Editar')
-});
+router.get('/productos', getProductos);
 
-module.exports= router;
+router.get('/producto/:id', getProducto);
+
+router.put('/producto/editar/:id', updateProducto);
+
+router.put('/producto/desable/:id', desableProducto);
+
+module.exports = router;
