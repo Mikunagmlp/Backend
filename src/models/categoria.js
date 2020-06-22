@@ -5,7 +5,6 @@ const categoriaSchema = new Schema({
     NombreCategoria: {
         type: String,
         require: true,
-        unique: true,
         trim: true
     },
     CodigoCategoria: {

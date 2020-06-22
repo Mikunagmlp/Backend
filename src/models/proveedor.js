@@ -5,7 +5,6 @@ const proveedorSchema = new Schema({
     NombreProveedor: {
         type: String,
         require: true,
-        unique: true,
         trim: true
     },
     CodigoProveedor: {
