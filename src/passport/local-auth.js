@@ -17,7 +17,7 @@ exports.isSignin = async (req, res, next) => {
     });
     //req.user = user;
     req.token = token;
-    res.json({ auth: true, token });
+    res.status(200).json({ auth: true, token });
     return next();
 }
 
@@ -40,7 +40,7 @@ exports.verifiToken = async (req, res, next) => {
     return next();
 }
 
-exports.isValiPermiso =(p)=> async (req, res,next) => {
+exports.isValiPermiso = (p) => async (req, res, next) => {
     const data = await User.find({ _id: req.user.id })
         .populate('IdRol').exec();
 
