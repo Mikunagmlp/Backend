@@ -1,40 +1,63 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const jwt = require('jsonwebtoken');
+const jwk = require('jsonwebtoken');
 const User = require('../models/usuario');
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-passport.deserializeUser(async (id, done) => {
-    const user = await User.findById(id);
-    done(null, user);
-});
+exports.isSignin = async (req, res, next) => {
 
-passport.use('local-signin', new LocalStrategy({
-    usernameField: 'Email',
-    passwordField: 'Password',
-    passReqToCallback: true
-}, async (req, Email, Password, done) => {
+    const { Email, Password } = req.body;
     const user = await User.findOne({ Email: Email });
     if (!user) {
-        return done(null, false, req.flash('signinMessage', 'No user Found'));
+        return res.status(404).send("Email does't exist")
     }
-
-    if (!user.comparePassword(Password)) {
-        return done(null, false, req.flash('signinMessage', 'Incorrect Password'));
+    const validPassword = await user.comparePassword(Password)
+    if (!validPassword) {
+        return res.status(401).json({ auth: false, token: null });
     }
-
-    return done(null, user);
-}));
-
-exports.login = (req, res) => {
-    console.log(req.body);
+    const token = jwk.sign({ id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: 60 * 60 * 24
+    });
+    //req.user = user;
+    req.token = token;
+    res.json({ auth: true, token });
+    return next();
 }
 
-exports.isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
+
+exports.verifiToken = async (req, res, next) => {
+    const token = req.headers['x-access-token'];
+    if (!token) {
+        return res.status(401).json({
+            auth: false,
+            message: 'not token provided'
+        });
     }
-    res.redirect('/');
+    const decodec = jwk.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decodec.id, { Password: 0 }).populate('IdRol').exec();;
+    if (!user) {
+        return res.status(404).send('not user found');
+    }
+    //req.token = token;
+    req.user = user;
+    return next();
+}
+
+exports.isValiAdminCreate = async (req, res) => {
+    const data = await User.find({ _id: req.user.id })
+        .populate('IdRol').exec();
+
+    if (data[0].IdRol.Permiso.length > 0) {
+        for (i in data[0].IdRol.Permiso) {
+            if (data[0].IdRol.Permiso[i].Idpermiso == 'AdminCreate') {
+                return res.status(200).json(data);
+            }
+        }
+        return res.status(401).json({
+            ok: false,
+            error: 'No tiene permiso'
+        });
+    } else {
+        return res.status(401).json({
+            ok: false,
+            error: 'No tiene rol'
+        });
+    }
 }

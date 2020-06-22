@@ -4,10 +4,10 @@ const passportConfig = require('../../passport/local-auth');
 const router = new express.Router();
 const { updateUser } = require('../../controllers/user.controller');
 
-router.put('/user/edit/:id', passportConfig.isAuthenticated, updateUser);
+router.put('/user/edit/:id', passportConfig.verifiToken, updateUser);
 
 
-router.get('/user/profile',passportConfig.isAuthenticated, (req, res ) => {
+router.get('/user/profile',passportConfig.verifiToken, (req, res ) => {
     const user = req.user;
     // console.log(user);
     res.status(200).send(user);

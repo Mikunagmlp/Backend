@@ -4,11 +4,6 @@ const cors = require('cors');
 const app = express();
 
 const methodOverride = require('method-override');
-const passport = require('passport');
-const session = require('express-session');
-const flass = require('connect-flash');
-const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo')(session);
 
 require('./passport/local-auth');
 require('./db/mongoose'); // importa la DB
@@ -28,43 +23,10 @@ const rolRouter = require('./routes/rol');
 const permisoRouter=require('./routes/permiso');
 // cargar middlewares
 
-const TIME_SESSIONS = 1 * 24 * 60 * 60;
-const {
-    SESS_NAME = 'mikuna',
-    SESS_LIFETIME = TIME_SESSIONS
-} = process.env;
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(methodOverride('_method'));
-app.use(session({
-    secret: 'mikuna',
-    resave: false,
-    saveUninitialized: false,
-    name: SESS_NAME,
-    store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        ttl: SESS_LIFETIME,
-        autoReconnect: true,
-        autoRemove: 'native'
-    })
-}))
-app.use(flass());
-app.use(passport.initialize());
-app.use(passport.session());
-
-//settings
-
-//global variables
-app.use((req, res, next) => {
-    app.locals.signupMessage = req.flash('signupMessage');
-    next();
-});
-app.use((req, res, next) => {
-    app.locals.signinMessage = req.flash('signinMessage');
-    next();
-});
 
 // hace el parse de data enviada del cliente en json se convierta en objeto para nuestro server
 app.use(express.json());

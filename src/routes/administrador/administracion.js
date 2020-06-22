@@ -3,6 +3,7 @@ const router = new express.Router();
 const User = require('../../models/usuario');
 const { getSearch, getUsuario } = require('../../controllers/administrador.controller');
 const Rol = require('../../models/rol');
+const passportConfig = require('../../passport/local-auth');
 
 router.post('/administracion/user/registro', async (req, res) => {
     const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, IdRol } = req.body;
@@ -17,7 +18,7 @@ router.post('/administracion/user/registro', async (req, res) => {
     }
 });
 
-router.get('/administracion/users', async (req, res) => {
+router.get('/administracion/users',passportConfig.verifiToken,passportConfig.isValiAdminCreate, async (req, res) => {
     try {
         let userPermiso = [];
         await User.find({ Estado: true })
