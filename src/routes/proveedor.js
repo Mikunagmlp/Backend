@@ -1,12 +1,14 @@
-const express= require('express');
+const express = require('express');
 const router = new express.Router();
+const { createProveedor, getProveedores, getProveedor } = require('../controllers/proveedor.controller');
 
-router.get('/proveedor/registrar',async(req,res)=>{
-    res.send('Estamos en proveedor Registro');
-} )
+router.post('/proveedor/registrar', createProveedor);
 
-router.get('/proveedor/editar',async(req,res)=>{
- res.send('Estamos en proveedor Editar')
+router.get('/proveedores', getProveedores);
+
+router.get('/proveedor/editar', async (req, res) => {
+    res.send('Estamos en proveedor Editar')
 });
 
-module.exports= router;
+router.get('/proveedor/:id', getProveedor);
+module.exports = router;
