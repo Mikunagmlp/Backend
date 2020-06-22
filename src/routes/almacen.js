@@ -1,12 +1,15 @@
-const express= require('express');
+const express = require('express');
 const router = new express.Router();
+const { createAlmacen, desableAlmacen, getAlmacen, getAlmacenes, updateAlmacen } = require('../controllers/almacen.controller');
 
-router.get('/almacen/registrar',async(req,res)=>{
-    res.send('Estamos en Almacen Registro');
-} )
+router.post('/almacen/registrar', createAlmacen);
 
-router.get('/almacen/editar',async(req,res)=>{
- res.send('Estamos en Almacen Editar')
-});
+router.get('/almacenes', getAlmacenes);
 
-module.exports= router;
+router.get('/almacen/:id', getAlmacen);
+
+router.put('/almacen/editar/:id', updateAlmacen);
+
+router.put('/almacen/desable/:id', desableAlmacen);
+
+module.exports = router;
