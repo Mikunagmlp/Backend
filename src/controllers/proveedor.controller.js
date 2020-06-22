@@ -41,6 +41,34 @@ proveedorCtrl.getProveedor = async (req, res) => {
 }
 
 
+proveedorCtrl.updateProveedor = async (req, res) => {
+    try {
+        const { NombreProveedor, CodigoProveedor, NombreEmpresa, Direccion, Descripcion, IdUser } = req.body;
+        await Proveedor.findByIdAndUpdate(req.params.id, {
+            NombreProveedor,
+            CodigoProveedor,
+            NombreEmpresa,
+            Direccion,
+            Descripcion,
+            IdUser
+        });
+        return res.status(400).json({ update: true });
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
+proveedorCtrl.desableProveedor = async (req, res) => {
+    try {
+        const { Estado } = req.body;
+        await Proveedor.findByIdAndUpdate(req.params.id, {
+            Estado
+        });
+        return res.status(400).json({ update: true });
+    } catch (error) {
+        res.status(200).send(error);
+    }
+}
 
 
 module.exports = proveedorCtrl;
