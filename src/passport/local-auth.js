@@ -17,7 +17,7 @@ exports.isSignin = async (req, res, next) => {
     });
     //req.user = user;
     req.token = token;
-    res.status(200).json({ auth: true, token });
+    res.status(200).json({ user , token });
     return next();
 }
 

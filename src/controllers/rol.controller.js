@@ -33,7 +33,7 @@ rolCtrl.updateRol = async (req, res) => {
         IdUser,
         Permiso
     });
-    res.json(200);
+    res.status(200).send({ message: 'Rol actualizado' });
 }
 
 rolCtrl.disableRol = async (req, res) => {
@@ -41,7 +41,7 @@ rolCtrl.disableRol = async (req, res) => {
     await Rol.findOneAndUpdate(req.params.id, {
         Estado
     });
-    res.json(200);
+    res.status(200).send({ message: 'rol desactivado' });
 }
 
 rolCtrl.getSearch = async (req, res, next) => {
