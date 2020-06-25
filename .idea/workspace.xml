@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/rol.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/rol.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/passport/local-auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/passport/local-auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/colegio.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/colegio.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/colegio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/colegio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +54,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -126,7 +128,14 @@
       <workItem from="1592688127014" duration="3422000" />
       <workItem from="1592753613229" duration="2579000" />
       <workItem from="1592875001551" duration="1276000" />
-      <workItem from="1592931802553" duration="1259000" />
+      <workItem from="1592931802553" duration="5056000" />
+      <workItem from="1593034894698" duration="1543000" />
+      <workItem from="1593055867853" duration="378000" />
+      <workItem from="1593056557803" duration="260000" />
+      <workItem from="1593056999568" duration="585000" />
+      <workItem from="1593106061413" duration="1599000" />
+      <workItem from="1593119217393" duration="1298000" />
+      <workItem from="1593128961303" duration="396000" />
     </task>
     <servers />
   </component>
@@ -222,6 +231,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="445" y="281" key="IDE.errors.dialog/0.0.1920.1200@0.0.1920.1200" timestamp="1591479325063" />
+    <state x="730" y="241" key="SettingsEditor" timestamp="1593056238978">
+      <screen x="0" y="23" width="1920" height="1119" />
+    </state>
+    <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
     <state x="541" y="282" key="run.anything.popup" timestamp="1592677582853">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>

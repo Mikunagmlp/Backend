@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
 
 // buscamos al usuario que se quiere registrar
 userSchema.statics.encontrarUsuario = async (email, password) => {
-    const user = await User.findOne({ Email: email });
+    const user = await User.findOne({ Email: email })
 
     // si no encontramos al user lanzamos un error
     if (!user) {
