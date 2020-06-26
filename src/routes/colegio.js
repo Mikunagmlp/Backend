@@ -9,4 +9,6 @@ router.get( '/colegios', listarColegios );
 
 router.patch('/colegio/editar/:id', updateColegio );
 
+router.patch( '/colegio/eliminar/:id', updateColegio );
+
 module.exports= router;
