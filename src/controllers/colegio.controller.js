@@ -24,7 +24,7 @@ colegioCtrl.crearColegio = async (req, res) => {
 
 colegioCtrl.listarColegios = async (req, res) => {
     try {
-        const colegios = await Colegio.find();
+        const colegios = await Colegio.find({ Estado: true });
 
         res.status(200).send( colegios );
     } catch (e) {
