@@ -1,11 +1,13 @@
 const express= require('express');
 const router = new express.Router();
 
-const { crearColegio } =  require('../controllers/colegio.controller');
+const { crearColegio, listarColegios } =  require('../controllers/colegio.controller');
 
 router.post('/colegio/registrar', crearColegio );
 
-router.get('/colegio/editar',async(req,res)=>{
+router.get( '/colegios', listarColegios );
+
+router.patch('/colegio/editar',async(req,res)=>{
  res.send('Estamos en Colegio Editar')
 });
 

@@ -20,7 +20,16 @@ colegioCtrl.crearColegio = async (req, res) => {
     } catch (e) {
         res.status(400).send(e);
     }
+}
 
+colegioCtrl.listarColegios = async (req, res) => {
+    try {
+        const colegios = await Colegio.find();
+
+        res.status(200).send( colegios );
+    } catch (e) {
+        res.status(400).send(e);
+    }
 }
 
 colegioCtrl.updateUser = async (req, res) => {
