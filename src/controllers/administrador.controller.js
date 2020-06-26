@@ -15,6 +15,7 @@ administradorCtrl.getSearch = async (req, res, next) => {
         .exec((err, userRol) => {
             if (!err) {
                 if (userRol && userRol.length && userRol.length > 0) {
+
                     userRol.forEach(data => {
                         let obj = {
                             _id: data._id,

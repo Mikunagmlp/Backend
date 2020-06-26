@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/administrador.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/administrador.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/colegio.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/colegio.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/colegio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/colegio.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +136,8 @@
       <workItem from="1593056999568" duration="585000" />
       <workItem from="1593106061413" duration="1599000" />
       <workItem from="1593119217393" duration="1298000" />
-      <workItem from="1593128961303" duration="3268000" />
+      <workItem from="1593128961303" duration="4260000" />
+      <workItem from="1593175346207" duration="2453000" />
     </task>
     <servers />
   </component>
