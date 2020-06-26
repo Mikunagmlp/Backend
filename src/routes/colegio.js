@@ -1,9 +1,9 @@
 const express= require('express');
 const router = new express.Router();
 
-router.get('/colegio/registrar',async(req,res)=>{
-    res.send('Estamos en Colegio Registro');
-} )
+const { crearColegio } =  require('../controllers/colegio.controller');
+
+router.post('/colegio/registrar', crearColegio );
 
 router.get('/colegio/editar',async(req,res)=>{
  res.send('Estamos en Colegio Editar')

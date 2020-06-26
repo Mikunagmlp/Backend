@@ -4,7 +4,7 @@ const router = new express.Router();
 const { createRol, getRoles, disableRol, getSearch, updateRol, getRol } = require('../controllers/rol.controller');
 
 //listar roles
-router.get('/roles', getRoles)
+router.get('/roles', getRoles);
 //localhost:3000/administracion/user/search?q=test
 router.get('/rol/searchRol', getSearch);
 // post roles

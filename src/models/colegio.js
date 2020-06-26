@@ -15,12 +15,12 @@ const colegioSchema = new mongoose.Schema({
     Distrito: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         lowercase: true
     },
     CodColegio: {
         type: String,
+        unique: true,
         required: true,
         trim: true
     },
@@ -35,7 +35,7 @@ const colegioSchema = new mongoose.Schema({
         trim: true
     },
     CantidadAlumnos: {
-        type: String,
+        type: Number,
         required: true,
         trim: true
     },
@@ -53,10 +53,7 @@ const colegioSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    IdRol: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Rol'
-    }
-    // TODO: aqui haremos la relacion de N usuarios con la entidad
+
 }, {
     timestamps: true
 });
