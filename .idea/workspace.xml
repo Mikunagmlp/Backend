@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/colegio.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/colegio.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/colegio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/colegio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/proveedor.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/proveedor.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/proveedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/proveedor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/proveedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/proveedor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +137,10 @@
       <workItem from="1593119217393" duration="1298000" />
       <workItem from="1593128961303" duration="4260000" />
       <workItem from="1593175346207" duration="2973000" />
-      <workItem from="1593208384982" duration="807000" />
+      <workItem from="1593208384982" duration="1248000" />
+      <workItem from="1593214982571" duration="787000" />
+      <workItem from="1593441526782" duration="1269000" />
+      <workItem from="1593534550529" duration="4146000" />
     </task>
     <servers />
   </component>

@@ -3,14 +3,13 @@ const Proveedor = require('../models/proveedor');
 
 proveedorCtrl.createProveedor = async (req, res) => {
     try {
-        const { NombreProveedor, CodigoProveedor, NombreEmpresa, Direccion, Descripcion, IdUser } = req.body;
+        const { NombreProveedor, CodigoProveedor, NombreEmpresa, Direccion, Descripcion } = req.body;
         const newProveedor = new Proveedor({
             NombreProveedor,
             CodigoProveedor,
             NombreEmpresa,
             Direccion,
-            Descripcion,
-            IdUser
+            Descripcion
         })
         await newProveedor.save();
         res.status(200).json(newProveedor);
@@ -42,16 +41,30 @@ proveedorCtrl.getProveedor = async (req, res) => {
 
 
 proveedorCtrl.updateProveedor = async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['NombreProveedor', 'NombreEmpresa', 'Direccion', 'Descripcion', 'CodigoProveedor', 'Estado'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
+    }
+
     try {
-        const { NombreProveedor, NombreEmpresa, Direccion, Descripcion, IdUser } = req.body;
-        await Proveedor.findByIdAndUpdate(req.params.id, {
-            NombreProveedor,
-            NombreEmpresa,
-            Direccion,
-            Descripcion,
-            IdUser
+        const proveedor = await Proveedor.findOne({ _id: req.params.id });
+
+        if (!proveedor) {
+            return res.status(404).send();
+        }
+
+        updates.forEach((update) => {
+            proveedor[update] = req.body[update];
         });
-        return res.status(200).json({ update: true });
+        await proveedor.save();
+
+        res.send(proveedor);
+
     } catch (error) {
         res.status(400).send(error);
     }
