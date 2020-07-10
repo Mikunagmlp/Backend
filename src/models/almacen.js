@@ -20,10 +20,10 @@ const almacenSchema = new Schema({
         type: Boolean,
         default: true
     },
-    IdUser: {
-        type: String,
-        required: true
-    }
+    // IdUser: {
+    //     type: String,
+    //     required: true
+    // }
 }, {
     timestamps: true
 });

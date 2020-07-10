@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="" />
+    <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/almacen.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/almacen.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/almacen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/almacen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/almacen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/almacen.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +142,7 @@
       <workItem from="1593441526782" duration="1269000" />
       <workItem from="1593534550529" duration="4752000" />
       <workItem from="1593709798923" duration="344000" />
-      <workItem from="1594404265251" duration="928000" />
+      <workItem from="1594404265251" duration="3403000" />
     </task>
     <servers />
   </component>

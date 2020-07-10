@@ -9,7 +9,7 @@ almacenCtrl.createAlmacen = async (req, res) => {
             NombreAlmacen,
             CodigoAlmacen,
             Descripcion,
-            IdUser
+            // IdUser
         })
 
         await newAlmacen.save();
@@ -42,14 +42,30 @@ almacenCtrl.getAlmacen = async (req, res) => {
 
 
 almacenCtrl.updateAlmacen = async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['NombreAlmacen', 'Descripcion', 'IdUSer'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
+    }
+
     try {
-        const { NombreAlmacen, Descripcion, IdUser } = req.body;
-        await Almacen.findByIdAndUpdate(req.params.id, {
-            NombreAlmacen,
-            Descripcion,
-            IdUser
-        })
-        return res.status(200).json({ update: true });
+        const almacen = await Almacen.findOne({ _id: req.params.id });
+
+        if (!almacen) {
+            return res.status(404).send();
+        }
+
+        updates.forEach((update) => {
+            almacen[update] = req.body[update];
+        });
+        await almacen.save();
+
+        res.send(almacen);
+
     } catch (error) {
         res.status(400).send(error);
     }

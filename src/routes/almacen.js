@@ -8,7 +8,7 @@ router.get('/almacenes', getAlmacenes);
 
 router.get('/almacen/:id', getAlmacen);
 
-router.put('/almacen/editar/:id', updateAlmacen);
+router.patch('/almacen/editar/:id', updateAlmacen);
 
 router.put('/almacen/desable/:id', desableAlmacen);
 
