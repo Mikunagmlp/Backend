@@ -10,6 +10,8 @@ router.get('/almacen/:id', getAlmacen);
 
 router.patch('/almacen/editar/:id', updateAlmacen);
 
+
+
 router.put('/almacen/desable/:id', desableAlmacen);
 
 module.exports = router;

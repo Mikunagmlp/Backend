@@ -43,7 +43,7 @@ almacenCtrl.getAlmacen = async (req, res) => {
 
 almacenCtrl.updateAlmacen = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreAlmacen', 'Descripcion', 'IdUSer'];
+    const allowedUpdates = ['NombreAlmacen', 'Descripcion', 'IdUSer', 'Estado'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
