@@ -21,9 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/proveedor.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/proveedor.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/proveedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/proveedor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/proveedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/proveedor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +51,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -140,7 +137,9 @@
       <workItem from="1593208384982" duration="1248000" />
       <workItem from="1593214982571" duration="787000" />
       <workItem from="1593441526782" duration="1269000" />
-      <workItem from="1593534550529" duration="4146000" />
+      <workItem from="1593534550529" duration="4752000" />
+      <workItem from="1593709798923" duration="344000" />
+      <workItem from="1594404265251" duration="606000" />
     </task>
     <servers />
   </component>
@@ -236,9 +235,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="445" y="281" key="IDE.errors.dialog/0.0.1920.1200@0.0.1920.1200" timestamp="1591479325063" />
-    <state x="730" y="241" key="SettingsEditor" timestamp="1593056238978">
-      <screen x="0" y="23" width="1920" height="1119" />
+    <state x="730" y="234" key="SettingsEditor" timestamp="1593710115162">
+      <screen x="0" y="0" width="1920" height="1200" />
     </state>
+    <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
     <state x="541" y="282" key="run.anything.popup" timestamp="1592677582853">
       <screen x="0" y="0" width="1920" height="1200" />
