@@ -39,9 +39,13 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    IdRol: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Rol'
-    }
+    Rols: [
+      {
+	 IdRol: {
+	   type: mongoose.Schema.Types.ObjectId, ref: 'Rol' 
+	 }
+      } 
+    ]
     // TODO: aqui haremos la relacion de N usuarios con la entidad
 }, {
     timestamps: true
