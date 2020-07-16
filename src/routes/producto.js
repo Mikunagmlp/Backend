@@ -8,7 +8,7 @@ router.get('/productos', getProductos);
 
 router.get('/producto/:id', getProducto);
 
-router.put('/producto/editar/:id', updateProducto);
+router.patch('/producto/editar/:id', updateProducto);
 
 router.put('/producto/desable/:id', desableProducto);
 

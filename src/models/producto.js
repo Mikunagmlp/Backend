@@ -30,14 +30,14 @@ const productoSchema = new Schema({
         type: Boolean,
         default: true
     },
-    IdUser: {
-        type: String,
-        required: true
-    },
-    IdCategoria: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Categoria',
-        required: true
-    },
+    // IdUser: {
+    //     type: String,
+    //     required: true
+    // },
+    // IdCategoria: {
+    //     type: mongoose.Schema.Types.ObjectId, ref: 'Categoria',
+    //     required: true
+    // },
     IdProveedor: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Proveedor',
         required: true

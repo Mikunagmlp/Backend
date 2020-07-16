@@ -3,15 +3,15 @@ const Producto = require('../models/producto');
 
 productoCtrl.createProducto = async (req, res) => {
     try {
-        const { NombreProducto, CodigoProducto, PrecioProducto, CantidadProducto, Descripcion, IdUser, IdCategoria, IdProveedor, IdAlmacen } = req.body;
+        const { NombreProducto, CodigoProducto, PrecioProducto, CantidadProducto, Descripcion, IdProveedor, IdAlmacen } = req.body;
         const newProducto = new Producto({
             NombreProducto,
             CodigoProducto,
             PrecioProducto,
             CantidadProducto,
             Descripcion,
-            IdUser,
-            IdCategoria,
+            // IdUser,
+            // IdCategoria,
             IdProveedor,
             IdAlmacen
         })
@@ -55,22 +55,34 @@ productoCtrl.getProducto = async (req, res) => {
 
 
 productoCtrl.updateProducto = async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['Estado', 'NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
+    }
+
     try {
-        const { NombreProducto, PrecioProducto, CantidadProducto, Descripcion, IdUser, IdCategoria, IdProveedor, IdAlmacen } = req.body;
-        await Producto.findByIdAndUpdate(req.params.id, {
-            NombreProducto,
-            PrecioProducto,
-            CantidadProducto,
-            Descripcion,
-            IdUser,
-            IdCategoria,
-            IdProveedor,
-            IdAlmacen
+        const producto = await Producto.findOne({ _id: req.params.id });
+
+        if (!producto) {
+            return res.status(404).send();
+        }
+
+        updates.forEach((update) => {
+            producto[update] = req.body[update];
         });
-        return res.status(200).json({ update: true });
+        await producto.save();
+
+        res.send(producto);
+
     } catch (error) {
         res.status(400).send(error);
     }
+
 }
 
 productoCtrl.desableProducto = async (req, res) => {
