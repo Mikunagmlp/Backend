@@ -11,7 +11,7 @@ administradorCtrl.getSearch = async (req, res, next) => {
                 $options: 'i'
             }
         }, { __v: 0 })
-        .populate('IdRol')
+        .populate('Rols.IdRol')
         .exec((err, userRol) => {
             if (!err) {
                 if (userRol && userRol.length && userRol.length > 0) {
@@ -25,7 +25,7 @@ administradorCtrl.getSearch = async (req, res, next) => {
                             Direccion: data.Direccion,
                             Genero: data.Genero,
                             Estado: data.Estado,
-                            IdRol: data.IdRol
+                            Rols: data.Rols
                         };
 
                         userPermiso.push(obj);
@@ -41,7 +41,7 @@ administradorCtrl.getUsuario = async (req, res) => {
     try {
         let obj;
         await User.find({ _id: req.params.id, Estado: true })
-            .populate('IdRol')
+            .populate('Rols.IdRol')
             .exec((err, userRol) => {
                 userRol.forEach(data => {
                      obj = {
@@ -52,7 +52,7 @@ administradorCtrl.getUsuario = async (req, res) => {
                         Direccion: data.Direccion,
                         Genero: data.Genero,
                         Estado: data.Estado,
-                        IdRol: data.IdRol
+                        Rols: data.Rols
                     }
                 });
                 res.status(200).json(obj);
