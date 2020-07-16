@@ -6,10 +6,10 @@ const Rol = require('../../models/rol');
 const passportConfig = require('../../passport/local-auth');
 
 router.post('/administracion/user/registro', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminCreate'), async (req, res) => {
-    const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, IdRol } = req.body;
+    const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, Rols } = req.body;
 
     try {
-        const newUser = new User({ NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, IdRol });
+        const newUser = new User({ NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, Rols });
         newUser.Password = await newUser.encryptPassword(Password);
         await newUser.save();
         res.status(201).json(newUser);
@@ -22,7 +22,7 @@ router.get('/administracion/users', passportConfig.verifiToken, passportConfig.i
     try {
         let userPermiso = [];
         await User.find({ Estado: true })
-            .populate('IdRol')
+            .populate('Rols.IdRol')
             .exec((err, userRol) => {
                 if (!err) {
                     if (userRol && userRol.length && userRol.length > 0) {
@@ -35,7 +35,7 @@ router.get('/administracion/users', passportConfig.verifiToken, passportConfig.i
                                 Direccion: data.Direccion,
                                 Genero: data.Genero,
                                 Estado: data.Estado,
-                                IdRol: data.IdRol
+                                Rols: data.Rols
                             };
 
                             userPermiso.push(obj);
@@ -52,7 +52,7 @@ router.get('/administracion/users', passportConfig.verifiToken, passportConfig.i
 
 router.patch('/administracion/user/editar/:id', async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero', 'IdRol'];
+    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero', 'Rols'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
@@ -95,5 +95,5 @@ router.put('/administracion/user/eliminar/:id', async (req, res) => {
 router.get('/administracion/user/:id', getUsuario);
 
 //localhost:3000/administracion/user/search?q=test
-router.get('/administracion/user/search', getSearch);
+router.get('/administracion/search/user', getSearch);
 module.exports = router;
