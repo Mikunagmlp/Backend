@@ -8,7 +8,7 @@ router.get('/categorias', getCategorias);
 
 router.get('/categoria/:id', getCategoria);
 
-router.put('/categoria/editar/:id', updateCategoria);
+router.patch('/categoria/editar/:id', updateCategoria);
 
 router.put('/categoria/desable/:id', desableCategoria);
 

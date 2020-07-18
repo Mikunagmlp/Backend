@@ -42,14 +42,30 @@ categoriaCtrl.getCategoria = async (req, res) => {
 
 
 categoriaCtrl.updateCategoria = async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['NombreCategoria', 'Descripcion', 'Estado'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
+    }
+
     try {
-        const { NombreCategoria, Descripcion, IdUser } = req.body;
-        await Categoria.findByIdAndUpdate(req.params.id, {
-            NombreCategoria,
-            Descripcion,
-            IdUser
-        })
-        return res.status(200).json({ update: true });
+        const categoria = await Categoria.findOne({ _id: req.params.id });
+
+        if (!categoria) {
+            return res.status(404).send();
+        }
+
+        updates.forEach((update) => {
+            categoria[update] = req.body[update];
+        });
+        await categoria.save();
+
+        res.send(categoria);
+
     } catch (error) {
         res.status(400).send(error);
     }
