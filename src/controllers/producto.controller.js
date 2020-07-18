@@ -11,7 +11,7 @@ productoCtrl.createProducto = async (req, res) => {
             CantidadProducto,
             Descripcion,
             // IdUser,
-            // IdCategoria,
+            IdCategoria,
             IdProveedor,
             IdAlmacen
         })

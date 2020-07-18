@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/producto.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/producto.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/producto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/producto.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +144,7 @@
       <workItem from="1594690177009" duration="474000" />
       <workItem from="1594912806352" duration="5877000" />
       <workItem from="1594995438533" duration="424000" />
-      <workItem from="1595084445240" duration="3434000" />
+      <workItem from="1595084445240" duration="3481000" />
     </task>
     <servers />
   </component>
