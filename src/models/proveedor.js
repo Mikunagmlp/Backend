@@ -29,7 +29,37 @@ const proveedorSchema = new Schema({
     Estado: {
         type: Boolean,
         default: true
-    }
+    },
+    pro1: {
+        type: String,
+    },
+    pro2: {
+        type: String,
+    },
+    pro3: {
+        type: String,
+    },
+    pro4: {
+        type: String,
+    },
+    pro5: {
+        type: String,
+    },
+    pro6: {
+        type: String,
+    },
+    pro7: {
+        type: String,
+    },
+    pro8: {
+        type: String,
+    },
+    pro9: {
+        type: String,
+    },
+    pro10: {
+        type: String,
+    },
 }, {
     timestamps: true
 });
