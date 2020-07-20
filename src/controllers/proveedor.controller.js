@@ -3,13 +3,25 @@ const Proveedor = require('../models/proveedor');
 
 proveedorCtrl.createProveedor = async (req, res) => {
     try {
-        const { NombreProveedor, CodigoProveedor, NombreEmpresa, Direccion, Descripcion } = req.body;
+        const { NombreProveedor, CodigoProveedor, NombreEmpresa, Direccion, Descripcion,
+                pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10
+              } = req.body;
         const newProveedor = new Proveedor({
             NombreProveedor,
             CodigoProveedor,
             NombreEmpresa,
             Direccion,
-            Descripcion
+            Descripcion,
+            pro1,
+            pro2,
+            pro3,
+            pro4,
+            pro5,
+            pro6,
+            pro7,
+            pro8,
+            pro9,
+            pro10
         })
         await newProveedor.save();
         res.status(200).json(newProveedor);
@@ -42,7 +54,9 @@ proveedorCtrl.getProveedor = async (req, res) => {
 
 proveedorCtrl.updateProveedor = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreProveedor', 'NombreEmpresa', 'Direccion', 'Descripcion', 'CodigoProveedor', 'Estado'];
+    const allowedUpdates = ['NombreProveedor', 'NombreEmpresa', 'Direccion', 'Descripcion', 'CodigoProveedor', 'Estado',
+                           'pro1','pro2','pro3','pro4','pro5','pro6','pro7','pro8','pro9','pro10' 
+                           ];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
