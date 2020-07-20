@@ -42,22 +42,30 @@ exports.verifiToken = async (req, res, next) => {
 
 exports.isValiPermiso = (p) => async (req, res, next) => {
     const data = await User.find({ _id: req.user.id })
-        .populate('IdRol').exec();
+        .populate('Rols.IdRol').exec();
+    if (data[0].Rols.length > 0) {
+    for( i in data[0].Rols )
+    {
+     // console.log(data[0].Rols[i].IdRol);
+      let obtRoles = data[0].Rols[i].IdRol;
 
-    if (data[0].IdRol.Permiso.length > 0) {
-        for (i in data[0].IdRol.Permiso) {
-            if (data[0].IdRol.Permiso[i].Idpermiso == p) {
-                return next();
-            }
+      for (r in obtRoles.Permiso) {
+       if (obtRoles.Permiso[r].Idpermiso == p)
+	{
+          return next();
         }
-        return res.status(401).json({
+      console.log(obtRoles.Permiso[i])	
+      }      
+      return res.status(401).json({
             ok: false,
             error: 'No tiene permiso'
         });
-    } else {
+    }
+    } 
+    else {
         return res.status(401).json({
             ok: false,
             error: 'No tiene rol'
         });
-    }
+   }     
 }
