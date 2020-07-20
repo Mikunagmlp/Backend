@@ -19,7 +19,7 @@ router.post('/administracion/user/registro', passportConfig.verifiToken, passpor
 });
 
 // router.get('/administracion/users', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminList'), async (req, res) => {
-router.get('/administracion/users', passportConfig.verifiToken, async (req, res) => {
+router.get('/administracion/users', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminList'), async (req, res) => {
     try {
         let userPermiso = [];
         await User.find({ Estado: true })
