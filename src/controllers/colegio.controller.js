@@ -2,7 +2,7 @@ const colegioCtrl = {};
 const Colegio = require('../models/colegio');
 
 colegioCtrl.crearColegio = async (req, res) => {
-    const { NombreColegio, Ruta, Distrito, CodColegio, Turno, Categoria, CantidadAlumnos, Telefono, Direccion } = req.body;
+    const { NombreColegio, Ruta, Distrito, CodColegio, Turno, Categoria, Telefono, Direccion, Encargado, CantidadAlumnosInicial, CantidadAlumnosPrimaria, CantidadAlumnosSegundaria} = req.body;
     try {
         const newColegio = new Colegio({
             NombreColegio,
@@ -11,9 +11,12 @@ colegioCtrl.crearColegio = async (req, res) => {
             CodColegio,
             Turno,
             Categoria,
-            CantidadAlumnos,
             Telefono,
-            Direccion
+            Direccion,
+            Encargado,
+            CantidadAlumnosInicial,
+            CantidadAlumnosPrimaria, 
+            CantidadAlumnosSegundaria
         })
         await newColegio.save();
         res.json(newColegio);
@@ -34,7 +37,7 @@ colegioCtrl.listarColegios = async (req, res) => {
 
 colegioCtrl.updateColegio = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreColegio', 'Ruta', 'Distrito', 'CodColegio', 'Turno', 'Categoria', 'CantidadAlumnos', 'Telefono', 'Direccion', 'Estado'];
+    const allowedUpdates = ['NombreColegio', 'Ruta', 'Distrito', 'CodColegio', 'Turno', 'Categoria', 'Telefono', 'Direccion', 'Estado','Encargado','CantidadAlumnosInicial','CantidadAlumnosPrimaria','CantidadAlumnosSegundaria'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
@@ -60,6 +63,34 @@ colegioCtrl.updateColegio = async (req, res) => {
     } catch (error) {
         res.status(400).send(error);
     }
+}
+
+colegioCtrl.getSearch = async (req, res, next) => {
+
+    try {
+        let q = req.query.q;
+        let result =  await Colegio.find(
+        {
+            NombreColegio: {
+                $regex: new RegExp(q),
+                $options: 'i'
+            }
+        }, { __v: 0 });
+
+        if (result.length == 0) {
+            result =  await Colegio.find(
+                {
+                    CodColegio: {
+                        $regex: new RegExp(q),
+                        $options: 'i'
+                    }
+                }, { __v: 0 });
+        }
+        res.status(200).send( result );
+    } catch (e) {
+        res.status(400).send(e);
+    }
+    
 }
 
 module.exports = colegioCtrl;
