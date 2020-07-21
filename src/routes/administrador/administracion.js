@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
-const { getSearch, getUsuario } = require('../../controllers/administrador.controller');
+const { getSearch, getUsuario,getRolesUsuario } = require('../../controllers/administrador.controller');
 const Rol = require('../../models/rol');
 const passportConfig = require('../../passport/local-auth');
 
@@ -95,6 +95,9 @@ router.put('/administracion/user/eliminar/:id', async (req, res) => {
 
 router.get('/administracion/user/:id', getUsuario);
 
-//localhost:3000/administracion/search/user/search?q=test
+//localhost:3000/administracion/search/user?q=test
 router.get('/administracion/search/user', getSearch);
+
+//localhost:3000/administracion/rolesusuario?q=tecnico2 el nombre debe ser igual rol
+router.get('/administracion/rolesusuario', getRolesUsuario);
 module.exports = router;

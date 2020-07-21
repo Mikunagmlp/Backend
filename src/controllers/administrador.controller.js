@@ -63,5 +63,26 @@ administradorCtrl.getUsuario = async (req, res) => {
     }
 }
 
+administradorCtrl.getRolesUsuario = async (req, res) => {
+
+        let q = req.query.q;
+        let userRol = [];
+        console.log(q)
+        const userRoles = await User.find({ Estado: true })
+            .populate('Rols.IdRol')
+            .exec();
+
+        userRoles.forEach(element => {
+            element.Rols.forEach(r => {
+                if (r.IdRol.NombreRol==q) {     
+                 userRol.push(element.NombreCompleto);   
+                }
+            });
+            
+        });
+
+        res.status(200).json(userRol);
+}
+
 
 module.exports = administradorCtrl;
