@@ -95,6 +95,6 @@ router.put('/administracion/user/eliminar/:id', async (req, res) => {
 
 router.get('/administracion/user/:id', getUsuario);
 
-//localhost:3000/administracion/user/search?q=test
+//localhost:3000/administracion/search/user/search?q=test
 router.get('/administracion/search/user', getSearch);
 module.exports = router;

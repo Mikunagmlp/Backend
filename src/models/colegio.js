@@ -34,11 +34,6 @@ const colegioSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    CantidadAlumnos: {
-        type: Number,
-        required: true,
-        trim: true
-    },
     Telefono: {
         type: String,
         required: true,
@@ -53,7 +48,29 @@ const colegioSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-
+    Encargado: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    CantidadAlumnosInicial: {
+        type: Number,
+        require: true,
+        trim: true,
+        default:0
+    },
+    CantidadAlumnosPrimaria: {
+        type: Number,
+        require: true,
+        trim: true,
+        default:0
+    },
+    CantidadAlumnosSegundaria: {
+        type: Number,
+        require: true,
+        trim: true,
+        default:0
+    },
 }, {
     timestamps: true
 });
