@@ -3,7 +3,7 @@ const Producto = require('../models/producto');
 
 productoCtrl.createProducto = async (req, res) => {
     try {
-        const { NombreProducto, CodigoProducto, PrecioProducto, CantidadProducto, Descripcion, IdProveedor, IdAlmacen } = req.body;
+        const { NombreProducto, CodigoProducto, PrecioProducto, CantidadProducto, Descripcion, IdCategoria, IdProveedor, IdAlmacen, Lote } = req.body;
         const newProducto = new Producto({
             NombreProducto,
             CodigoProducto,
@@ -13,7 +13,8 @@ productoCtrl.createProducto = async (req, res) => {
             // IdUser,
             IdCategoria,
             IdProveedor,
-            IdAlmacen
+            IdAlmacen,
+            Lote
         })
         await newProducto.save();
         res.status(200).json(newProducto);
@@ -56,7 +57,7 @@ productoCtrl.getProducto = async (req, res) => {
 
 productoCtrl.updateProducto = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['Estado', 'NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria'];
+    const allowedUpdates = ['NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
@@ -96,6 +97,5 @@ productoCtrl.desableProducto = async (req, res) => {
         res.status(400).send(error);
     }
 }
-
 
 module.exports = productoCtrl;
