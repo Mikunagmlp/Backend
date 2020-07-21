@@ -45,7 +45,11 @@ const productoSchema = new Schema({
     IdAlmacen: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Almacen',
         required: true
-    }
+    },
+    Lote: {
+        type: String,
+        trim: true
+    },
 }, {
     timestamps: true
 });
