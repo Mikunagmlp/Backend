@@ -1,7 +1,7 @@
 //routes
 const express = require('express');
 const router = express.Router();
-const AuthCtrl = require('../controllers/auth');
+const AuthCtrl = require('../controllers/auth.controller');
 
 
 router.post('/register', AuthCtrl.CreateUser);
