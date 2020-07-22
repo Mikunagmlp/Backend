@@ -21,7 +21,8 @@ const proveedorRouter = require('./routes/proveedor');
 const recoveryRouter = require('./routes/recovery_password');
 const rolRouter = require('./routes/rol');
 const permisoRouter=require('./routes/permiso');
-const camionRouter= require('./routes/camiones')
+const camionRouter= require('./routes/camiones');
+const authRouter = require('./routes/authrouter');
 // cargar middlewares
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -49,4 +50,5 @@ app.use(recoveryRouter);
 app.use(rolRouter);
 app.use(permisoRouter);
 app.use(camionRouter);
+app.use(authRouter);
 module.exports = app;

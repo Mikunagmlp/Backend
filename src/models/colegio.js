@@ -65,7 +65,7 @@ const colegioSchema = new mongoose.Schema({
         trim: true,
         default:0
     },
-    CantidadAlumnosSegundaria: {
+    CantidadAlumnosSecundaria: {
         type: Number,
         require: true,
         trim: true,

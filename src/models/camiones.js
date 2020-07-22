@@ -6,34 +6,34 @@ const camionesSchema = new Schema({
         type: String,
         require: true,
         trim: true,
-	unique: true
+	    unique: true
     },
     NombreConductor: {
         type: String,
         required: true,
-	trim: true,
+	    trim: true,
     },
     Ruta: {
         type: String,
-	required: true,
-	trim: true
+	    required: true,
+	    trim: true
     },
     NumeroPlaca: {
         type: String,
-	trim: true
+	    trim: true
     },
     Modelo: {
         type: String,
-	trim: true
+	    trim: true
     },
     Estado: {
         type: Boolean,
         default: true
     },
-    IdUser: {
-         type: String,
-         required: true
-    }
+    // IdUser: {
+    //     type: String,
+    //     required: true
+    // }
 }, {
     timestamps: true
 });

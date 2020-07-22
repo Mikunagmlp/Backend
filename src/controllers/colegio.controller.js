@@ -37,7 +37,9 @@ colegioCtrl.listarColegios = async (req, res) => {
 
 colegioCtrl.updateColegio = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreColegio', 'Ruta', 'Distrito', 'CodColegio', 'Turno', 'Categoria', 'Telefono', 'Direccion', 'Estado','Encargado','CantidadAlumnosInicial','CantidadAlumnosPrimaria','CantidadAlumnosSegundaria'];
+    const allowedUpdates = ['NombreColegio', 'Ruta', 'Distrito', 'CodColegio', 'Turno', 'Categoria',
+        'Telefono', 'Direccion', 'Estado','Encargado','CantidadAlumnosInicial','CantidadAlumnosPrimaria',
+        'CantidadAlumnosSecundaria'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });

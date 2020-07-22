@@ -40,7 +40,7 @@ camionCtrl.getCamion = async (req, res) => {
 
 camionCtrl.updateCamion = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['Codigo', 'NombreConductor', 'Ruta', 'NumeroPlaca', 'Modelo', 'IdUser'];
+    const allowedUpdates = [ 'NombreConductor', 'Ruta', 'NumeroPlaca', 'Modelo', 'Estado'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
