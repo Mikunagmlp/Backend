@@ -48,64 +48,65 @@ module.exports = {
     });
   },
   async ResetPassword(req, res) {
-    if (!req.body.email) {
-    return res
-    .status(500)
-    .json({ message: 'Email is required' });
-    }
-    const user = await User.findOne({
-    email:req.body.email
-    });
-    if (!user) {
-    return res
-    .status(409)
-    .json({ message: 'Email does not exist' });
-    }
-    var resettoken = new passwordResetToken({ _userId: user._id, resettoken: crypto.randomBytes(16).toString('hex') });
-    resettoken.save(function (err) {
-    if (err) { return res.status(500).send({ msg: err.message }); }
-    passwordResetToken.find({ _userId: user._id, resettoken: { $ne: resettoken.resettoken } }).remove().exec();
-    res.status(200).json({ message: 'Reset Password successfully.' });
-    var transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      port: 465,
-      auth: {
-        user: 'user',
-        pass: 'password'
+      if (!req.body.email) {
+        return res.status(500).json({ message: 'Email is required' });
       }
-    });
-    var mailOptions = {
-    to: user.email,
-    from: 'Email',
-    subject: 'Node.js Password Reset',
-    text: 'Revisar bandeja de entrada\n\n' +
-    'ingrese a este enlace o copielo en su navegador:\n\n' +
-    'http://localhost:4200/response-reset-password/' + resettoken.resettoken + '\n\n' +
-    'Puede revisar su bandeja de salida  o spam.\n'
-    }
-    transporter.sendMail(mailOptions, (err, info) => {
-    })
-    })
-    },
-    async ValidPasswordToken(req, res) {
-      if (!req.body.resettoken) {
-      return res
-      .status(500)
-      .json({ message: 'Token is required' });
-      }
-      const user = await passwordResetToken.findOne({
-      resettoken: req.body.resettoken
+
+      const user = await User.findOne({
+        email:req.body.email
       });
+
       if (!user) {
-      return res
-      .status(409)
-      .json({ message: 'Invalid URL' });
+        return res.status(409).json({ message: 'Email does not exist' });
       }
-      User.findOneAndUpdate({ _id: user._userId }).then(() => {
-      res.status(200).json({ message: 'Token verified successfully.' });
-      }).catch((err) => {
-      return res.status(500).send({ msg: err.message });
+
+      var resettoken = new passwordResetToken({ _userId: user._id, resettoken: crypto.randomBytes(16).toString('hex') });
+
+      resettoken.save(function (err) {
+      if (err) { return res.status(500).send({ msg: err.message }); }
+        passwordResetToken.find({ _userId: user._id, resettoken: { $ne: resettoken.resettoken } }).remove().exec();
+        res.status(200).json({ message: 'Reset Password successfully.' });
+      var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        port: 465,
+        auth: {
+          user: 'user',
+          pass: 'password'
+        }
       });
+      var mailOptions = {
+      to: user.email,
+      from: 'Email',
+      subject: 'Node.js Password Reset',
+      text: 'Revisar bandeja de entrada\n\n' +
+      'ingrese a este enlace o copielo en su navegador:\n\n' +
+      'http://localhost:4200/recover-password' + resettoken.resettoken + '\n\n' +
+      'Puede revisar su bandeja de salida  o spam.\n'
+      }
+      transporter.sendMail(mailOptions, (err, info) => {
+      })
+      })
+      },
+
+      async ValidPasswordToken(req, res) {
+        if (!req.body.resettoken) {
+        return res
+        .status(500)
+        .json({ message: 'Token is required' });
+        }
+        const user = await passwordResetToken.findOne({
+        resettoken: req.body.resettoken
+        });
+        if (!user) {
+        return res
+        .status(409)
+        .json({ message: 'Invalid URL' });
+        }
+        User.findOneAndUpdate({ _id: user._userId }).then(() => {
+        res.status(200).json({ message: 'Token verified successfully.' });
+        }).catch((err) => {
+        return res.status(500).send({ msg: err.message });
+        });
   },
       async NewPassword(req, res) {
           passwordResetToken.findOne({ resettoken: req.body.resettoken }, function (err, userToken, next) {
