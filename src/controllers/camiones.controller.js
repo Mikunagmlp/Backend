@@ -80,5 +80,13 @@ camionCtrl.desableCamion = async (req, res) => {
     }
 }
 
+camionCtrl.getCamionesDisabled = async (req, res) => {
+    try {
+        const camion = await Camion.find({ Estado: false })
+        res.status(200).json(camion);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
 
 module.exports = camionCtrl;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = new express.Router();
-const { createProducto, updateProducto, getProducto, getProductos, desableProducto } = require('../controllers/producto.controller');
+const { createProducto, updateProducto, getProducto, getProductos, desableProducto, getProductosDisabled } = require('../controllers/producto.controller');
 
 router.post('/producto/registrar', createProducto);
 
@@ -11,5 +11,7 @@ router.get('/producto/:id', getProducto);
 router.patch('/producto/editar/:id', updateProducto);
 
 router.put('/producto/desable/:id', desableProducto);
+
+router.get('/productos/disabled', getProductosDisabled);
 
 module.exports = router;

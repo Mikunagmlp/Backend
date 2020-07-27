@@ -96,5 +96,15 @@ proveedorCtrl.desableProveedor = async (req, res) => {
     }
 }
 
+proveedorCtrl.getProveedoresDisabled = async (req, res) => {
+    try {
+        const proveedotres = await Proveedor.find({ Estado: false })
+        res.status(200).json(proveedotres);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
 
 module.exports = proveedorCtrl;
