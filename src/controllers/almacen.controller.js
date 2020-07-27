@@ -83,5 +83,15 @@ almacenCtrl.desableAlmacen = async (req, res) => {
     }
 }
 
+almacenCtrl.getAlmacenesDisabled = async (req, res) => {
+    try {
+        const almacenes = await Almacen.find({ Estado: false })
+        res.status(200).json(almacenes);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
 
 module.exports = almacenCtrl;

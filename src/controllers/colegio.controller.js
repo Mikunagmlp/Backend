@@ -95,4 +95,14 @@ colegioCtrl.getSearch = async (req, res, next) => {
     
 }
 
+colegioCtrl.listarColegiosDisabled = async (req, res) => {
+    try {
+        const colegios = await Colegio.find({ Estado: false });
+
+        res.status(200).send( colegios );
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 module.exports = colegioCtrl;

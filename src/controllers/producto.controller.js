@@ -98,4 +98,21 @@ productoCtrl.desableProducto = async (req, res) => {
     }
 }
 
+productoCtrl.getProductosDisabled = async (req, res) => {
+    try {
+        const productos = await Producto.find({ Estado: false })
+            .populate('IdCategoria')
+            .populate('IdProveedor')
+            .populate('IdAlmacen')
+            .exec();
+
+        res.status(200).json(productos);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+}
+
+
 module.exports = productoCtrl;

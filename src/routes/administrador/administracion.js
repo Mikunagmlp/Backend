@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
-const { getSearch, getUsuario,getRolesUsuario } = require('../../controllers/administrador.controller');
+const { getSearch, getUsuario,getRolesUsuario,getUsuarioDisabled } = require('../../controllers/administrador.controller');
 const Rol = require('../../models/rol');
 const passportConfig = require('../../passport/local-auth');
 
@@ -100,4 +100,6 @@ router.get('/administracion/search/user', getSearch);
 
 //localhost:3000/administracion/rolesusuario?q=tecnico2 el nombre debe ser igual rol
 router.get('/administracion/rolesusuario', getRolesUsuario);
+
+router.get('/administracion/usersdisabled',getUsuarioDisabled);
 module.exports = router;
