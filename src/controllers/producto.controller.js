@@ -3,7 +3,7 @@ const Producto = require('../models/producto');
 
 productoCtrl.createProducto = async (req, res) => {
     try {
-        const { NombreProducto, CodigoProducto, PrecioProducto, CantidadProducto, Descripcion, IdCategoria, IdProveedor, IdAlmacen, Lote } = req.body;
+        const { NombreProducto, CodigoProducto, PrecioProducto, CantidadProducto, Descripcion, IdCategoria, IdProveedor, IdAlmacen, Lote, Volumen, Gramage } = req.body;
         const newProducto = new Producto({
             NombreProducto,
             CodigoProducto,
@@ -14,7 +14,9 @@ productoCtrl.createProducto = async (req, res) => {
             IdCategoria,
             IdProveedor,
             IdAlmacen,
-            Lote
+            Lote,
+            Volumen,
+            Gramage
         })
         await newProducto.save();
         res.status(200).json(newProducto);
@@ -57,7 +59,7 @@ productoCtrl.getProducto = async (req, res) => {
 
 productoCtrl.updateProducto = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote'];
+    const allowedUpdates = ['NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote', 'Volumen', 'Gramage'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });

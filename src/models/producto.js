@@ -50,6 +50,14 @@ const productoSchema = new Schema({
         type: String,
         trim: true
     },
+    Volumen: {
+        type: Number,
+        trim: true
+    },
+    Gramage: {
+        type: Number,
+        trim: true
+    }
 }, {
     timestamps: true
 });
