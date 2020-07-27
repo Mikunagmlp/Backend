@@ -70,6 +70,7 @@ userSchema.statics.encontrarUsuario = async (email, password) => {
 }
 
 userSchema.methods.encryptPassword = (Password) => {
+    console.log(Password);
     return bcrypt.hashSync(Password, bcrypt.genSaltSync(10));
 };
 
@@ -80,6 +81,9 @@ const User = mongoose.model('User', userSchema);
 module.exports = User;
 
 
-userSchema.statics.EncryptPassword = async function(password) {  const hash = await bcrypt.hash(password, 12);  return hash;};
+userSchema.statics.EncryptPassword = async function(password) {
+    const hash = await bcrypt.hash(password, 12);
+    return hash;
+};
 
 module.exports = mongoose.model('User', userSchema);
