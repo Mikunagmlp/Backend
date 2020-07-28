@@ -118,8 +118,6 @@ module.exports = {
     },
 
     async NewPassword(req, res) {
-      console.log(req.body.newpass);
-      console.log(req.body.resettoken);
 
       try {
           const userToken = await passwordResetToken.findOne({ resettoken: req.body.resettoken });
