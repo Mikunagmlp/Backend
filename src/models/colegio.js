@@ -12,12 +12,6 @@ const colegioSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    Distrito: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
-    },
     CodColegio: {
         type: String,
         unique: true,
@@ -25,11 +19,6 @@ const colegioSchema = new mongoose.Schema({
         trim: true
     },
     Turno: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    Categoria: {
         type: String,
         required: true,
         trim: true
