@@ -83,5 +83,15 @@ categoriaCtrl.desableCategoria = async (req, res) => {
     }
 }
 
+categoriaCtrl.listarCategoriasDisabled = async (req, res) => {
+    try {
+        const categorias = await Categoria.find({ Estado: false });
+
+        res.status(200).send( categorias );
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 
 module.exports = categoriaCtrl;

@@ -12,6 +12,6 @@ router.patch('/camion/editar/:id', updateCamion);
 
 router.put('/camion/desable/:id', desableCamion);
 
-router.get('/camiones/disabled/', getCamionesDisabled);
+router.get('/camiones/disabled', getCamionesDisabled);
 
 module.exports = router;

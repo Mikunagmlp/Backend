@@ -53,7 +53,7 @@ router.get('/administracion/users', passportConfig.verifiToken, passportConfig.i
 
 router.patch('/administracion/user/editar/:id', async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero', 'Rols'];
+    const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero', 'Rols', 'Estado'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });

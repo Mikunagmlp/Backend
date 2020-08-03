@@ -59,7 +59,7 @@ productoCtrl.getProducto = async (req, res) => {
 
 productoCtrl.updateProducto = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote', 'Volumen', 'Gramage'];
+    const allowedUpdates = [ 'Estado', 'NombreProducto', 'PrecioProducto', 'CantidadProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote', 'Volumen', 'Gramage'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });

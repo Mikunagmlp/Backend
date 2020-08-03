@@ -86,24 +86,26 @@ administradorCtrl.getRolesUsuario = async (req, res) => {
 
 administradorCtrl.getUsuarioDisabled = async (req, res) => {
     try {
-        let obj;
-        await User.find({ Estado: false })
-            .populate('Rols.IdRol')
-            .exec((err, userRol) => {
-                userRol.forEach(data => {
-                     obj = {
-                        _id: data._id,
-                        NombreCompleto: data.NombreCompleto,
-                        Email: data.Email,
-                        Telefono: data.Telefono,
-                        Direccion: data.Direccion,
-                        Genero: data.Genero,
-                        Estado: data.Estado,
-                        Rols: data.Rols
-                    }
-                });
-                res.status(200).json(obj);
-            });
+        // let obj;
+        const users = await User.find({ Estado: false });
+            // .populate('Rols.IdRol')
+            // .exec((err, userRol) => {
+            //     userRol.forEach(data => {
+            //          obj = {
+            //             _id: data._id,
+            //             NombreCompleto: data.NombreCompleto,
+            //             Email: data.Email,
+            //             Telefono: data.Telefono,
+            //             Direccion: data.Direccion,
+            //             Genero: data.Genero,
+            //             Estado: data.Estado,
+            //             Rols: data.Rols
+            //         }
+            //     });
+            //     res.status(200).json(obj);
+            // });
+
+        res.status(200).send(users);
 
     } catch (e) {
         res.status(400).send(e);

@@ -12,6 +12,6 @@ router.patch('/almacen/editar/:id', updateAlmacen);
 
 router.put('/almacen/desable/:id', desableAlmacen);
 
-router.get('/almacenes/disableds', getAlmacenesDisabled);
+router.get('/almacenes/disabled', getAlmacenesDisabled);
 
 module.exports = router;
