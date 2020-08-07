@@ -13,16 +13,6 @@ const productoSchema = new Schema({
         unique: true,
         trim: true
     },
-    PrecioProducto: {
-        type: Number,
-        require: true,
-        trim: true
-    },
-    CantidadProducto: {
-        type: Number,
-        require: true,
-        trim: true
-    },
     Descripcion: {
         type: String,
     },
@@ -42,14 +32,6 @@ const productoSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Proveedor',
         required: true
     },
-    IdAlmacen: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Almacen',
-        required: true
-    },
-    Lote: {
-        type: String,
-        trim: true
-    },
     Volumen: {
         type: Number,
         trim: true
@@ -57,6 +39,9 @@ const productoSchema = new Schema({
     Gramage: {
         type: Number,
         trim: true
+    },
+    Nivel: {
+        type: String,
     }
 }, {
     timestamps: true
