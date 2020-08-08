@@ -32,6 +32,14 @@ const productoSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Proveedor',
         required: true
     },
+    IdAlmacen: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Almacen',
+        required: true
+    },
+    Lote: {
+        type: String,
+        trim: true
+    },
     Volumen: {
         type: Number,
         trim: true
@@ -40,8 +48,19 @@ const productoSchema = new Schema({
         type: Number,
         trim: true
     },
-    Nivel: {
+    PresupuestoInicial:{
+        type: Number,
+        trim:true,
+        require:true
+    },
+    Nivel:{
         type: String,
+        trim:true,
+    },
+    PrecioUnitario:{
+        type: Number,
+        trim:true,
+        require:true
     }
 }, {
     timestamps: true
