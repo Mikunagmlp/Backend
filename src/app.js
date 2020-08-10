@@ -23,6 +23,7 @@ const rolRouter = require('./routes/rol');
 const permisoRouter=require('./routes/permiso');
 const camionRouter= require('./routes/camiones');
 const authRouter = require('./routes/authrouter');
+const reportesRouter = require('./routes/reportes');
 // cargar middlewares
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -51,4 +52,5 @@ app.use(rolRouter);
 app.use(permisoRouter);
 app.use(camionRouter);
 app.use(authRouter);
+app.use(reportesRouter);
 module.exports = app;

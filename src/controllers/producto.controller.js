@@ -3,7 +3,7 @@ const Producto = require('../models/producto');
 
 productoCtrl.createProducto = async (req, res) => {
     try {
-        const { NombreProducto, CodigoProducto, Descripcion, IdCategoria, IdProveedor, IdAlmacen, Lote, Volumen, Gramage,nivel, PresupustoInicial, PrecioUnitario } = req.body;
+        const { NombreProducto, CodigoProducto, Descripcion, IdCategoria, IdProveedor, IdAlmacen, Lote, Volumen, Gramage,Nivels, PresupuestoInicial, PrecioUnitario } = req.body;
         const newProducto = new Producto({
             NombreProducto,
             CodigoProducto,
@@ -15,8 +15,8 @@ productoCtrl.createProducto = async (req, res) => {
             Lote,
             Volumen,
             Gramage,
-            nivel,
-            PresupustoInicial,
+            Nivels,
+            PresupuestoInicial,
             PrecioUnitario
         })
         await newProducto.save();
@@ -60,7 +60,7 @@ productoCtrl.getProducto = async (req, res) => {
 
 productoCtrl.updateProducto = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote', 'Volumen', 'Gramage', 'PresupuestoInicial', 'Nivel', 'PrecioUnitario'];
+    const allowedUpdates = ['NombreProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote', 'Volumen', 'Gramage', 'PresupuestoInicial', 'Nivels', 'PrecioUnitario'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
