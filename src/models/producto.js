@@ -42,25 +42,33 @@ const productoSchema = new Schema({
     },
     Volumen: {
         type: Number,
-        trim: true
+        trim: true,
+        default:0
     },
     Gramage: {
         type: Number,
-        trim: true
+        trim: true,
+        default:0
     },
     PresupuestoInicial:{
         type: Number,
         trim:true,
-        require:true
+        require:true,
+        default:0
     },
-    Nivel:{
-        type: String,
-        trim:true,
-    },
+    Nivels:[
+        {
+        Nivel: {
+            type: String,
+            default:"Sin Nivel"
+            }   
+        },
+    ],
     PrecioUnitario:{
         type: Number,
         trim:true,
-        require:true
+        require:true,
+        default:0
     }
 }, {
     timestamps: true
