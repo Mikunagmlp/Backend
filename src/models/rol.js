@@ -16,10 +16,10 @@ const rolSchema = new Schema({
         type: Boolean,
         default: true
     },
-    IdUser: {
-        type: String,
-        required: true
-    },
+    // IdUser: {
+    //     type: String,
+    //     required: true
+    // },
     Permiso: [
         {
             NombrePermiso: String,

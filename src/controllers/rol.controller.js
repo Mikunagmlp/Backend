@@ -15,8 +15,13 @@ rolCtrl.createRol = async (req, res) => {
 };
 
 rolCtrl.getRoles = async (req, res) => {
-    const roles = await Rol.find({ Estado: true });
-    res.json(roles);
+    try {
+        const roles = await Rol.find({ Estado: true });
+        res.status(200).send(roles);
+    } catch (e){
+        console.log(e);
+        res.status(404).send(e);
+    }
 };
 
 rolCtrl.getRol = async (req, res) => {
