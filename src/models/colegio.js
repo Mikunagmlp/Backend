@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+// TODO: AGREGAR LA PAGINACION DE 10 EN 10
 // creamos el modelado del colegio
 const colegioSchema = new mongoose.Schema({
     NombreColegio: {

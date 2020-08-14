@@ -3,13 +3,13 @@ const Producto = require('../models/producto');
 
 productoCtrl.createProducto = async (req, res) => {
     try {
-        const { NombreProducto, CodigoProducto, Descripcion, IdCategoria, IdProveedor, IdAlmacen, Lote, Volumen, Gramage,Nivels, PresupuestoInicial, PrecioUnitario } = req.body;
+        const { NombreProducto, CodigoProducto, Descripcion, Solido_Liquido, IdProveedor, IdAlmacen, Lote, Volumen, Gramage,Nivels, PresupuestoInicial, PrecioUnitario } = req.body;
         const newProducto = new Producto({
             NombreProducto,
             CodigoProducto,
             Descripcion,
             // IdUser,
-            IdCategoria,
+            Solido_Liquido,
             IdProveedor,
             IdAlmacen,
             Lote,
@@ -30,7 +30,6 @@ productoCtrl.createProducto = async (req, res) => {
 productoCtrl.getProductos = async (req, res) => {
     try {
         const productos = await Producto.find({ Estado: true })
-            .populate('IdCategoria')
             .populate('IdProveedor')
             .populate('IdAlmacen')
             .exec();
@@ -46,7 +45,6 @@ productoCtrl.getProductos = async (req, res) => {
 productoCtrl.getProducto = async (req, res) => {
     try {
         const producto = await Producto.findById(req.params.id)
-            .populate('IdCategoria')
             .populate('IdProveedor')
             .populate('IdAlmacen')
             .exec();
@@ -60,7 +58,7 @@ productoCtrl.getProducto = async (req, res) => {
 
 productoCtrl.updateProducto = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreProducto', 'Descripcion', 'IdProveedor', 'IdAlmacen', 'IdCategoria', 'Lote', 'Volumen', 'Gramage', 'PresupuestoInicial', 'Nivels', 'PrecioUnitario'];
+    const allowedUpdates = ['NombreProducto', 'Descripcion', 'Solido_Liquido','IdProveedor', 'IdAlmacen', 'Lote', 'Volumen', 'Gramage', 'PresupuestoInicial', 'Nivels', 'PrecioUnitario'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
@@ -104,7 +102,6 @@ productoCtrl.desableProducto = async (req, res) => {
 productoCtrl.getProductosDisabled = async (req, res) => {
     try {
         const productos = await Producto.find({ Estado: false })
-            .populate('IdCategoria')
             .populate('IdProveedor')
             .populate('IdAlmacen')
             .exec();

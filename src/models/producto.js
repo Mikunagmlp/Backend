@@ -24,10 +24,12 @@ const productoSchema = new Schema({
     //     type: String,
     //     required: true
     // },
-    IdCategoria: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Categoria',
+
+    Solido_Liquido: {
+        type: Boolean,
         required: true
     },
+
     IdProveedor: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Proveedor',
         required: true
