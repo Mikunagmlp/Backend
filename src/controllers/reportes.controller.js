@@ -4,7 +4,7 @@ const Producto = require('../models/producto');
 
 reporteCtrl.getProductosDetalle = async(req,res) =>{
     const getProductosDetalles = await Producto.find({Estado : true},{NombreProducto:1,IdCategoria:1, Nivels:1})
-    .populate('IdCategoria',{NombreCategoria:1, _id:0}); 
+    .populate('IdCategoria',{NombreCategoria:1, _id:0});
     res.status(200).send(getProductosDetalles);
 }
 
