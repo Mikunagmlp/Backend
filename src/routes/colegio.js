@@ -5,6 +5,7 @@ const { crearColegio, listarColegios, updateColegio, getSearch, listarColegiosDi
 
 router.post('/colegio/registrar', crearColegio );
 
+// url -> /colegios?limit=10&skip=10
 router.get( '/colegios', listarColegios );
 
 router.patch('/colegio/editar/:id', updateColegio );

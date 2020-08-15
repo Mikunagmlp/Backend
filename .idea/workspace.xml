@@ -21,13 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/categoria.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/producto.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/producto.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/categoria.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/colegio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/colegio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/producto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/producto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/categoria.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/colegio.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/colegio.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/reportes.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/reportes.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/colegio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/colegio.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +168,8 @@
       <workItem from="1597195206446" duration="1087000" />
       <workItem from="1597272935995" duration="1392000" />
       <workItem from="1597371283027" duration="836000" />
-      <workItem from="1597423337051" duration="1608000" />
+      <workItem from="1597423337051" duration="1823000" />
+      <workItem from="1597442285011" duration="4452000" />
     </task>
     <servers />
   </component>

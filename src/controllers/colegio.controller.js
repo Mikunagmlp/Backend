@@ -26,8 +26,12 @@ colegioCtrl.crearColegio = async (req, res) => {
 }
 
 colegioCtrl.listarColegios = async (req, res) => {
+    // console.log(req.query.limit);
+
     try {
-        const colegios = await Colegio.find({ Estado: true });
+        const colegios = await Colegio.find({ Estado: true })
+            .limit( parseInt(req.query.limit) ) // limitamos cuantos colegios va a devolver
+            .skip( parseInt(req.query.skip) ); // nos saltamos las tareas
 
         res.status(200).send( colegios );
     } catch (e) {
