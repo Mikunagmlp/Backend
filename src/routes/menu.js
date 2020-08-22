@@ -20,12 +20,4 @@ router.get('/menu/productos/getLiquidoPrimario', getLiquidoPrimario);
 router.get('/menu/productos/getSolidoSegundario', getSolidoSegundario);
 router.get('/menu/productos/getLiquidoSegundario', getLiquidoSegundario);
 
-// router.get('/producto/:id', getProducto);
-
-// router.patch('/producto/editar/:id', updateProducto);
-
-// router.put('/producto/desable/:id', desableProducto);
-
-// router.get('/productos/disabled', getProductosDisabled);
-
 module.exports = router;
