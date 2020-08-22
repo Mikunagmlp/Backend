@@ -126,14 +126,13 @@ menuCtrl.getSolidoInicial = async(req, res)=>{
 menuCtrl.getLiquidoInicial = async(req, res)=>{
     let totalAlumnosInicial = 0;
     let liquidoInicial=req.query.liquidoinicial;
-    try {      
+    try {
     const getProductosLiquidoInicial = await Producto.findOne({
         NombreProducto: {
             $regex: new RegExp(liquidoInicial),
             $options: 'i'
         },
-        "Nivels.Nivel":"Inicial",
-        "Liquido":true
+        "Nivels.Nivel":"Inicial", Solido_Liquido: false
     },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1,PrecioUnitario:1, __id:1}
     );
     const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosInicial:1,_id:0});
@@ -187,7 +186,7 @@ menuCtrl.getSolidoPrimario = async(req, res)=>{
             $options: 'i'
         },
         "Nivels.Nivel":"Primaria",
-        "Solido":true
+        Solido_Liquido:true
     },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1,PrecioUnitario:1, __id:1}
     );
     const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosPrimaria:1,_id:0});
@@ -244,7 +243,7 @@ menuCtrl.getLiquidoPrimario = async(req, res)=>{
             $options: 'i'
         },
         "Nivels.Nivel":"Primaria",
-        "Liquido":true
+        Solido_Liquido: false
     },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1,PrecioUnitario:1, __id:1}
     );
     const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosPrimaria:1,_id:0});
@@ -299,7 +298,7 @@ menuCtrl.getSolidoSegundario = async(req, res)=>{
             $options: 'i'
         },
         "Nivels.Nivel":"Segundaria",
-        "Solido":true
+        Solido_Liquido: true
     },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1, PrecioUnitario:1, __id:1}
     );
     const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosSegundaria:1,_id:0});
@@ -352,7 +351,7 @@ menuCtrl.getLiquidoSegundario = async(req, res)=>{
             $options: 'i'
         },
         "Nivels.Nivel":"Segundaria",
-        "Liquido":true
+        Solido_Liquido: false
     },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1,PrecioUnitario:1, __id:1}
     );
     const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosSegundaria:1,_id:0});
