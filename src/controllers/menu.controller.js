@@ -66,53 +66,58 @@ menuCtrl.createMenu = async(req, res)=>{
 
 menuCtrl.getSolidoInicial = async(req, res)=>{
     let totalAlumnosInicial = 0;
-    let solidoInicial=req.query.solidoinicial; 
-    try {  
-    const getProductosSolitoInicial = await Producto.findOne({
-        NombreProducto: {
-            $regex: new RegExp(solidoInicial),
-            $options: 'i'
-        },
-        "Nivels.Nivel":"Inicial",
-        "Solido":true
-    },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1, PrecioUnitario:1, __id:1}
-    );
-    const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosInicial:1,_id:0});
-    getTotalPoblacionAlumnos.forEach( (data)=>{
-        totalAlumnosInicial += data.CantidadAlumnosInicial; 
-    } );
-    let frecuenciaSolidoInicialInicial = getProductosSolitoInicial.PresupuestoInicial / (totalAlumnosInicial*getProductosSolitoInicial.PrecioUnitario);
-    let montoSolildoInicial= getProductosSolitoInicial.PresupuestoInicial;
-    let frecuenciaSolidoUtilizadoInicial=0;
-    let montoSolildoUtilizadoInicial=0;
-    let frecuenciaSolidoUtilizadoInicial2=0;
-    let montoSolildoUtilizadoInicial2=0;
-    const MenuSolidoInicial = await Menu.find({CodigoSolidoInicial:getProductosSolitoInicial.CodigoProducto});
-    if (MenuSolidoInicial==0) {
-       frecuenciaSolidoUtilizadoInicial;
-       montoSolildoUtilizadoInicial; 
-    }else{
-        MenuSolidoInicial.forEach((s)=>{
-        frecuenciaSolidoUtilizadoInicial+=s.frecuenciaSolidoInicialInicial;
-        montoSolildoUtilizadoInicial+=s.montoSolildoInicial;
-        })
-        frecuenciaSolidoUtilizadoInicial = ((totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)/( totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)+frecuenciaSolidoUtilizadoInicial);
+    let solidoInicial=req.query.solidoinicial;
+    try {
+        const getProductosSolitoInicial = await Producto.findOne({
+            NombreProducto: {
+                $regex: new RegExp(solidoInicial),
+                $options: 'i'
+            },
+            "Nivels.Nivel":"Inicial",
+            Solido_Liquido: true
+            },{NombreProducto:1, CodigoProducto:1, IdCategoria:1, Nivels:1,PresupuestoInicial:1, PrecioUnitario:1, __id:1}
+        );
 
-        frecuenciaSolidoUtilizadoInicial2 = ((totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)/( totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario));
+        const getTotalPoblacionAlumnos = await Colegio.find({Estado:true},{CantidadAlumnosInicial:1,_id:0});
 
-        montoSolildoUtilizadoInicial = ((totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)+montoSolildoUtilizadoInicial);
+        getTotalPoblacionAlumnos.forEach( (data)=>{
+            totalAlumnosInicial += data.CantidadAlumnosInicial;
+        } );
 
-        montoSolildoUtilizadoInicial2 =(totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario);
-        }
-        const newProductoSolidInicial = {
-            CodigoSolidoInicial:getProductosSolitoInicial.CodigoProducto,
-            ProductoSolidoInicial:getProductosSolitoInicial.NombreProducto,
-            FrecuenciaSolidoUtilizadoInicial:(frecuenciaSolidoInicialInicial-frecuenciaSolidoUtilizadoInicial).toFixed(2),
-            frecuenciaSolidoInicialInicial:(frecuenciaSolidoUtilizadoInicial2).toFixed(2),
-            MontoSolildoUtilizadoInicial:(montoSolildoInicial-montoSolildoUtilizadoInicial).toFixed(2),
-            montoSolildoInicial:(montoSolildoUtilizadoInicial2).toFixed(2)
-        }
-        res.status(200).json(newProductoSolidInicial);
+        let frecuenciaSolidoInicialInicial = getProductosSolitoInicial.PresupuestoInicial / (totalAlumnosInicial*getProductosSolitoInicial.PrecioUnitario);
+        let montoSolildoInicial= getProductosSolitoInicial.PresupuestoInicial;
+        let frecuenciaSolidoUtilizadoInicial=0;
+        let montoSolildoUtilizadoInicial=0;
+        let frecuenciaSolidoUtilizadoInicial2=0;
+        let montoSolildoUtilizadoInicial2=0;
+
+        const MenuSolidoInicial = await Menu.find({CodigoSolidoInicial:getProductosSolitoInicial.CodigoProducto});
+
+        if (MenuSolidoInicial==0) {
+           frecuenciaSolidoUtilizadoInicial;
+           montoSolildoUtilizadoInicial;
+        }else{
+            MenuSolidoInicial.forEach((s)=>{
+            frecuenciaSolidoUtilizadoInicial+=s.frecuenciaSolidoInicialInicial;
+            montoSolildoUtilizadoInicial+=s.montoSolildoInicial;
+            })
+            frecuenciaSolidoUtilizadoInicial = ((totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)/( totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)+frecuenciaSolidoUtilizadoInicial);
+
+            frecuenciaSolidoUtilizadoInicial2 = ((totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)/( totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario));
+
+            montoSolildoUtilizadoInicial = ((totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario)+montoSolildoUtilizadoInicial);
+
+            montoSolildoUtilizadoInicial2 =(totalAlumnosInicial * getProductosSolitoInicial.PrecioUnitario);
+            }
+            const newProductoSolidInicial = {
+                CodigoSolidoInicial:getProductosSolitoInicial.CodigoProducto,
+                ProductoSolidoInicial:getProductosSolitoInicial.NombreProducto,
+                FrecuenciaSolidoUtilizadoInicial:(frecuenciaSolidoInicialInicial-frecuenciaSolidoUtilizadoInicial).toFixed(2),
+                frecuenciaSolidoInicialInicial:(frecuenciaSolidoUtilizadoInicial2).toFixed(2),
+                MontoSolildoUtilizadoInicial:(montoSolildoInicial-montoSolildoUtilizadoInicial).toFixed(2),
+                montoSolildoInicial:(montoSolildoUtilizadoInicial2).toFixed(2)
+            }
+            res.status(200).json(newProductoSolidInicial);
     } catch (error) {
         res.status(400).send(error);
     }

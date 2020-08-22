@@ -43,6 +43,18 @@ productoCtrl.getProductos = async (req, res) => {
 
 }
 
+productoCtrl.getProductosMenu = async(req, res) => {
+    let solido_liquido = req.query.solido_liquido;
+    let nivel = req.query.nivel;
+    try {
+        const productos = await Producto.find({ Estado: true, Solido_Liquido: solido_liquido, 'Nivels.Nivel': nivel });
+
+        res.status(200).send(productos);
+    } catch(e) {
+        res.status(404).send(e);
+    }
+}
+
 productoCtrl.getProducto = async (req, res) => {
     try {
         const producto = await Producto.findById(req.params.id)

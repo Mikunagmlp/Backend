@@ -25,13 +25,9 @@ const productoSchema = new Schema({
     //     required: true
     // },
 
-    Solido: {
-        type: Boolean,
-        required: false
-    },
-    Liquido: {
-        type: Boolean,
-        required: false
+    // true = solido, false = liquido
+    Solido_Liquido: {
+        type: Boolean
     },
     IdProveedor: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Proveedor',
