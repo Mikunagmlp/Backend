@@ -125,7 +125,7 @@ menuCtrl.listarMenuEba = async (req, res) => {
 }
 menuCtrl.aprobarMenuEba = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['AprovadoEba','EnviadoEba', 'ObservacionEba','EnviadoJefeUnace','IdUser'];
+    const allowedUpdates = ['AprovadoEba', 'EnviadoEba', 'ObservacionEba', 'EnviadoJefeUnace', 'IdUser'];
 
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
@@ -155,7 +155,7 @@ menuCtrl.aprobarMenuEba = async (req, res) => {
 
 menuCtrl.aprobarMenuUnace = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['AprovadoEba', 'ObservacionEba','Aprovado' ,'ObservacionJefeUnace','EnviadoJefeUnace','IdUser'];
+    const allowedUpdates = ['AprovadoEba', 'ObservacionEba', 'Aprovado', 'ObservacionJefeUnace', 'EnviadoJefeUnace', 'IdUser'];
 
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
@@ -259,8 +259,7 @@ menuCtrl.getLiquidoInicial = async (req, res) => {
                 $regex: new RegExp(liquidoInicial),
                 $options: 'i'
             },
-            "Nivels.Nivel": "Inicial",
-            "Solido_Liquido": false
+            "Nivels.Nivel": "Inicial", Solido_Liquido: false
         }, { NombreProducto: 1, CodigoProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, __id: 1 }
         );
         const getTotalPoblacionAlumnos = await Colegio.find({ Estado: true }, { CantidadAlumnosInicial: 1, _id: 0 });
@@ -273,7 +272,7 @@ menuCtrl.getLiquidoInicial = async (req, res) => {
         let montoLiquidoUtilizadoInicial = 0;
         let frecuenciaLiquidoUtilizadoInicial2 = 0;
         let montoLiquidoUtilizadoInicial2 = 0;
-        const MenuLiquidoInicial = await Menu.find({ CodigoLiquidoInicial: getProductosLiquidoInicial.CodigoProducto, Aprovado: true });
+        const MenuLiquidoInicial = await Menu.find({ CodigoLiquidoInicial: getProductosLiquidoInicial.CodigoProducto });
         if (MenuLiquidoInicial == 0) {
             frecuenciaLiquidoUtilizadoInicial;
             montoLiquidoUtilizadoInicial;
@@ -283,6 +282,10 @@ menuCtrl.getLiquidoInicial = async (req, res) => {
                 montoLiquidoUtilizadoInicial = + s.montoLiquidaInicial;
             })
             frecuenciaLiquidoUtilizadoInicial = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) / (totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) + frecuenciaLiquidoUtilizadoInicial);
+
+            montoLiquidoUtilizadoInicial = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) + montoLiquidoUtilizadoInicial);
+
+            frecuenciaLiquidoUtilizadoInicial2 = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) / (totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario));
 
             montoLiquidoUtilizadoInicial = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) + montoLiquidoUtilizadoInicial);
 
@@ -426,7 +429,7 @@ menuCtrl.getSolidoSegundario = async (req, res) => {
                 $options: 'i'
             },
             "Nivels.Nivel": "Segundaria",
-            "Solido_Liquido": true
+            Solido_Liquido: true
         }, { NombreProducto: 1, CodigoProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, __id: 1 }
         );
         const getTotalPoblacionAlumnos = await Colegio.find({ Estado: true }, { CantidadAlumnosSegundaria: 1, _id: 0 });
@@ -441,7 +444,7 @@ menuCtrl.getSolidoSegundario = async (req, res) => {
         let frecuenciaSolidoUtilizadoSegundario2 = 0;
         let montoSolildoUtilizadoSegundario2 = 0;
 
-        const MenuSolidoSegundario = await Menu.find({ CodigoSolidoSegundaria: getProductosSolitoSegundario.CodigoProducto, Aprovado: true });
+        const MenuSolidoSegundario = await Menu.find({ CodigoSolidoSegundaria: getProductosSolitoSegundario.CodigoProducto });
         if (MenuSolidoSegundario == 0) {
             frecuenciaSolidoUtilizadoSegundario;
             montoSolildoUtilizadoSegundario;
@@ -479,7 +482,7 @@ menuCtrl.getLiquidoSegundario = async (req, res) => {
                 $options: 'i'
             },
             "Nivels.Nivel": "Segundaria",
-            "Solido_Liquido": false
+            Solido_Liquido: false
         }, { NombreProducto: 1, CodigoProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, __id: 1 }
         );
         const getTotalPoblacionAlumnos = await Colegio.find({ Estado: true }, { CantidadAlumnosSegundaria: 1, _id: 0 });
@@ -492,7 +495,7 @@ menuCtrl.getLiquidoSegundario = async (req, res) => {
         let montoLiquidoUtilizadoSegundario = 0;
         let frecuenciaLiquidoUtilizadoSegundario2 = 0;
         let montoLiquidoUtilizadoSegundario2 = 0;
-        const MenuLiquidoSegundario = await Menu.find({ CodigoLiquidoSegundaria: getProductosLiquidoSegundario.CodigoProducto, Aprovado: true });
+        const MenuLiquidoSegundario = await Menu.find({ CodigoLiquidoSegundaria: getProductosLiquidoSegundario.CodigoProducto });
         if (MenuLiquidoSegundario == 0) {
             frecuenciaLiquidoUtilizadoSegundario;
             montoLiquidoUtilizadoSegundario;

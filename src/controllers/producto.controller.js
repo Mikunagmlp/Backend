@@ -43,18 +43,6 @@ productoCtrl.getProductos = async (req, res) => {
 
 }
 
-productoCtrl.getProductosMenu = async(req, res) => {
-    let solido_liquido = req.query.solido_liquido;
-    let nivel = req.query.nivel;
-    try {
-        const productos = await Producto.find({ Estado: true, Solido_Liquido: solido_liquido, 'Nivels.Nivel': nivel });
-
-        res.status(200).send(productos);
-    } catch(e) {
-        res.status(404).send(e);
-    }
-}
-
 productoCtrl.getProducto = async (req, res) => {
     try {
         const producto = await Producto.findById(req.params.id)
@@ -71,7 +59,7 @@ productoCtrl.getProducto = async (req, res) => {
 
 productoCtrl.updateProducto = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreProducto', 'Descripcion', 'Solido', 'Liquido','IdProveedor', 'IdAlmacen', 'Lote', 'Volumen', 'Gramage', 'PresupuestoInicial', 'Nivels', 'PrecioUnitario'];
+    const allowedUpdates = ['NombreProducto', 'Descripcion', 'Solido_Liquido','IdProveedor', 'IdAlmacen', 'Lote', 'Volumen', 'Gramage', 'PresupuestoInicial', 'Nivels', 'PrecioUnitario'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
@@ -95,6 +83,7 @@ productoCtrl.updateProducto = async (req, res) => {
         res.send(producto);
 
     } catch (error) {
+        console.log(error);
         res.status(400).send(error);
     }
 
