@@ -177,5 +177,4 @@ reporteCtrl.calculoDiario = async (req, res) => {
     }
     res.status(200).send(respCalculoDiario);
 }
-
 module.exports = reporteCtrl;
