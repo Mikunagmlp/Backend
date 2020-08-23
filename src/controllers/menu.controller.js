@@ -2,7 +2,6 @@ const menuCtrl = {};
 const Colegio = require('../models/colegio');
 const Producto = require('../models/producto');
 const Menu = require('../models/menu');
-const { get } = require('mongoose');
 
 menuCtrl.createMenu = async (req, res) => {
     let codigoMenu = await Menu.countDocuments() + 1;
@@ -272,7 +271,7 @@ menuCtrl.getLiquidoInicial = async (req, res) => {
         let montoLiquidoUtilizadoInicial = 0;
         let frecuenciaLiquidoUtilizadoInicial2 = 0;
         let montoLiquidoUtilizadoInicial2 = 0;
-        const MenuLiquidoInicial = await Menu.find({ CodigoLiquidoInicial: getProductosLiquidoInicial.CodigoProducto });
+        const MenuLiquidoInicial = await Menu.find({ CodigoLiquidoInicial: getProductosLiquidoInicial.CodigoProducto, Aprovado: true});
         if (MenuLiquidoInicial == 0) {
             frecuenciaLiquidoUtilizadoInicial;
             montoLiquidoUtilizadoInicial;
@@ -282,10 +281,6 @@ menuCtrl.getLiquidoInicial = async (req, res) => {
                 montoLiquidoUtilizadoInicial = + s.montoLiquidaInicial;
             })
             frecuenciaLiquidoUtilizadoInicial = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) / (totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) + frecuenciaLiquidoUtilizadoInicial);
-
-            montoLiquidoUtilizadoInicial = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) + montoLiquidoUtilizadoInicial);
-
-            frecuenciaLiquidoUtilizadoInicial2 = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) / (totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario));
 
             montoLiquidoUtilizadoInicial = ((totalAlumnosInicial * getProductosLiquidoInicial.PrecioUnitario) + montoLiquidoUtilizadoInicial);
 
@@ -341,7 +336,6 @@ menuCtrl.getSolidoPrimario = async (req, res) => {
                 montoSolildoUtilizadoPrimaria += s.montoSolidoPrimaria;
             })
             frecuenciaSolidoUtilizadoPrimaria = ((totalAlumnosPrimario * getProductosSolitoPrimaria.PrecioUnitario) / (totalAlumnosPrimario * getProductosSolitoPrimaria.PrecioUnitario) + frecuenciaSolidoUtilizadoPrimaria);
-            console.log(montoSolildoUtilizadoPrimaria);
             montoSolildoUtilizadoPrimaria = ((totalAlumnosPrimario * getProductosSolitoPrimaria.PrecioUnitario) + montoSolildoUtilizadoPrimaria);
 
             frecuenciaSolidoUtilizadoPrimaria2 = ((totalAlumnosPrimario * getProductosSolitoPrimaria.PrecioUnitario) / (totalAlumnosPrimario * getProductosSolitoPrimaria.PrecioUnitario));
@@ -444,7 +438,7 @@ menuCtrl.getSolidoSegundario = async (req, res) => {
         let frecuenciaSolidoUtilizadoSegundario2 = 0;
         let montoSolildoUtilizadoSegundario2 = 0;
 
-        const MenuSolidoSegundario = await Menu.find({ CodigoSolidoSegundaria: getProductosSolitoSegundario.CodigoProducto });
+        const MenuSolidoSegundario = await Menu.find({ CodigoSolidoSegundaria: getProductosSolitoSegundario.CodigoProducto , Aprovado: true  });
         if (MenuSolidoSegundario == 0) {
             frecuenciaSolidoUtilizadoSegundario;
             montoSolildoUtilizadoSegundario;
@@ -464,7 +458,7 @@ menuCtrl.getSolidoSegundario = async (req, res) => {
             FrecuenciaSolidoUtilizadoSegundaria: (frecuenciaSolidoSegundariaInicial - frecuenciaSolidoUtilizadoSegundario).toFixed(2),
             MontoSolildoUtilizadaSegundaria: (montoSolildosegundario - montoSolildoUtilizadoSegundario).toFixed(2),
             frecuenciaSolidoSegundariaInicial: frecuenciaSolidoUtilizadoSegundario2.toFixed(2),
-            montoSolildosegundaria: montoSolildoUtilizadoSegundario2.toFixed(2)
+            montoSolildoSegundaria: montoSolildoUtilizadoSegundario2.toFixed(2)
         }
         res.status(200).json(newProductoSolidSegundario);
     } catch (error) {
@@ -495,7 +489,7 @@ menuCtrl.getLiquidoSegundario = async (req, res) => {
         let montoLiquidoUtilizadoSegundario = 0;
         let frecuenciaLiquidoUtilizadoSegundario2 = 0;
         let montoLiquidoUtilizadoSegundario2 = 0;
-        const MenuLiquidoSegundario = await Menu.find({ CodigoLiquidoSegundaria: getProductosLiquidoSegundario.CodigoProducto });
+        const MenuLiquidoSegundario = await Menu.find({ CodigoLiquidoSegundaria: getProductosLiquidoSegundario.CodigoProducto, Aprovado: true });
         if (MenuLiquidoSegundario == 0) {
             frecuenciaLiquidoUtilizadoSegundario;
             montoLiquidoUtilizadoSegundario;
