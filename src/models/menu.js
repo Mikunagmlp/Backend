@@ -5,11 +5,11 @@ const menuSchema = new Schema({
         required: true,
         unique: true
     },
-    CodigoSolidoInicial:{
+    CodigoSolidoInicial: {
         type: String,
         required: true
     },
-    CodigoLiquidoInicial:{
+    CodigoLiquidoInicial: {
         type: String,
         required: true
     },
@@ -24,49 +24,49 @@ const menuSchema = new Schema({
     FrecuenciaSolidoUtilizadoInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     MontoSolildoUtilizadoInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     FrecuenciaLiquidaUtilizadoInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     MontoLiquidaUtilizadoInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     frecuenciaSolidoInicialInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     montoSolildoInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     frecuenciaLiquidaInicialInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     montoLiquidaInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
 
-    CodigoSolidoPrimaria:{
+    CodigoSolidoPrimaria: {
         type: String,
         required: true
     },
-    CodigoLiquidoPrimaria:{
+    CodigoLiquidoPrimaria: {
         type: String,
         required: true
     },
@@ -81,48 +81,48 @@ const menuSchema = new Schema({
     FrecuenciaSolidoUtilizadoPrimaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     MontoSolildoUtilizadoPrimaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     FrecuenciaLiquidaUtilizadoPrimaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     MontoLiquidaUtilizadoPrimaria: {
         type: Number,
         required: true,
-        default:0.0
-    },  
+        default: 0.0
+    },
     frecuenciaSolidoPrimariaInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     montoSolidoPrimaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     frecuenciaLiquidaPrimariaInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     montoLiquidaPrimaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
-    CodigoSolidoSegundaria:{
+    CodigoSolidoSegundaria: {
         type: String,
         required: true
     },
-    CodigoLiquidoSegundaria:{
+    CodigoLiquidoSegundaria: {
         type: String,
         required: true
     },
@@ -137,42 +137,42 @@ const menuSchema = new Schema({
     FrecuenciaSolidoUtilizadoSegundaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     MontoSolildoUtilizadaSegundaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     FrecuenciaLiquidaUtilizadoSegundaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     MontoLiquidaUtilizadoSegundaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     frecuenciaSolidoSegundariaInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     montoSolildoSegundaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     frecuenciaLiquidaSegundariaInicial: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     montoLiquidaSegundaria: {
         type: Number,
         required: true,
-        default:0.0
+        default: 0.0
     },
     Estado: {
         type: Boolean,
@@ -180,6 +180,11 @@ const menuSchema = new Schema({
         required: true
     },
     EnviadoEba: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    AprovadoEba: {
         type: Boolean,
         default: false,
         required: true
