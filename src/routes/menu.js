@@ -1,6 +1,8 @@
 const express = require('express');
 const router = new express.Router();
-const { createMenu,getSolidoInicial, getLiquidoInicial,getSolidoPrimario, getLiquidoPrimario,getSolidoSegundario,getLiquidoSegundario,updateMenu,listarMenuAprobado,listarMenuNoAprobado,listarMenuEba,listarMenuUnace,aprobarMenuEba, aprobarMenuUnace } = require('../controllers/menu.controller');
+const { createMenu, getSolidoInicial, getLiquidoInicial, getSolidoPrimario, getLiquidoPrimario, getSolidoSegundario, getLiquidoSegundario, updateMenu, listarMenuAprobado, listarMenuNoAprobado, listarMenuEba, listarMenuUnace, aprobarMenuEba, aprobarMenuUnace } = require('../controllers/menu.controller');
+
+const { createAsignacion, updateAsignacion,listarAsignacionCodigo,listarAsignacionColegio } = require('../controllers/asignacion.controller');
 
 router.post('/menu/registrar/menudiario', createMenu);
 router.patch('/menu/update/menudiario/:id', updateMenu);
@@ -20,4 +22,8 @@ router.get('/menu/productos/getLiquidoPrimario', getLiquidoPrimario);
 router.get('/menu/productos/getSolidoSegundario', getSolidoSegundario);
 router.get('/menu/productos/getLiquidoSegundario', getLiquidoSegundario);
 
+router.post('/menu/asignacion/registrar/:id', createAsignacion);
+router.patch('/menu/asignacion/update/:id', updateAsignacion);
+router.get('/menu/asignacion/listcodigo', listarAsignacionCodigo);
+router.get('/menu/asignacion/listcolegio', listarAsignacionColegio);
 module.exports = router;
