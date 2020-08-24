@@ -10,6 +10,12 @@ const router = new express.Router();
 //
 // router.patch('/boleta/editar/:id', updateBoleta);
 
+// const { createBoleta, getBoleta, getBoleta, updateBoleta } = require('.//../controllers/boleta.controller');
 
+// router.post('/boleta/registrar', createBoleta);
 
-module.exports = router;
+// router.get('/boleta', getBoleta);
+
+// router.get('/boleta/:id', getBoleta);
+
+// router.patch('/boleta/editar/:id', updateBoleta);

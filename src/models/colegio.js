@@ -9,10 +9,8 @@ const colegioSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    Ruta: {
-        type: String,
-        required: true,
-        trim: true
+    IdRuta: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Ruta'
     },
     CodColegio: {
         type: String,
