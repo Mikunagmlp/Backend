@@ -25,6 +25,7 @@ const authRouter = require('./routes/authrouter');
 const reportesRouter = require('./routes/reportes');
 const boletaRouter = require('./routes/boleta');
 const menuRouter = require('./routes/menu');
+const rutaRouter = require('./routes/ruta');
 // cargar middlewares
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,4 +56,5 @@ app.use(authRouter);
 app.use(reportesRouter);
 app.use(boletaRouter);
 app.use(menuRouter);
+app.use(rutaRouter);
 module.exports = app;
