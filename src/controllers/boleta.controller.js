@@ -116,4 +116,34 @@ boletaCtrl.listaCodigoActa = async (req, res) => {
     }
 }
 
+boletaCtrl.firmaColegio = async (req, res) => {
+    try {
+        const colegioApp = req.body;
+        const imagen = req.body.Imagen;
+
+        console.log(imagen);
+
+        res.status(200).send({ message: 'Recibido' });
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+}
+
+boletaCtrl.firmaEBA = async (req, res) => {
+    try {
+
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+boletaCtrl.firmaSiremu = async (req, res) => {
+    try {
+
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 module.exports = boletaCtrl;

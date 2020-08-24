@@ -16,13 +16,21 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/menu.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/menu.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/boleta.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/boleta.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/boleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/boleta.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/boleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/boleta.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +59,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -62,6 +71,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -191,6 +201,11 @@
       <workItem from="1598146433184" duration="474000" />
       <workItem from="1598182510516" duration="7190000" />
       <workItem from="1598193132897" duration="2897000" />
+      <workItem from="1598235197908" duration="1327000" />
+      <workItem from="1598241094461" duration="520000" />
+      <workItem from="1598294873988" duration="3955000" />
+      <workItem from="1598300209628" duration="796000" />
+      <workItem from="1598301720402" duration="2107000" />
     </task>
     <servers />
   </component>
@@ -202,7 +217,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -218,6 +245,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="632" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597425435602" />
+    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog" timestamp="1598295368375">
+      <screen x="0" y="23" width="1920" height="1119" />
+    </state>
+    <state x="100" y="100" width="1720" height="1000" key="DiffContextDialog/0.23.1920.1119@0.23.1920.1119" timestamp="1598295368375" />
     <state width="1878" height="423" key="GridCell.Tab.0.bottom" timestamp="1598188144112">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -291,6 +322,10 @@
     </state>
     <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1598302842401">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1598302842401" />
     <state x="541" y="282" key="run.anything.popup" timestamp="1592677582853">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
