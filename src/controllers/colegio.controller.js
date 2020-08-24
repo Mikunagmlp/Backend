@@ -2,11 +2,11 @@ const colegioCtrl = {};
 const Colegio = require('../models/colegio');
 
 colegioCtrl.crearColegio = async (req, res) => {
-    const { NombreColegio, Ruta, Distrito, CodColegio, Turno, Categoria, Telefono, Direccion, Encargado, CantidadAlumnosInicial, CantidadAlumnosPrimaria, CantidadAlumnosSegundaria} = req.body;
+    const { NombreColegio, IdRuta, Distrito, CodColegio, Turno, Categoria, Telefono, Direccion, Encargado, CantidadAlumnosInicial, CantidadAlumnosPrimaria, CantidadAlumnosSegundaria } = req.body;
     try {
         const newColegio = new Colegio({
             NombreColegio,
-            Ruta,
+            IdRuta,
             Distrito,
             CodColegio,
             Turno,
@@ -15,7 +15,7 @@ colegioCtrl.crearColegio = async (req, res) => {
             Direccion,
             Encargado,
             CantidadAlumnosInicial,
-            CantidadAlumnosPrimaria, 
+            CantidadAlumnosPrimaria,
             CantidadAlumnosSegundaria
         })
         await newColegio.save();
@@ -30,10 +30,11 @@ colegioCtrl.listarColegios = async (req, res) => {
 
     try {
         const colegios = await Colegio.find({ Estado: true })
-            .limit( parseInt(req.query.limit) ) // limitamos cuantos colegios va a devolver
-            .skip( parseInt(req.query.skip) ); // nos saltamos las tareas
+            .populate('IdRuta')
+            .limit(parseInt(req.query.limit)) // limitamos cuantos colegios va a devolver
+            .skip(parseInt(req.query.skip)); // nos saltamos las tareas
 
-        res.status(200).send( colegios );
+        res.status(200).send(colegios);
     } catch (e) {
         res.status(400).send(e);
     }
@@ -41,8 +42,8 @@ colegioCtrl.listarColegios = async (req, res) => {
 
 colegioCtrl.updateColegio = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreColegio', 'Ruta', 'Distrito', 'CodColegio', 'Turno', 'Categoria',
-        'Telefono', 'Direccion', 'Estado','Encargado','CantidadAlumnosInicial','CantidadAlumnosPrimaria',
+    const allowedUpdates = ['NombreColegio', 'IdRuta', 'Distrito', 'CodColegio', 'Turno', 'Categoria',
+        'Telefono', 'Direccion', 'Estado', 'Encargado', 'CantidadAlumnosInicial', 'CantidadAlumnosPrimaria',
         'CantidadAlumnosSegundaria'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
@@ -75,35 +76,36 @@ colegioCtrl.getSearch = async (req, res, next) => {
 
     try {
         let q = req.query.q;
-        let result =  await Colegio.find(
-        {
-            NombreColegio: {
-                $regex: new RegExp(q),
-                $options: 'i'
-            }
-        }, { __v: 0 });
+        let result = await Colegio.find(
+            {
+                NombreColegio: {
+                    $regex: new RegExp(q),
+                    $options: 'i'
+                }
+            }, { __v: 0 }).populate('IdRuta');
 
         if (result.length == 0) {
-            result =  await Colegio.find(
+            result = await Colegio.find(
                 {
                     CodColegio: {
                         $regex: new RegExp(q),
                         $options: 'i'
                     }
-                }, { __v: 0 });
+                }, { __v: 0 }).populate('IdRuta');
         }
-        res.status(200).send( result );
+        res.status(200).send(result);
     } catch (e) {
         res.status(400).send(e);
     }
-    
+
 }
 
 colegioCtrl.listarColegiosDisabled = async (req, res) => {
     try {
-        const colegios = await Colegio.find({ Estado: false });
+        const colegios = await Colegio.find({ Estado: false })
+            .populate('IdRuta');
 
-        res.status(200).send( colegios );
+        res.status(200).send(colegios);
     } catch (e) {
         res.status(400).send(e);
     }
