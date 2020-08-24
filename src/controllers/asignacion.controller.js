@@ -14,7 +14,7 @@ asigancionCtrl.createAsignacion = async (req, res) => {
             CodColegio: colegio.CodColegio,
             Colegio: colegio.NombreColegio,
 
-            CodigoSolidoInicial: menu.CodColegio,
+            CodigoSolidoInicial: menu.CodigoSolidoInicial,
             ProductoSolidoInicial: menu.ProductoSolidoInicial,
             LoteSolidoInicial,
             SolidoInicial,
