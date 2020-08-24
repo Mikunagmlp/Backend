@@ -3,11 +3,11 @@ const Camion = require('../models/camiones');
 
 camionCtrl.createCamion = async (req, res) => {
     try {
-        const { Codigo, NombreConductor, Ruta, NumeroPlaca, Modelo, IdUser} = req.body;
+        const { Codigo, NombreConductor, IdRuta, NumeroPlaca, Modelo, IdUser} = req.body;
         const newCamion = new Camion({
               Codigo,
 	      NombreConductor,
-	      Ruta,
+	      IdRuta,
 	      NumeroPlaca,
 	      Modelo,
 	      IdUser
@@ -22,6 +22,7 @@ camionCtrl.createCamion = async (req, res) => {
 camionCtrl.getCamiones = async (req, res) => {
     try {
         const camion = await Camion.find({ Estado: true })
+        .populate('IdRuta')
         res.status(200).json(camion);
     } catch (error) {
         res.status(400).send(error);
@@ -31,6 +32,7 @@ camionCtrl.getCamiones = async (req, res) => {
 camionCtrl.getCamion = async (req, res) => {
     try {
         const camion = await Camion.findById(req.params.id)
+        .populate('IdRuta')
         res.status(200).json(camion);
     } catch (error) {
         res.status(400).send(error);

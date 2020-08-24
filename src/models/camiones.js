@@ -6,25 +6,23 @@ const camionesSchema = new Schema({
         type: String,
         require: true,
         trim: true,
-	    unique: true
+        unique: true
     },
     NombreConductor: {
         type: String,
         required: true,
-	    trim: true,
+        trim: true,
     },
-    Ruta: {
-        type: String,
-	    required: true,
-	    trim: true
+    IdRuta: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Ruta'
     },
     NumeroPlaca: {
         type: String,
-	    trim: true
+        trim: true
     },
     Modelo: {
         type: String,
-	    trim: true
+        trim: true
     },
     Estado: {
         type: Boolean,
