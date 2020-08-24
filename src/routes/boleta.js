@@ -1,15 +1,14 @@
 const express = require('express');
 const router = new express.Router();
-// const { createBoleta, getBoleta, getBoleta, updateBoleta } = require('.//../controllers/boleta.controller');
+const { listaAsignaciones, crearBoleta,listaBoletas,listaCodigoActa } = require('.//../controllers/boleta.controller');
 
-// router.post('/boleta/registrar', createBoleta);
+router.get('/boleta/listado/asigaciones', listaAsignaciones);
 
-// router.get('/boleta', getBoleta);
+router.post('/boleta/registrar/:id', crearBoleta);
+
+router.get('/boleta/listado/allboletas', listaBoletas);
+router.get('/boleta/listado/codigoacta', listaCodigoActa);
 
 // router.get('/boleta/:id', getBoleta);
-
-// router.patch('/boleta/editar/:id', updateBoleta);
-
-
 
 module.exports = router;
