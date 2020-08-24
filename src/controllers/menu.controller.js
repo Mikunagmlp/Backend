@@ -6,7 +6,19 @@ const Menu = require('../models/menu');
 menuCtrl.createMenu = async (req, res) => {
     let codigoMenu = await Menu.countDocuments() + 1;
     try {
-        const { CodigoSolidoInicial, CodigoLiquidoInicial, ProductoSolidoInicial, FrecuenciaSolidoUtilizadoInicial, frecuenciaSolidoInicialInicial, frecuenciaLiquidaInicialInicial, montoLiquidaInicial, MontoSolildoUtilizadoInicial, montoSolildoInicial, ProductoLiquidoInicial, FrecuenciaLiquidaUtilizadoInicial, MontoLiquidaUtilizadoInicial, CodigoSolidoPrimaria, CodigoLiquidoPrimaria, ProductoSolidoPrimaria, FrecuenciaSolidoUtilizadoPrimaria, MontoSolildoUtilizadoPrimaria, ProductoLiquidoPrimaria, FrecuenciaLiquidaUtilizadoPrimaria, MontoLiquidaUtilizadoPrimaria, frecuenciaSolidoPrimariaInicial, montoSolildoPrimaria, frecuenciaLiquidaPrimariaInicial, montoLiquidaPrimaria, CodigoSolidoSegundaria, CodigoLiquidoSegundaria, ProductoSolidoSegundaria, FrecuenciaSolidoUtilizadoSegundaria, MontoSolildoUtilizadaSegundaria, ProductoLiquidoSegundaria, FrecuenciaLiquidaUtilizadoSegundaria, frecuenciaSolidoSegundariaInicial, montoSolildoSegundaria, frecuenciaLiquidaSegundariaInicial, montoLiquidaSegundaria, MontoLiquidaUtilizadoSegundaria, IdUser, ObservacionJefeUnace, ObservacionEba } = req.body;
+        const { CodigoSolidoInicial, CodigoLiquidoInicial, ProductoSolidoInicial, FrecuenciaSolidoUtilizadoInicial,
+            frecuenciaSolidoInicialInicial, frecuenciaLiquidaInicialInicial, montoLiquidaInicial,
+            MontoSolildoUtilizadoInicial, montoSolildoInicial, ProductoLiquidoInicial,
+            FrecuenciaLiquidaUtilizadoInicial, MontoLiquidaUtilizadoInicial, CodigoSolidoPrimaria,
+            CodigoLiquidoPrimaria, ProductoSolidoPrimaria, FrecuenciaSolidoUtilizadoPrimaria,
+            MontoSolildoUtilizadoPrimaria, ProductoLiquidoPrimaria, FrecuenciaLiquidaUtilizadoPrimaria,
+            MontoLiquidaUtilizadoPrimaria, frecuenciaSolidoPrimariaInicial, montoSolildoPrimaria,
+            frecuenciaLiquidaPrimariaInicial, montoLiquidaPrimaria, CodigoSolidoSegundaria, CodigoLiquidoSegundaria,
+            ProductoSolidoSegundaria, FrecuenciaSolidoUtilizadoSegundaria, MontoSolildoUtilizadaSegundaria,
+            ProductoLiquidoSegundaria, FrecuenciaLiquidaUtilizadoSegundaria, frecuenciaSolidoSegundariaInicial,
+            montoSolildoSegundaria, frecuenciaLiquidaSegundariaInicial, montoLiquidaSegundaria,
+            MontoLiquidaUtilizadoSegundaria, ObservacionJefeUnace, ObservacionEba } = req.body;
+
         const newMenu = new Menu({
             codigoGenerado: codigoMenu,
 
@@ -52,20 +64,31 @@ menuCtrl.createMenu = async (req, res) => {
             AprovadoEba: false,
             EnviadoJefeUnace: false,
             Aprovado: false,
-            IdUser,
             ObservacionJefeUnace,
             ObservacionEba
         })
         await newMenu.save();
         res.status(200).json(newMenu);
     } catch (error) {
+        console.log(error);
         res.status(400).send(error);
     }
 }
 
 menuCtrl.updateMenu = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['CodigoSolidoInicial', 'CodigoLiquidoInicial', 'ProductoSolidoInicial', 'FrecuenciaSolidoUtilizadoInicial', 'frecuenciaSolidoInicialInicial', 'frecuenciaLiquidaInicialInicial', 'montoLiquidaInicial', 'MontoSolildoUtilizadoInicial', 'montoSolildoInicial', 'ProductoLiquidoInicial', 'FrecuenciaLiquidaUtilizadoInicial', 'MontoLiquidaUtilizadoInicial', 'CodigoSolidoPrimaria', 'CodigoLiquidoPrimaria', 'ProductoSolidoPrimaria', 'FrecuenciaSolidoUtilizadoPrimaria', 'MontoSolildoUtilizadoPrimaria', 'ProductoLiquidoPrimaria', 'FrecuenciaLiquidaUtilizadoPrimaria', 'MontoLiquidaUtilizadoPrimaria', 'frecuenciaSolidoPrimariaInicial', 'montoSolidoPrimaria', 'frecuenciaLiquidaPrimariaInicial', 'montoLiquidaPrimaria', 'CodigoSolidoSegundaria', 'CodigoLiquidoSegundaria', 'ProductoSolidoSegundaria', 'FrecuenciaSolidoUtilizadoSegundaria', 'MontoSolildoUtilizadaSegundaria', 'ProductoLiquidoSegundaria', 'FrecuenciaLiquidaUtilizadoSegundaria', 'frecuenciaSolidoSegundariaInicial', 'montoSolildoSegundaria', 'frecuenciaLiquidaSegundariaInicial', 'montoLiquidaSegundaria', 'MontoLiquidaUtilizadoSegundaria', 'IdUser'];
+    const allowedUpdates = ['CodigoSolidoInicial', 'CodigoLiquidoInicial', 'ProductoSolidoInicial',
+        'FrecuenciaSolidoUtilizadoInicial', 'frecuenciaSolidoInicialInicial', 'frecuenciaLiquidaInicialInicial',
+        'montoLiquidaInicial', 'MontoSolildoUtilizadoInicial', 'montoSolildoInicial', 'ProductoLiquidoInicial',
+        'FrecuenciaLiquidaUtilizadoInicial', 'MontoLiquidaUtilizadoInicial', 'CodigoSolidoPrimaria',
+        'CodigoLiquidoPrimaria', 'ProductoSolidoPrimaria', 'FrecuenciaSolidoUtilizadoPrimaria',
+        'MontoSolildoUtilizadoPrimaria', 'ProductoLiquidoPrimaria', 'FrecuenciaLiquidaUtilizadoPrimaria',
+        'MontoLiquidaUtilizadoPrimaria', 'frecuenciaSolidoPrimariaInicial', 'montoSolidoPrimaria',
+        'frecuenciaLiquidaPrimariaInicial', 'montoLiquidaPrimaria', 'CodigoSolidoSegundaria',
+        'CodigoLiquidoSegundaria', 'ProductoSolidoSegundaria', 'FrecuenciaSolidoUtilizadoSegundaria',
+        'MontoSolildoUtilizadaSegundaria', 'ProductoLiquidoSegundaria', 'FrecuenciaLiquidaUtilizadoSegundaria',
+        'frecuenciaSolidoSegundariaInicial', 'montoSolildoSegundaria', 'frecuenciaLiquidaSegundariaInicial',
+        'montoLiquidaSegundaria', 'MontoLiquidaUtilizadoSegundaria', 'IdUser'];
 
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
@@ -124,7 +147,7 @@ menuCtrl.listarMenuEba = async (req, res) => {
 }
 menuCtrl.aprobarMenuEba = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['AprovadoEba', 'EnviadoEba', 'ObservacionEba', 'EnviadoJefeUnace', 'IdUser'];
+    const allowedUpdates = ['AprovadoEba', 'EnviadoEba', 'ObservacionEba', 'EnviadoJefeUnace'];
 
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
@@ -154,7 +177,7 @@ menuCtrl.aprobarMenuEba = async (req, res) => {
 
 menuCtrl.aprobarMenuUnace = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['AprovadoEba', 'ObservacionEba', 'Aprovado', 'ObservacionJefeUnace', 'EnviadoJefeUnace', 'IdUser'];
+    const allowedUpdates = ['AprovadoEba', 'ObservacionEba', 'Aprovado', 'ObservacionJefeUnace', 'EnviadoJefeUnace'];
 
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);

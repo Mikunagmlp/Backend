@@ -199,10 +199,10 @@ const menuSchema = new Schema({
         default: false,
         required: true
     },
-    IdUser: {
-        type: String,
-        required: true
-    },
+    // IdUser: {
+    //     type: String,
+    //     required: true
+    // },
     ObservacionJefeUnace: {
         type: String,
     },
