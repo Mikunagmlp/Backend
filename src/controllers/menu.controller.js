@@ -136,15 +136,26 @@ menuCtrl.listarMenuNoAprobado = async (req, res) => {
         res.status(400).send(e);
     }
 }
-menuCtrl.listarMenuEba = async (req, res) => {
+menuCtrl.listarMenuEbaNoAprobado = async (req, res) => { // listar menu eba no aprobado
     try {
-        const menu = await Menu.find({ EnviadoEba: true });
+        const menu = await Menu.find({ EnviadoEba: true, AprovadoEba: false });
 
         res.status(200).send(menu);
     } catch (e) {
         res.status(400).send(e);
     }
 }
+
+menuCtrl.listarMenuEbaAprobado = async (req, res) => { // listar menu eba aprobado
+    try {
+        const menu = await Menu.find({ EnviadoEba: true, AprovadoEba: true });
+
+        res.status(200).send(menu);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 menuCtrl.aprobarMenuEba = async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['AprovadoEba', 'EnviadoEba', 'ObservacionEba', 'EnviadoJefeUnace'];
