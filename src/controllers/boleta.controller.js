@@ -121,7 +121,7 @@ boletaCtrl.firmaColegio = async (req, res) => {
         const colegioApp = req.body;
         const imagen = req.body.Imagen;
 
-        console.log(imagen);
+        // console.log(imagen);
 
         res.status(200).send({ message: 'Recibido' });
     } catch (e) {
@@ -132,6 +132,12 @@ boletaCtrl.firmaColegio = async (req, res) => {
 
 boletaCtrl.firmaEBA = async (req, res) => {
     try {
+        const ebaApp = req.body;
+        const imagen = req.body.Imagen;
+
+        // console.log(imagen);
+
+        res.status(200).send({ message: 'Recibido' });
 
     } catch (e) {
         res.status(400).send(e);
@@ -140,7 +146,12 @@ boletaCtrl.firmaEBA = async (req, res) => {
 
 boletaCtrl.firmaSiremu = async (req, res) => {
     try {
+        const siremuApp = req.body;
+        const imagen = req.body.Imagen;
 
+        // console.log(imagen);
+
+        res.status(200).send({ message: 'Recibido' });
     } catch (e) {
         res.status(400).send(e);
     }
