@@ -28,7 +28,6 @@
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/menu.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/menu.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/menu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +204,7 @@
       <workItem from="1598300209628" duration="796000" />
       <workItem from="1598301720402" duration="2363000" />
       <workItem from="1598314660139" duration="3008000" />
-      <workItem from="1598367262607" duration="9089000" />
+      <workItem from="1598367262607" duration="13599000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>
@@ -221,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598317508664</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Listar menu  por ID">
+      <created>1598393562962</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1598393562962</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +260,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Boleta para la aplicacion" />
     <MESSAGE value="firma eba y siremu" />
-    <option name="LAST_COMMIT_MESSAGE" value="firma eba y siremu" />
+    <MESSAGE value="Listar menu  por ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Listar menu  por ID" />
   </component>
   <component name="WindowStateProjectService">
     <state x="659" y="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591474484245">
@@ -342,10 +349,10 @@
     </state>
     <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1598317522124">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1598393569993">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1598317522124" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1598393569993" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1598302842401">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -358,17 +365,5 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="868" y="105" width="838" height="1032" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1597425339101" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/controllers/menu.controller.js</url>
-          <line>107</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

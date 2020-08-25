@@ -2,8 +2,8 @@ const express = require('express');
 const router = new express.Router();
 const { createMenu, getSolidoInicial, getLiquidoInicial, getSolidoPrimario, getLiquidoPrimario,
     getSolidoSegundario, getLiquidoSegundario, updateMenu, listarMenuAprobado, listarMenuNoAprobado,
-    listarMenuEbaNoAprobado, listarMenuEbaAprobado, listarMenuUnace, aprobarMenuEba,
-    aprobarMenuUnace, listarMenu } = require('../controllers/menu.controller');
+    listarMenuEbaNoAprobado, listarMenuEbaAprobado, listarMenuUnaceNoAprobado, aprobarMenuEba,
+    aprobarMenuUnace, listarMenu, listarMenuUnaceAprobado } = require('../controllers/menu.controller');
 
 const { createAsignacion, updateAsignacion,listarAsignacionCodigo,
     listarAsignacionColegio } = require('../controllers/asignacion.controller');
@@ -18,7 +18,8 @@ router.get('/listarMenu/:id', listarMenu);
 router.get('/menu/listado/eba-no-aprobado', listarMenuEbaNoAprobado);
 router.get('/menu/listado/eba-aprobado', listarMenuEbaAprobado);
 
-router.get('/menu/listado/unace', listarMenuUnace);
+router.get('/menu/listado/unace-no-aprobado', listarMenuUnaceNoAprobado);
+router.get('/menu/listado/unace-aprobado', listarMenuUnaceAprobado);
 
 router.patch('/menu/aprobar/menueba/:id', aprobarMenuEba);
 router.patch('/menu/aprobar/menuunace/:id', aprobarMenuUnace);

@@ -228,15 +228,26 @@ menuCtrl.aprobarMenuUnace = async (req, res) => {
     }
 }
 
-menuCtrl.listarMenuUnace = async (req, res) => {
+menuCtrl.listarMenuUnaceNoAprobado = async (req, res) => {
     try {
-        const menu = await Menu.find({ EnviadoJefeUnace: true });
+        const menu = await Menu.find({ EnviadoJefeUnace: true, Aprovado: false });
 
         res.status(200).send(menu);
     } catch (e) {
         res.status(400).send(e);
     }
 }
+
+menuCtrl.listarMenuUnaceAprobado = async (req, res) => {
+    try {
+        const menu = await Menu.find({ EnviadoJefeUnace: true, Aprovado: true });
+
+        res.status(200).send(menu);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 menuCtrl.getSolidoInicial = async (req, res) => {
     let totalAlumnosInicial = 0;
     let solidoInicial = req.query.solidoinicial;
