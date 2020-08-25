@@ -117,6 +117,18 @@ menuCtrl.updateMenu = async (req, res) => {
     }
 }
 
+menuCtrl.listarMenu = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const menu = await Menu.findById( id );
+
+        res.status(200).send(menu);
+    } catch (e) {
+        res.status(404).send(e);
+    }
+}
+
 menuCtrl.listarMenuAprobado = async (req, res) => {
     try {
         const menu = await Menu.find({ Aprovado: true });

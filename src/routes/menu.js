@@ -3,7 +3,7 @@ const router = new express.Router();
 const { createMenu, getSolidoInicial, getLiquidoInicial, getSolidoPrimario, getLiquidoPrimario,
     getSolidoSegundario, getLiquidoSegundario, updateMenu, listarMenuAprobado, listarMenuNoAprobado,
     listarMenuEbaNoAprobado, listarMenuEbaAprobado, listarMenuUnace, aprobarMenuEba,
-    aprobarMenuUnace } = require('../controllers/menu.controller');
+    aprobarMenuUnace, listarMenu } = require('../controllers/menu.controller');
 
 const { createAsignacion, updateAsignacion,listarAsignacionCodigo,
     listarAsignacionColegio } = require('../controllers/asignacion.controller');
@@ -14,6 +14,7 @@ router.patch('/menu/update/menudiario/:id', updateMenu);
 router.get('/menu/listado/aprobado', listarMenuAprobado);
 router.get('/menu/listado/noaprobado', listarMenuNoAprobado);
 
+router.get('/listarMenu/:id', listarMenu);
 router.get('/menu/listado/eba-no-aprobado', listarMenuEbaNoAprobado);
 router.get('/menu/listado/eba-aprobado', listarMenuEbaAprobado);
 

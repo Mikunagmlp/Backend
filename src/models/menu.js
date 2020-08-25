@@ -179,6 +179,8 @@ const menuSchema = new Schema({
         default: true,
         required: true
     },
+
+
     EnviadoEba: {
         type: Boolean,
         default: false,
@@ -199,10 +201,8 @@ const menuSchema = new Schema({
         default: false,
         required: true
     },
-    // IdUser: {
-    //     type: String,
-    //     required: true
-    // },
+
+
     ObservacionJefeUnace: {
         type: String,
     },

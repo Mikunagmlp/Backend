@@ -27,8 +27,8 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/menu.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/menu.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/menu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +205,7 @@
       <workItem from="1598300209628" duration="796000" />
       <workItem from="1598301720402" duration="2363000" />
       <workItem from="1598314660139" duration="3008000" />
-      <workItem from="1598367262607" duration="4224000" />
+      <workItem from="1598367262607" duration="9089000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>
@@ -358,5 +358,17 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="868" y="105" width="838" height="1032" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1597425339101" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/controllers/menu.controller.js</url>
+          <line>107</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
