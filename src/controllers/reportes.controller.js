@@ -177,4 +177,62 @@ reporteCtrl.calculoDiario = async (req, res) => {
     }
     res.status(200).send(respCalculoDiario);
 }
+
+reporteCtrl.ruteo = async (req, res) => {
+    try {
+        let ruta = req.query.ruta;
+        var rutasColegio = [];
+        await Colegio.find(
+            {})
+            .populate('IdRuta')
+            .exec((err, rutas) => {
+                if (!err) {
+                    if (rutas && rutas.length && rutas.length > 0) {
+                        rutas.forEach(data => {
+                            if (data.IdRuta.Codigo == ruta) {
+                                let obj = {
+                                    _id: data._id,
+                                    NombreColegio: data.NombreColegio,
+                                    Ruta: data.IdRuta.NombreRuta,
+                                    CodigoRuta: data.IdRuta.Codigo,
+                                };
+                                rutasColegio.push(obj);
+                            } else {
+                                if (data.IdRuta.NombreRuta.includes(ruta)) {
+                                    let obj = {
+                                        _id: data._id,
+                                        NombreColegio: data.NombreColegio,
+                                        Ruta: data.IdRuta.NombreRuta,
+                                        CodigoRuta: data.IdRuta.Codigo,
+                                    };
+                                    rutasColegio.push(obj);
+                                }
+                            }
+                        });
+                    }
+                }
+                res.status(200).send(rutasColegio);
+            });
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+reporteCtrl.entregaLote = async (req, res) => {
+
+}
+reporteCtrl.productoDisponible = async (req, res) => {
+
+}
+reporteCtrl.cambiosIncidencias = async (req, res) => {
+
+}
+reporteCtrl.estadistico = async (req, res) => {
+
+}
+reporteCtrl.menuAprobados = async (req, res) => {
+
+}
+reporteCtrl.consolidadoEntrega = async (req, res) => {
+
+}
 module.exports = reporteCtrl;
