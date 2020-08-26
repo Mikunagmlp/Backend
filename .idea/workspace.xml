@@ -28,7 +28,6 @@
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/menu.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/menu.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/menu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +203,7 @@
       <workItem from="1598300209628" duration="796000" />
       <workItem from="1598301720402" duration="2363000" />
       <workItem from="1598314660139" duration="3008000" />
-      <workItem from="1598367262607" duration="13599000" />
+      <workItem from="1598367262607" duration="17193000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>
@@ -227,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598393562962</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Menu Unace">
+      <created>1598398338218</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598398338218</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +267,8 @@
     <MESSAGE value="Boleta para la aplicacion" />
     <MESSAGE value="firma eba y siremu" />
     <MESSAGE value="Listar menu  por ID" />
-    <option name="LAST_COMMIT_MESSAGE" value="Listar menu  por ID" />
+    <MESSAGE value="Menu Unace" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menu Unace" />
   </component>
   <component name="WindowStateProjectService">
     <state x="659" y="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591474484245">

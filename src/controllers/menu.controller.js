@@ -77,18 +77,20 @@ menuCtrl.createMenu = async (req, res) => {
 
 menuCtrl.updateMenu = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['CodigoSolidoInicial', 'CodigoLiquidoInicial', 'ProductoSolidoInicial',
-        'FrecuenciaSolidoUtilizadoInicial', 'frecuenciaSolidoInicialInicial', 'frecuenciaLiquidaInicialInicial',
-        'montoLiquidaInicial', 'MontoSolildoUtilizadoInicial', 'montoSolildoInicial', 'ProductoLiquidoInicial',
-        'FrecuenciaLiquidaUtilizadoInicial', 'MontoLiquidaUtilizadoInicial', 'CodigoSolidoPrimaria',
-        'CodigoLiquidoPrimaria', 'ProductoSolidoPrimaria', 'FrecuenciaSolidoUtilizadoPrimaria',
-        'MontoSolildoUtilizadoPrimaria', 'ProductoLiquidoPrimaria', 'FrecuenciaLiquidaUtilizadoPrimaria',
-        'MontoLiquidaUtilizadoPrimaria', 'frecuenciaSolidoPrimariaInicial', 'montoSolidoPrimaria',
-        'frecuenciaLiquidaPrimariaInicial', 'montoLiquidaPrimaria', 'CodigoSolidoSegundaria',
-        'CodigoLiquidoSegundaria', 'ProductoSolidoSegundaria', 'FrecuenciaSolidoUtilizadoSegundaria',
-        'MontoSolildoUtilizadaSegundaria', 'ProductoLiquidoSegundaria', 'FrecuenciaLiquidaUtilizadoSegundaria',
-        'frecuenciaSolidoSegundariaInicial', 'montoSolildoSegundaria', 'frecuenciaLiquidaSegundariaInicial',
-        'montoLiquidaSegundaria', 'MontoLiquidaUtilizadoSegundaria', 'IdUser'];
+
+    const allowedUpdates = [ '_id', 'codigoGenerado','CodigoSolidoInicial','CodigoLiquidoInicial','ProductoSolidoInicial',
+        'ProductoLiquidoInicial','FrecuenciaSolidoUtilizadoInicial','MontoSolildoUtilizadoInicial',
+        'FrecuenciaLiquidaUtilizadoInicial','MontoLiquidaUtilizadoInicial','frecuenciaSolidoInicialInicial',
+        'montoSolildoInicial','frecuenciaLiquidaInicialInicial','montoLiquidaInicial','CodigoSolidoPrimaria',
+        'CodigoLiquidoPrimaria','ProductoSolidoPrimaria','ProductoLiquidoPrimaria','FrecuenciaSolidoUtilizadoPrimaria',
+        'MontoSolildoUtilizadoPrimaria','FrecuenciaLiquidaUtilizadoPrimaria','MontoLiquidaUtilizadoPrimaria',
+        'frecuenciaSolidoPrimariaInicial','montoSolidoPrimaria','frecuenciaLiquidaPrimariaInicial',
+        'montoLiquidaPrimaria','CodigoSolidoSegundaria','CodigoLiquidoSegundaria','ProductoSolidoSegundaria',
+        'ProductoLiquidoSegundaria','FrecuenciaSolidoUtilizadoSegundaria','MontoSolildoUtilizadaSegundaria',
+        'FrecuenciaLiquidaUtilizadoSegundaria','MontoLiquidaUtilizadoSegundaria','frecuenciaSolidoSegundariaInicial',
+        'montoSolildoSegundaria','frecuenciaLiquidaSegundariaInicial','montoLiquidaSegundaria','Estado','EnviadoEba',
+        'AprovadoEba','EnviadoJefeUnace','Aprovado','ObservacionJefeUnace']
+
 
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
