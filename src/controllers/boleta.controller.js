@@ -66,6 +66,8 @@ boletaCtrl.crearBoleta = async (req, res) => {
             ProductoLiquidoInicial: liquidoInicial.NombreProducto,
             CodigoSolidoInicial: solidoInicial.CodigoProducto,
             CodigoLiquidoInicial: liquidoInicial.CodigoProducto,
+            LoteSolidoInicial: asignacion.LoteSolidoInicial,
+            LoteLiquidoInicial: asignacion.LoteLiquidoInicial,
 
             CantidadAlumnosPrimaria: colegio.CantidadAlumnosPrimaria,
             PrecioSolidoPrimaria: solidoPrimaria.PrecioUnitario,
@@ -74,6 +76,8 @@ boletaCtrl.crearBoleta = async (req, res) => {
             ProductoLiquidoPrimaria: liquidoPrimaria.NombreProducto,
             CodigoSolidoPrimaria: solidoPrimaria.CodigoProducto,
             CodigoLiquidoPrimaria: liquidoPrimaria.CodigoProducto,
+            LoteSolidoPrimaria: asignacion.LoteSolidoPrimaria,
+            LoteLiquidoPrimaria: asignacion.LoteLiquidoPrimaria,
 
             CantidadAlumnosSegundaria: colegio.CantidadAlumnosSegundaria,
             PrecioSolidoSegundaria: solidoSegundaria.PrecioUnitario,
@@ -82,6 +86,8 @@ boletaCtrl.crearBoleta = async (req, res) => {
             ProductoLiquidoSegundaria: liquidoSegundaria.NombreProducto,
             CodigoSolidoSegundaria: solidoSegundaria.CodigoProducto,
             CodigoLiquidoSegundaria: liquidoSegundaria.CodigoProducto,
+            LoteSolidoSegundaria: asignacion.LoteSolidoSegundaria,
+            LoteLiquidoSegundaria: asignacion.LoteLiquidoSegundaria,
 
             FirmaEntrega,
             FirmaRecibido,

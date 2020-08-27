@@ -2,6 +2,7 @@ const reporteCtrl = {};
 const Colegio = require('../models/colegio');
 const Producto = require('../models/producto');
 const Menu = require('../models/menu');
+const Boleta = require('../models/boleta');
 
 reporteCtrl.getProductosDetalle = async (req, res) => {
     const getProductosDetalles = await Producto.find({ Estado: true }, { NombreProducto: 1, IdCategoria: 1, Nivels: 1 })
@@ -218,7 +219,55 @@ reporteCtrl.ruteo = async (req, res) => {
     }
 }
 reporteCtrl.entregaLote = async (req, res) => {
+    try {
+        let codigo = req.query.codigo;
+        let result = await Boleta.find(
+            {
+                $or: [
+                    {
+                        LoteSolidoInicial: {
+                            $regex: new RegExp(codigo),
+                            $options: 'i'
+                        }
+                    },
+                    {
+                        LoteLiquidoInicial: {
+                            $regex: new RegExp(codigo),
+                            $options: 'i'
+                        }
+                    },
+                    {
+                        LoteSolidoPrimaria: {
+                            $regex: new RegExp(codigo),
+                            $options: 'i'
+                        }
+                    },
+                    {
+                        LoteLiquidoPrimaria: {
+                            $regex: new RegExp(codigo),
+                            $options: 'i'
+                        }
+                    },
+                    {
+                        LoteSolidoSegundaria: {
+                            $regex: new RegExp(codigo),
+                            $options: 'i'
+                        }
+                    },
+                    {
+                        LoteLiquidoSegundaria: {
+                            $regex: new RegExp(codigo),
+                            $options: 'i'
+                        }
+                    }
+                ]
 
+            }, { NombreColegio: 1, ProductoSolidoInicial: 1, LoteSolidoInicial: 1, ProductoLiquidoInicial: 1, LoteLiquidoInicial: 1, ProductoSolidoPrimaria: 1, LoteSolidoPrimaria: 1, ProductoLiquidoPrimaria: 1, LoteLiquidoPrimaria: 1, ProductoSolidoSegundaria: 1, LoteSolidoSegundaria: 1, ProductoLiquidoSegundaria: 1, LoteLiquidoSegundaria: 1 });
+
+        res.status(200).send(result);
+    } catch (e) {
+        res.status(400).send(e);
+    }
 }
 reporteCtrl.productoDisponible = async (req, res) => {
 
