@@ -260,7 +260,8 @@ reporteCtrl.entregaLote = async (req, res) => {
                             $options: 'i'
                         }
                     }
-                ]
+                ],
+                Entregado:true
 
             }, { NombreColegio: 1, ProductoSolidoInicial: 1, LoteSolidoInicial: 1, ProductoLiquidoInicial: 1, LoteLiquidoInicial: 1, ProductoSolidoPrimaria: 1, LoteSolidoPrimaria: 1, ProductoLiquidoPrimaria: 1, LoteLiquidoPrimaria: 1, ProductoSolidoSegundaria: 1, LoteSolidoSegundaria: 1, ProductoLiquidoSegundaria: 1, LoteLiquidoSegundaria: 1 });
 
