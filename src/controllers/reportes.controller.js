@@ -221,7 +221,7 @@ reporteCtrl.ruteo = async (req, res) => {
 reporteCtrl.entregaLote = async (req, res) => {
     try {
         const fechaInicial = req.body.fechaInicio; // ejemplo: '2020/08/24'
-        const fechaFinal =  req.body.fechaFin;
+        const fechaFinal = req.body.fechaFin;
         let codigo = req.query.codigo;
         let result = await Boleta.find(
             {
@@ -264,7 +264,7 @@ reporteCtrl.entregaLote = async (req, res) => {
                     }
                 ],
                 $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
-                Entregado:true
+                Entregado: true
 
             }, { NombreColegio: 1, ProductoSolidoInicial: 1, LoteSolidoInicial: 1, ProductoLiquidoInicial: 1, LoteLiquidoInicial: 1, ProductoSolidoPrimaria: 1, LoteSolidoPrimaria: 1, ProductoLiquidoPrimaria: 1, LoteLiquidoPrimaria: 1, ProductoSolidoSegundaria: 1, LoteSolidoSegundaria: 1, ProductoLiquidoSegundaria: 1, LoteLiquidoSegundaria: 1 });
 
@@ -283,7 +283,26 @@ reporteCtrl.estadistico = async (req, res) => {
 
 }
 reporteCtrl.menuAprobados = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio;
+        const fechaFinal = req.body.fechaFin;
+        const id = req.body.id == undefined ? 0 : req.body.id;
+        const menu = await Menu.find({
+            $or:
+                [
+                    { codigoGenerado: id },
+                    {
+                        $and: [
+                            { updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }
+                        ]
+                    }
+                ], Aprovado: true
+        });
 
+        res.status(200).send(menu);
+    } catch (e) {
+        res.status(400).send(e);
+    }
 }
 reporteCtrl.consolidadoEntrega = async (req, res) => {
 
