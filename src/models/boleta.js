@@ -55,6 +55,14 @@ const boletaSchema = new Schema({
     trim: true,
     default: 0
   },
+  LoteSolidoInicial: {
+    type: String,
+    trim: true
+  },
+  LoteLiquidoInicial: {
+    type: String,
+    trim: true
+  },
   PrecioSolidoInicial: {
     type: Number,
     trim: true,
@@ -83,6 +91,14 @@ const boletaSchema = new Schema({
     type: String,
     required: true
   },
+  LoteSolidoPrimaria: {
+    type: String,
+    trim: true
+  },
+  LoteLiquidoPrimaria: {
+    type: String,
+    trim: true
+  },
   PrecioSolidoPrimaria: {
     type: Number,
     trim: true,
@@ -110,6 +126,14 @@ const boletaSchema = new Schema({
   ProductoLiquidoPrimaria: {
     type: String,
     required: true
+  },
+  LoteSolidoSegundaria: {
+    type: String,
+    trim: true
+  },
+  LoteLiquidoSegundaria: {
+    type: String,
+    trim: true
   },
   PrecioSolidoSegundaria: {
     type: Number,
