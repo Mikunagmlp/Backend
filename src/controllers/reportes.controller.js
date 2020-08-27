@@ -283,9 +283,13 @@ reporteCtrl.estadistico = async (req, res) => {
 
 }
 reporteCtrl.menuAprobados = async (req, res) => {
+
+    console.log(req.body);
     try {
         const fechaInicial = req.body.fechaInicio;
+        console.log(fechaInicial);
         const fechaFinal = req.body.fechaFin;
+        console.log(fechaFinal);
         const id = req.body.id == undefined ? 0 : req.body.id;
         const menu = await Menu.find({
             $or:
@@ -301,6 +305,7 @@ reporteCtrl.menuAprobados = async (req, res) => {
 
         res.status(200).send(menu);
     } catch (e) {
+        console.log(e);
         res.status(400).send(e);
     }
 }

@@ -89,7 +89,7 @@ menuCtrl.updateMenu = async (req, res) => {
         'ProductoLiquidoSegundaria','FrecuenciaSolidoUtilizadoSegundaria','MontoSolildoUtilizadaSegundaria',
         'FrecuenciaLiquidaUtilizadoSegundaria','MontoLiquidaUtilizadoSegundaria','frecuenciaSolidoSegundariaInicial',
         'montoSolildoSegundaria','frecuenciaLiquidaSegundariaInicial','montoLiquidaSegundaria','Estado','EnviadoEba',
-        'AprovadoEba','EnviadoJefeUnace','Aprovado','ObservacionJefeUnace']
+        'AprovadoEba','EnviadoJefeUnace','Aprovado','ObservacionJefeUnace', 'ObservacionEba', 'montoSolildoPrimaria']
 
 
     const isValidOperation = updates.every((update) => {
