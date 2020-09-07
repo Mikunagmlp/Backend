@@ -283,8 +283,6 @@ reporteCtrl.estadistico = async (req, res) => {
 
 }
 reporteCtrl.menuAprobados = async (req, res) => {
-
-    console.log(req.body);
     try {
         const fechaInicial = req.body.fechaInicio;
         const fechaFinal = req.body.fechaFin;

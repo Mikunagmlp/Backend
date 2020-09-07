@@ -11,6 +11,6 @@ router.get('/reporte/ruteo/colegio', ruteo);
 //localhost:3000/reporte/entrega/lote?codigo=loteLiquido0003
 router.get('/reporte/entrega/lote', entregaLote);
 
-router.post('/reporte/menu/aprobado', menuAprobados);
+router.get('/reporte/menu/aprobado', menuAprobados);
 
 module.exports = router;
