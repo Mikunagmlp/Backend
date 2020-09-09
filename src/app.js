@@ -26,6 +26,7 @@ const reportesRouter = require('./routes/reportes');
 const boletaRouter = require('./routes/boleta');
 const menuRouter = require('./routes/menu');
 const rutaRouter = require('./routes/ruta');
+const registerphRouter = require('./routes/registerph');
 // cargar middlewares
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -58,4 +59,5 @@ app.use(reportesRouter);
 app.use(boletaRouter);
 app.use(menuRouter);
 app.use(rutaRouter);
+app.use(registerphRouter);
 module.exports = app;
