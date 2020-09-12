@@ -274,6 +274,49 @@ reporteCtrl.entregaLote = async (req, res) => {
     }
 }
 reporteCtrl.productoDisponible = async (req, res) => {
+    const fechaInicial = req.body.fechaInicio; // ejemplo: '2020/08/24'
+    const fechaFinal = req.body.fechaFin;
+    const productosInicial = [];
+    const productosPrimaria = [];
+    const productosSegundaria = [];
+
+
+    const getProductos = await Producto.find({ Estado: true }, { CodigoProducto: 1, NombreProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, Solido_Liquido: 1 })
+        .populate('Nivels', { Nivel: 1 });
+
+    const getAlumnos = await Colegio.find({ Estado: true }, { CantidadAlumnosInicial: 1, CantidadAlumnosPrimaria: 1, CantidadAlumnosSegundaria: 1, _id: 0 });
+
+    getProductos.forEach((producto) => {
+        producto.Nivels.forEach((nivel) => {
+            if (nivel.Nivel == "Inicial") {
+                productosInicial.push(producto);
+            }
+            if (nivel.Nivel == "Primaria") {
+                productosPrimaria.push(producto);
+            }
+            if (nivel.Nivel == "Segundaria") {
+                productosSegundaria.push(producto);
+            }
+        })
+    })
+
+    getAlumnos.forEach((poblacion) => {
+        poblacionInicial += poblacion.CantidadAlumnosInicial;
+        poblacionPrimaria += poblacion.CantidadAlumnosPrimaria;
+        poblacionSegundaria += poblacion.CantidadAlumnosSegundaria;
+    });
+
+    const calculoFrecuencias = await calculoFrecuencia();
+
+    res.status(200).send(calculoFrecuencias)
+
+    // const getMenuProductoInicial = await Menu.find({ $or: [{ CodigoLiquidoInicial: productoSearch }, { CodigoSolildoInicial: productoSearch }], Aprovado: true });
+
+    // const getMenuProductoPrimaria = await Menu.find({ $or: [{ CodigoLiquidoPrimaria: productoSearch }, { CodigoSolidoPrimaria: productoSearch }], Aprovado: true });
+
+    // const getMenuProductoSegundaria = await Menu.find({ $or: [{ CodigoLiquidoSegundaria: productoSearch }, { CodigoSolidoSegundaria: productoSearch }], Aprovado: true });
+
+
 
 }
 reporteCtrl.cambiosIncidencias = async (req, res) => {
@@ -308,4 +351,23 @@ reporteCtrl.menuAprobados = async (req, res) => {
 reporteCtrl.consolidadoEntrega = async (req, res) => {
 
 }
+
+async function calculoFrecuencia() {
+    let poblacionInicial = 0;
+    let fercuencia=0;
+    const getProductos = await Producto.find({ Estado: true }, { CodigoProducto: 1, NombreProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, Solido_Liquido: 1 });
+    const getAlumnos = await Colegio.find({ Estado: true }, { CantidadAlumnosInicial: 1, CantidadAlumnosPrimaria: 1, CantidadAlumnosSegundaria: 1, _id: 0 });
+    getAlumnos.forEach((poblacion) => {
+        poblacionInicial += poblacion.CantidadAlumnosInicial;
+    });
+
+    getProductos.forEach((producto) => {
+        frecuenciaInicialInicial = presupuestoInicial / (totalAlumnosInicial * getProductosDetalles.PrecioUnitario);
+    })
+
+
+    return getProductos;
+}
+
+
 module.exports = reporteCtrl;
