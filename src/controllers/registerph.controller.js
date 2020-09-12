@@ -32,16 +32,16 @@ proveedorCtrl.createRegisterph = async (req, res) => {
     }
 }
 
-proveedorCtrl.getProveedores = async (req, res) => {
-    try {
-        const registerphcalidad = await Registerph.find({ Estado: true })
-        res.status(200).json(registerphcalidad);
+//proveedorCtrl.getProveedores = async (req, res) => {
+  //  try {
+    //    const registerphcalidad = await Registerph.find({ Estado: true })
+      //  res.status(200).json(registerphcalidad);
 
-    } catch (error) {
-        res.status(400).send(error);
-    }
+    //} catch (error) {
+      //  res.status(400).send(error);
+    //}
 
-}
+//}
 
 registerphCtrl.getRegisterph= async (req, res) => {
     try {
