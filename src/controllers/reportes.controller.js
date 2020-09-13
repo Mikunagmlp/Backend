@@ -278,18 +278,77 @@ reporteCtrl.productoDisponible = async (req, res) => {
     const fechaFinal = req.body.fechaFin;
     const productos = await Producto.find({ Estado: true }, { CodigoProducto: 1, NombreProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, Solido_Liquido: 1 });
     const poblacion = await getPoblacion();
-    productos.forEach(() => {
+    let frecuenciaInicial = 0;
+    let objProducto = {};
+    let frecuenciaResto = 0;
+    let frecuenciaActual = 0;
+    let montoResto = 0;
+    let montoDisponible = 0;
+    let estadoProductoFrecuencia = "";
+    let estadoProductoMonto = "";
+    let reporteProducto = [];
 
-    })
-    const calculoFrecuencias = await calculoFrecuencia();
-
-    res.status(200).send(productos)
-
-    // const getMenuProductoInicial = await Menu.find({ $or: [{ CodigoLiquidoInicial: productoSearch }, { CodigoSolildoInicial: productoSearch }], Aprovado: true });
-
-    // const getMenuProductoPrimaria = await Menu.find({ $or: [{ CodigoLiquidoPrimaria: productoSearch }, { CodigoSolidoPrimaria: productoSearch }], Aprovado: true });
-
-    // const getMenuProductoSegundaria = await Menu.find({ $or: [{ CodigoLiquidoSegundaria: productoSearch }, { CodigoSolidoSegundaria: productoSearch }], Aprovado: true });
+    for (const producto of productos) {
+        for (const nivel of producto.Nivels) {
+            if (nivel.Nivel == "Inicial") {
+                frecuenciaInicial = calculoFrecuencia(producto.PresupuestoInicial, producto.PrecioUnitario, poblacion.inicial);
+                frecuenciaResto = await getMenuFrecuencia(producto.CodigoProducto);
+                montoResto = await productoMontoDisponible(producto.CodigoProducto);
+                estadoProductoFrecuencia = producto.Solido_Liquido ? frecuenciaResto.inicialSolido : frecuenciaResto.inicialLiquido;
+                estadoProductoMonto = producto.Solido_Liquido ? montoResto.inicialSolido : montoResto.inicialLiquido;
+                frecuenciaActual = calculoFrecuenciaActual(frecuenciaInicial, estadoProductoFrecuencia);
+                montoDisponible = (producto.PresupuestoInicial - estadoProductoMonto);
+                objProducto = {
+                    NombreProducto: producto.NombreProducto,
+                    CodigoProducto: producto.CodigoProducto,
+                    Solido_Liquido: producto.Solido_Liquido,
+                    Nivel: nivel.Nivel,
+                    FrecuenciaDisponible: frecuenciaActual.toFixed(2),
+                    MontoDisponible: montoDisponible.toFixed(2)
+                }
+                reporteProducto.push(objProducto);
+            }
+            if (nivel.Nivel == "Primaria") {
+                console.log(producto)
+                frecuenciaInicial = calculoFrecuencia(producto.PresupuestoInicial, producto.PrecioUnitario, poblacion.primaria);
+                frecuenciaResto = await getMenuFrecuencia(producto.CodigoProducto);
+                montoResto = await productoMontoDisponible(producto.CodigoProducto);
+                console.log(montoResto);
+                estadoProductoFrecuencia = producto.Solido_Liquido ? frecuenciaResto.primariaSolido : frecuenciaResto.primariaLiquido;
+                estadoProductoMonto = producto.Solido_Liquido ? montoResto.primariaSolido : montoResto.primariaLiquido;
+                frecuenciaActual = calculoFrecuenciaActual(frecuenciaInicial, estadoProductoFrecuencia);
+                montoDisponible = (producto.PresupuestoInicial - estadoProductoMonto);
+                objProducto = {
+                    NombreProducto: producto.NombreProducto,
+                    CodigoProducto: producto.CodigoProducto,
+                    Solido_Liquido: producto.Solido_Liquido,
+                    Nivel: nivel.Nivel,
+                    FrecuenciaDisponible: frecuenciaActual.toFixed(2),
+                    MontoDisponible: montoDisponible.toFixed(2)
+                }
+                reporteProducto.push(objProducto);
+            }
+            if (nivel.Nivel == "Segundaria") {
+                frecuenciaInicial = calculoFrecuencia(producto.PresupuestoInicial, producto.PrecioUnitario, poblacion.segundaria);
+                frecuenciaResto = await getMenuFrecuencia(producto.CodigoProducto);
+                montoResto = await productoMontoDisponible(producto.CodigoProducto);
+                estadoProductoFrecuencia = producto.Solido_Liquido ? frecuenciaResto.segundariaSolido : frecuenciaResto.segundariaLiquido;
+                estadoProductoMonto = producto.Solido_Liquido ? montoResto.segundariaSolido : montoResto.segundariaLiquido;
+                frecuenciaActual = calculoFrecuenciaActual(frecuenciaInicial, estadoProductoFrecuencia);
+                montoDisponible = (producto.PresupuestoInicial - estadoProductoMonto);
+                objProducto = {
+                    NombreProducto: producto.NombreProducto,
+                    CodigoProducto: producto.CodigoProducto,
+                    Solido_Liquido: producto.Solido_Liquido,
+                    Nivel: nivel.Nivel,
+                    FrecuenciaDisponible: frecuenciaActual.toFixed(2),
+                    MontoDisponible: montoDisponible.toFixed(2)
+                }
+                reporteProducto.push(objProducto);
+            }
+        }
+    }
+    res.status(200).send(reporteProducto)
 }
 reporteCtrl.cambiosIncidencias = async (req, res) => {
 
@@ -341,12 +400,86 @@ async function getPoblacion() {
     };
 }
 
-async function calculoFrecuencia(presupuestoInicial, precioUnitario, poblacion) {
-    let poblacion = 0;
-    let frecuencia = 0;
-    frecuenciaInicialInicial = presupuestoInicial / (poblacion * precioUnitario);
-    return getProductos;
+function calculoFrecuencia(presupuestoInicial, precioUnitario, poblacion) {
+    let frecuencia = presupuestoInicial / (poblacion * precioUnitario);
+    return frecuencia;
 }
 
+async function getMenuFrecuencia(codigoProducto) {
+    let inicialLiquido = 0;
+    let inicialSolido = 0;
+    let primariaLiquido = 0;
+    let primariaSolido = 0;
+    let segundariaLiquido = 0;
+    let segundariaSolido = 0;
+    const menuFrecuencia = await Menu.find({
+        $or: [
+            { CodigoLiquidoInicial: codigoProducto },
+            { CodigoSolildoInicial: codigoProducto },
+            { CodigoLiquidoPrimaria: codigoProducto },
+            { CodigoSolidoPrimaria: codigoProducto },
+            { CodigoLiquidoSegundaria: codigoProducto },
+            { CodigoSolidoSegundaria: codigoProducto }
+        ], Aprovado: true
+    });
 
+    menuFrecuencia.forEach((producto) => {
+        inicialLiquido += producto.FrecuenciaLiquidaUtilizadoInicial;
+        inicialSolido += producto.FrecuenciaSolidoUtilizadoInicial;
+        primariaLiquido += producto.FrecuenciaLiquidaUtilizadoPrimaria;
+        primariaSolido += producto.FrecuenciaSolidoUtilizadoPrimaria;
+        segundariaLiquido += producto.FrecuenciaLiquidaUtilizadoSegundaria;
+        segundariaSolido += producto.FrecuenciaSolidoUtilizadoSegundaria;
+    });
+    objFrecuencia = {
+        inicialLiquido: inicialLiquido,
+        inicialSolido: inicialSolido,
+        primariaLiquido: primariaLiquido,
+        primariaSolido: primariaSolido,
+        segundariaLiquido: segundariaLiquido,
+        segundariaSolido: segundariaSolido,
+    };
+    return menuFrecuencia == null ? 0 : objFrecuencia;
+}
+
+function calculoFrecuenciaActual(frecuanciaInicial, frecuenciaAnterior) {
+    return frecuanciaInicial - frecuenciaAnterior;
+}
+
+async function productoMontoDisponible(codigoProducto) {
+    let inicialLiquido = 0;
+    let inicialSolido = 0;
+    let primariaLiquido = 0;
+    let primariaSolido = 0;
+    let segundariaLiquido = 0;
+    let segundariaSolido = 0;
+    const menuFrecuencia = await Menu.find({
+        $or: [
+            { CodigoLiquidoInicial: codigoProducto },
+            { CodigoSolidoInicial: codigoProducto },
+            { CodigoLiquidoPrimaria: codigoProducto },
+            { CodigoSolidoPrimaria: codigoProducto },
+            { CodigoLiquidoSegundaria: codigoProducto },
+            { CodigoSolidoSegundaria: codigoProducto }
+        ], Aprovado: true
+    });
+
+    menuFrecuencia.forEach((producto) => {
+        inicialLiquido += producto.MontoLiquidaUtilizadoInicial;
+        inicialSolido += producto.MontoSolildoUtilizadoInicial;
+        primariaLiquido += producto.MontoLiquidaUtilizadoPrimaria;
+        primariaSolido += producto.MontoSolildoUtilizadoPrimaria;
+        segundariaLiquido += producto.MontoLiquidaUtilizadoSegundaria;
+        segundariaSolido += producto.MontoSolildoUtilizadaSegundaria;
+    });
+    objMonto = {
+        inicialLiquido: inicialLiquido,
+        inicialSolido: inicialSolido,
+        primariaLiquido: primariaLiquido,
+        primariaSolido: primariaSolido,
+        segundariaLiquido: segundariaLiquido,
+        segundariaSolido: segundariaSolido,
+    };
+    return objMonto == null ? 0 : objMonto;
+}
 module.exports = reporteCtrl;
