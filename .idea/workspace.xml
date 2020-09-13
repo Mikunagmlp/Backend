@@ -27,8 +27,8 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/registerph.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/registerph.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/registerph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/registerph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ruta.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ruta.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/ruta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ruta.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +213,7 @@
       <workItem from="1599425756931" duration="1411000" />
       <workItem from="1599581099091" duration="862000" />
       <workItem from="1599585542568" duration="536000" />
-      <workItem from="1600004600933" duration="920000" />
+      <workItem from="1600004600933" duration="8347000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>

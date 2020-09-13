@@ -3,12 +3,11 @@ const Ruta = require('../models/ruta');
 
 rutaCtrl.createRuta = async (req, res) => {
     try {
-        const { Codigo, NombreRuta, Descripcion, IdUser } = req.body;
+        const { Codigo, NombreRuta, Descripcion} = req.body;
         const newRuta = new Ruta({
             Codigo,
             NombreRuta,
-            Descripcion,
-            IdUser
+            Descripcion
         })
         await newRuta.save();
         res.status(200).json(newRuta);
@@ -37,7 +36,7 @@ rutaCtrl.getRuta = async (req, res) => {
 
 rutaCtrl.updateRuta = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['NombreRuta', 'Descripcion'];
+    const allowedUpdates = ['NombreRuta', 'Descripcion', 'Estado'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
