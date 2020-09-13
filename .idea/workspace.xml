@@ -27,7 +27,8 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/reportes.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/reportes.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/registerph.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/registerph.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/registerph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/registerph.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +206,14 @@
       <workItem from="1598314660139" duration="3008000" />
       <workItem from="1598367262607" duration="17457000" />
       <workItem from="1598452488399" duration="1180000" />
-      <workItem from="1598542607773" duration="4563000" />
+      <workItem from="1598542607773" duration="5760000" />
+      <workItem from="1598564143777" duration="745000" />
+      <workItem from="1598572414266" duration="424000" />
+      <workItem from="1598713877043" duration="5000" />
+      <workItem from="1599425756931" duration="1411000" />
+      <workItem from="1599581099091" duration="862000" />
+      <workItem from="1599585542568" duration="536000" />
+      <workItem from="1600004600933" duration="920000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>
@@ -249,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598548007321</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Reporte menu aprobado q/ comentarios">
+      <created>1598548665873</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1598548665873</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +301,8 @@
     <MESSAGE value="Menu Unace" />
     <MESSAGE value="Configuracion y arreglos de los menus" />
     <MESSAGE value="Reporte menu aprobado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reporte menu aprobado" />
+    <MESSAGE value="Reporte menu aprobado q/ comentarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reporte menu aprobado q/ comentarios" />
   </component>
   <component name="WindowStateProjectService">
     <state x="659" y="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591474484245">
@@ -374,10 +390,10 @@
     </state>
     <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1598407183707">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1598548823263">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1598407183707" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1598548823263" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1598302842401">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>

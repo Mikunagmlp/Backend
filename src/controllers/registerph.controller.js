@@ -1,7 +1,7 @@
-const proveedorCtrl = {};
-const Proveedor = require('../models/registerph');
+const registerphCtrl = {};
+const Registerph = require('../models/registerph');
 
-proveedorCtrl.createRegisterph = async (req, res) => {
+registerphCtrl.createRegisterph = async (req, res) => {
     try {
         const { CodigoActa, NombreColegio, Ruta, CodigoRuta,
             CodColegio, LoteLiquidoInicial,  ProductoLiquidoInicial, phLiquidoInicial, LoteLiquidoPrimaria, ProductoLiquidoPrimaria,
@@ -32,16 +32,16 @@ proveedorCtrl.createRegisterph = async (req, res) => {
     }
 }
 
-proveedorCtrl.getProveedores = async (req, res) => {
-    try {
-        const registerphcalidad = await Registerph.find({ Estado: true })
-        res.status(200).json(registerphcalidad);
+//proveedorCtrl.getProveedores = async (req, res) => {
+  //  try {
+    //    const registerphcalidad = await Registerph.find({ Estado: true })
+      //  res.status(200).json(registerphcalidad);
 
-    } catch (error) {
-        res.status(400).send(error);
-    }
+    //} catch (error) {
+      //  res.status(400).send(error);
+    //}
 
-}
+//}
 
 registerphCtrl.getRegisterph= async (req, res) => {
     try {
@@ -64,4 +64,4 @@ registerphCtrl.listaRegisterph = async (req, res) => {
 }
 
 
-module.exports = proveedorCtrl;
+module.exports = registerphCtrl;
