@@ -1,7 +1,7 @@
-const proveedorCtrl = {};
-const Proveedor = require('../models/registerph');
+const registerphCtrl = {};
+const Registerph = require('../models/registerph');
 
-proveedorCtrl.createRegisterph = async (req, res) => {
+registerphCtrl.createRegisterph = async (req, res) => {
     try {
         const { CodigoActa, NombreColegio, Ruta, CodigoRuta,
             CodColegio, LoteLiquidoInicial,  ProductoLiquidoInicial, phLiquidoInicial, LoteLiquidoPrimaria, ProductoLiquidoPrimaria,
@@ -64,4 +64,4 @@ registerphCtrl.listaRegisterph = async (req, res) => {
 }
 
 
-module.exports = proveedorCtrl;
+module.exports = registerphCtrl;
