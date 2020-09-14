@@ -359,9 +359,10 @@ reporteCtrl.cambiosIncidencias = async (req, res) => {
         let result = await Boleta.find(
             {
                 $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
-                Entregado: true
+                Entregado: true,
+                Observaiones: { $exists: true }
 
-            }, { NombreColegio: 1, Incidencia: 1, CodigoActa: 1, updatedAt: 1 });
+            }, { NombreColegio: 1, Observaiones: 1, CodigoActa: 1, updatedAt: 1 });
 
         res.status(200).send(result);
     } catch (e) {
