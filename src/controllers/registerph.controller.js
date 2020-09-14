@@ -1,5 +1,5 @@
-const proveedorCtrl = {};
-const Proveedor = require('../models/registerph');
+const registerphCtrl = {};
+const Registerph = require('../models/registerph');
 
 proveedorCtrl.createRegisterph = async (req, res) => {
     try {
