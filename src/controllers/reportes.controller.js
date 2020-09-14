@@ -415,7 +415,228 @@ reporteCtrl.menuAprobados = async (req, res) => {
         res.status(400).send(e);
     }
 }
-reporteCtrl.consolidadoEntrega = async (req, res) => {
+reporteCtrl.consolidadoColegio = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio;
+        const fechaFinal = req.body.fechaFin;
+
+        let colegio = req.query.colegio;
+        let getColegio = await Colegio.findOne(
+            {
+                NombreColegio: {
+                    $regex: new RegExp(colegio),
+                    $options: 'i'
+                }
+            }, { __v: 0 }).populate('IdRuta');
+
+        if (getColegio.length == 0) {
+            getColegio = await Colegio.findOne(
+                {
+                    CodColegio: {
+                        $regex: new RegExp(colegio),
+                        $options: 'i'
+                    }
+                }, { __v: 0 }).populate('IdRuta');
+        }
+        let getBoleta = await Boleta.find(
+            {
+                $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
+                Entregado: true,
+                CodColegio: getColegio.CodColegio
+
+            }, { NombreColegio: 1, ProductoSolidoInicial: 1, ProductoLiquidoInicial: 1, LoteSolidoPrimaria: 1, LoteLiquidoPrimaria: 1, LoteSolidoSegundaria: 1, LoteLiquidoSegundaria: 1, CodigoActa: 1, CantidadAlumnosInicial: 1, CantidadAlumnosPrimaria: 1, CantidadAlumnosSegundaria: 1, updatedAt: 1, CodigoActa: 1 });
+        res.status(200).send(getBoleta);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+reporteCtrl.consolidadoGlobal = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio;
+        const fechaFinal = req.body.fechaFin;
+        let getColegio = await Colegio.find({ Estado: true }, { NombreColegio: 1, CodColegio: 1 });
+        let reportGlobal = [];
+        let objGlobal = {};
+        let inicialSolido = 0;
+        let inicialLiquido = 0;
+        let primariaSolido = 0;
+        let primariaLiquido = 0;
+        let segundariaSolido = 0;
+        let segundariaLiquido = 0;
+
+        let inicialSolidoN = 0;
+        let inicialLiquidoN = 0;
+        let primariaSolidoN = 0;
+        let primariaLiquidoN = 0;
+        let segundariaSolidoN = 0;
+        let segundariaLiquidoN = 0;
+
+        let entregado = false;
+        let entregadoN = false;
+
+        for (const colegio of getColegio) {
+            let getBoleta = await Boleta.find(
+                {
+                    CodColegio: colegio.CodColegio,
+                    $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
+                });
+            for (const boleta of getBoleta) {
+                if (boleta.Entregado) {
+                    inicialLiquido += boleta.CantidadAlumnosInicial;
+                    inicialSolido += boleta.CantidadAlumnosInicial;
+                    primariaSolido += boleta.CantidadAlumnosPrimaria;
+                    primariaLiquido += boleta.CantidadAlumnosPrimaria;
+                    segundariaSolido += boleta.CantidadAlumnosSegundaria;
+                    segundariaLiquido += boleta.CantidadAlumnosSegundaria;
+                    entregado = boleta.Entregado
+                } else {
+                    inicialLiquidoN += boleta.CantidadAlumnosInicial;
+                    inicialSolidoN += boleta.CantidadAlumnosInicial;
+                    primariaSolidoN += boleta.CantidadAlumnosPrimaria;
+                    primariaLiquidoN += boleta.CantidadAlumnosPrimaria;
+                    segundariaSolidoN += boleta.CantidadAlumnosSegundaria;
+                    segundariaLiquidoN += boleta.CantidadAlumnosSegundaria;
+                }
+            }
+            objGlobal = {
+                NombreColegio: colegio.NombreColegio,
+                CodColegio: colegio.CodColegio,
+                Entregado: entregado,
+                InicialLiquido: inicialLiquido,
+                InicialSolido: inicialSolido,
+                PrimariaLiquido: primariaSolido,
+                PrimariaSolido: primariaLiquido,
+                SegundariaSolido: segundariaSolido,
+                SegundariaLiquido: segundariaLiquido,
+            }
+            objGlobalNoEntregado = {
+                NombreColegio: colegio.NombreColegio,
+                CodColegio: colegio.CodColegio,
+                Entregado: entregadoN,
+                InicialLiquido: inicialLiquidoN,
+                InicialSolido: inicialSolidoN,
+                PrimariaLiquido: primariaSolidoN,
+                PrimariaSolido: primariaLiquidoN,
+                SegundariaSolido: segundariaSolidoN,
+                SegundariaLiquido: segundariaLiquidoN,
+            }
+            if (inicialLiquido > 0 || inicialSolido > 0 || primariaLiquido > 0 || primariaSolido > 0 || segundariaLiquido > 0 || segundariaSolido > 0) {
+                reportGlobal.push(objGlobal);
+            }
+            if (inicialLiquidoN > 0 || inicialSolidoN > 0 || primariaLiquidoN > 0 || primariaSolidoN > 0 || segundariaLiquidoN > 0 || segundariaSolidoN > 0) {
+                reportGlobal.push(objGlobalNoEntregado);
+            }
+            inicialSolido = 0;
+            inicialLiquido = 0;
+            primariaSolido = 0;
+            primariaLiquido = 0;
+            segundariaSolido = 0;
+            segundariaLiquido = 0;
+
+            inicialSolidoN = 0;
+            inicialLiquidoN = 0;
+            primariaSolidoN = 0;
+            primariaLiquidoN = 0;
+            segundariaSolidoN = 0;
+            segundariaLiquidoN = 0;
+        }
+        res.status(200).send(reportGlobal);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+reporteCtrl.consolidadoProducto = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio; // ejemplo: '2020/08/24'
+        const fechaFinal = req.body.fechaFin;
+        const productos = await Producto.find({ $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }], Estado: true }, { CodigoProducto: 1, NombreProducto: 1, IdCategoria: 1, Nivels: 1, PresupuestoInicial: 1, PrecioUnitario: 1, Solido_Liquido: 1 });
+        const poblacion = await getPoblacion();
+        let frecuenciaInicial = 0;
+        let objProducto = {};
+        let frecuenciaResto = 0;
+        let frecuenciaActual = 0;
+        let montoResto = 0;
+        let montoDisponible = 0;
+        let estadoProductoFrecuencia = "";
+        let estadoProductoMonto = "";
+        let reporteProducto = [];
+
+        for (const producto of productos) {
+            for (const nivel of producto.Nivels) {
+                if (nivel.Nivel == "Inicial") {
+                    frecuenciaInicial = calculoFrecuencia(producto.PresupuestoInicial, producto.PrecioUnitario, poblacion.inicial);
+                    frecuenciaResto = await getMenuFrecuencia(producto.CodigoProducto);
+                    montoResto = await productoMontoDisponible(producto.CodigoProducto);
+                    estadoProductoFrecuencia = producto.Solido_Liquido ? frecuenciaResto.inicialSolido : frecuenciaResto.inicialLiquido;
+                    estadoProductoMonto = producto.Solido_Liquido ? montoResto.inicialSolido : montoResto.inicialLiquido;
+                    frecuenciaActual = calculoFrecuenciaActual(frecuenciaInicial, estadoProductoFrecuencia);
+                    montoDisponible = (producto.PresupuestoInicial - estadoProductoMonto);
+                    objProducto = {
+                        NombreProducto: producto.NombreProducto,
+                        CodigoProducto: producto.CodigoProducto,
+                        Solido_Liquido: producto.Solido_Liquido,
+                        Nivel: nivel.Nivel,
+                        FrecuenciaInicial: frecuenciaInicial.toFixed(2),
+                        FrecuenciaGastada: estadoProductoFrecuencia.toFixed(2),
+                        FrecuenciaDisponible: frecuenciaActual.toFixed(2),
+                        PresupuestoInicial: (producto.PresupuestoInicial).toFixed(2),
+                        PresupuestoGastado: estadoProductoMonto.toFixed(2),
+                        PresupuestoDisponible: montoDisponible.toFixed(2),
+                    }
+                    reporteProducto.push(objProducto);
+                }
+                if (nivel.Nivel == "Primaria") {
+                    frecuenciaInicial = calculoFrecuencia(producto.PresupuestoInicial, producto.PrecioUnitario, poblacion.primaria);
+                    frecuenciaResto = await getMenuFrecuencia(producto.CodigoProducto);
+                    montoResto = await productoMontoDisponible(producto.CodigoProducto);
+                    estadoProductoFrecuencia = producto.Solido_Liquido ? frecuenciaResto.primariaSolido : frecuenciaResto.primariaLiquido;
+                    estadoProductoMonto = producto.Solido_Liquido ? montoResto.primariaSolido : montoResto.primariaLiquido;
+                    frecuenciaActual = calculoFrecuenciaActual(frecuenciaInicial, estadoProductoFrecuencia);
+                    montoDisponible = (producto.PresupuestoInicial - estadoProductoMonto);
+                    objProducto = {
+                        NombreProducto: producto.NombreProducto,
+                        CodigoProducto: producto.CodigoProducto,
+                        Solido_Liquido: producto.Solido_Liquido,
+                        Nivel: nivel.Nivel,
+                        FrecuenciaInicial: frecuenciaInicial.toFixed(2),
+                        FrecuenciaGastada: estadoProductoFrecuencia.toFixed(2),
+                        FrecuenciaDisponible: frecuenciaActual.toFixed(2),
+                        PresupuestoInicial: (producto.PresupuestoInicial).toFixed(2),
+                        PresupuestoGastado: estadoProductoMonto.toFixed(2),
+                        PresupuestoDisponible: montoDisponible.toFixed(2),
+                    }
+                    reporteProducto.push(objProducto);
+                }
+                if (nivel.Nivel == "Segundaria") {
+                    frecuenciaInicial = calculoFrecuencia(producto.PresupuestoInicial, producto.PrecioUnitario, poblacion.segundaria);
+                    frecuenciaResto = await getMenuFrecuencia(producto.CodigoProducto);
+                    montoResto = await productoMontoDisponible(producto.CodigoProducto);
+                    estadoProductoFrecuencia = producto.Solido_Liquido ? frecuenciaResto.segundariaSolido : frecuenciaResto.segundariaLiquido;
+                    estadoProductoMonto = producto.Solido_Liquido ? montoResto.segundariaSolido : montoResto.segundariaLiquido;
+                    frecuenciaActual = calculoFrecuenciaActual(frecuenciaInicial, estadoProductoFrecuencia);
+                    montoDisponible = (producto.PresupuestoInicial - estadoProductoMonto);
+                    objProducto = {
+                        NombreProducto: producto.NombreProducto,
+                        CodigoProducto: producto.CodigoProducto,
+                        Solido_Liquido: producto.Solido_Liquido,
+                        Nivel: nivel.Nivel,
+                        FrecuenciaInicial: frecuenciaInicial.toFixed(2),
+                        FrecuenciaGastada: estadoProductoFrecuencia.toFixed(2),
+                        FrecuenciaDisponible: frecuenciaActual.toFixed(2),
+                        PresupuestoInicial: (producto.PresupuestoInicial).toFixed(2),
+                        PresupuestoGastado: estadoProductoMonto.toFixed(2),
+                        PresupuestoDisponible: montoDisponible.toFixed(2),
+                    }
+                    reporteProducto.push(objProducto);
+                }
+            }
+        }
+        res.status(200).send(reporteProducto)
+    } catch (e) {
+        res.status(400).send(e);
+    }
 
 }
 
