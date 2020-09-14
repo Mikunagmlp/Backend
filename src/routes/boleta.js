@@ -8,7 +8,6 @@ router.post('/boleta/registrar/:id', crearBoleta);
 router.get('/boleta/listado/allboletas', listaBoletas);
 router.get('/boleta/listado/codigoacta', listaCodigoActa);
 router.post('/boleta/firma/:id', firmaBoleta);
-router.post('/boleta/incidencia/:id', incidenciasBoleta);
 
 router.post('/boleta/aplicacion-colegio', firmaColegio);
 router.post('/boleta/aplicacion-eba', firmaEBA);
