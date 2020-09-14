@@ -1,6 +1,6 @@
 const express = require('express');
 const router = new express.Router();
-const { calculoDiario, getProductosDetalle, ruteo, entregaLote, menuAprobados, productoDisponible, cambiosIncidencias, estadistico, searchColegio, consolidadoColegio } = require('../controllers/reportes.controller')
+const { calculoDiario, getProductosDetalle, ruteo, entregaLote, menuAprobados, productoDisponible, cambiosIncidencias, estadistico, searchColegio, consolidadoColegio, consolidadoGlobal } = require('../controllers/reportes.controller')
 
 router.get('/reporte/listadoproductos', getProductosDetalle);
 router.get('/reporte/calculodiario/:id', calculoDiario);
@@ -19,4 +19,5 @@ router.get('/reporte/cambios/incidencias', cambiosIncidencias);
 //localhost:3000/reporte/consolidado/colegio?colegio=Brasil
 router.get('/reporte/consolidado/colegio', consolidadoColegio);
 
+router.get('/reporte/consolidado/global', consolidadoGlobal);
 module.exports = router;

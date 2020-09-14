@@ -451,6 +451,102 @@ reporteCtrl.consolidadoColegio = async (req, res) => {
     }
 }
 
+reporteCtrl.consolidadoGlobal = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio;
+        const fechaFinal = req.body.fechaFin;
+        let getColegio = await Colegio.find({ Estado: true }, { NombreColegio: 1, CodColegio: 1 });
+        let reportGlobal = [];
+        let objGlobal = {};
+        let inicialSolido = 0;
+        let inicialLiquido = 0;
+        let primariaSolido = 0;
+        let primariaLiquido = 0;
+        let segundariaSolido = 0;
+        let segundariaLiquido = 0;
+
+        let inicialSolidoN = 0;
+        let inicialLiquidoN = 0;
+        let primariaSolidoN = 0;
+        let primariaLiquidoN = 0;
+        let segundariaSolidoN = 0;
+        let segundariaLiquidoN = 0;
+
+        let entregado = false;
+        let entregadoN = false;
+
+        for (const colegio of getColegio) {
+            let getBoleta = await Boleta.find(
+                {
+                    CodColegio: colegio.CodColegio,
+                    $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
+                });
+            for (const boleta of getBoleta) {
+                if (boleta.Entregado) {
+                    inicialLiquido += boleta.CantidadAlumnosInicial;
+                    inicialSolido += boleta.CantidadAlumnosInicial;
+                    primariaSolido += boleta.CantidadAlumnosPrimaria;
+                    primariaLiquido += boleta.CantidadAlumnosPrimaria;
+                    segundariaSolido += boleta.CantidadAlumnosSegundaria;
+                    segundariaLiquido += boleta.CantidadAlumnosSegundaria;
+                    entregado = boleta.Entregado
+                } else {
+                    inicialLiquidoN += boleta.CantidadAlumnosInicial;
+                    inicialSolidoN += boleta.CantidadAlumnosInicial;
+                    primariaSolidoN += boleta.CantidadAlumnosPrimaria;
+                    primariaLiquidoN += boleta.CantidadAlumnosPrimaria;
+                    segundariaSolidoN += boleta.CantidadAlumnosSegundaria;
+                    segundariaLiquidoN += boleta.CantidadAlumnosSegundaria;
+                }
+            }
+            objGlobal = {
+                NombreColegio: colegio.NombreColegio,
+                CodColegio: colegio.CodColegio,
+                Entregado: entregado,
+                InicialLiquido: inicialLiquido,
+                InicialSolido: inicialSolido,
+                PrimariaLiquido: primariaSolido,
+                PrimariaSolido: primariaLiquido,
+                SegundariaSolido: segundariaSolido,
+                SegundariaLiquido: segundariaLiquido,
+            }
+            objGlobalNoEntregado = {
+                NombreColegio: colegio.NombreColegio,
+                CodColegio: colegio.CodColegio,
+                Entregado: entregadoN,
+                InicialLiquido: inicialLiquidoN,
+                InicialSolido: inicialSolidoN,
+                PrimariaLiquido: primariaSolidoN,
+                PrimariaSolido: primariaLiquidoN,
+                SegundariaSolido: segundariaSolidoN,
+                SegundariaLiquido: segundariaLiquidoN,
+            }
+            if (inicialLiquido > 0 || inicialSolido > 0 || primariaLiquido > 0 || primariaSolido > 0 || segundariaLiquido > 0 || segundariaSolido > 0) {
+                reportGlobal.push(objGlobal);
+            }
+            if (inicialLiquidoN > 0 || inicialSolidoN > 0 || primariaLiquidoN > 0 || primariaSolidoN > 0 || segundariaLiquidoN > 0 || segundariaSolidoN > 0) {
+                reportGlobal.push(objGlobalNoEntregado);
+            }
+            inicialSolido = 0;
+            inicialLiquido = 0;
+            primariaSolido = 0;
+            primariaLiquido = 0;
+            segundariaSolido = 0;
+            segundariaLiquido = 0;
+
+            inicialSolidoN = 0;
+            inicialLiquidoN = 0;
+            primariaSolidoN = 0;
+            primariaLiquidoN = 0;
+            segundariaSolidoN = 0;
+            segundariaLiquidoN = 0;
+        }
+        res.status(200).send(reportGlobal);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 async function getPoblacion() {
     let poblacionInicial = 0;
     let poblacionPrimaria = 0;
