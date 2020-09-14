@@ -180,6 +180,10 @@ const boletaSchema = new Schema({
     type: Boolean,
     default: false
   },
+  Incidencia: {
+    type: String,
+    default: "No se marco ninguna opcion"
+  },
 }, {
   timestamps: true
 });

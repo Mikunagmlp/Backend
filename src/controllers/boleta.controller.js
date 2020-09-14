@@ -123,6 +123,34 @@ boletaCtrl.firmaBoleta = async (req, res) => {
     }
 }
 
+boletaCtrl.incidenciasBoleta = async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['Incidencia'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
+    }
+    try {
+        const boleta = await Boleta.findOne({ _id: req.params.id });
+
+        if (!boleta) {
+            return res.status(404).send();
+        }
+        boleta.Entregado = true;
+        updates.forEach((update) => {
+            boleta[update] = req.body[update];
+        });
+        await boleta.save();
+
+        res.send(boleta);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
 boletaCtrl.listaBoletas = async (req, res) => {
     try {
         const fechaInicial = req.body.fechaBusqueda; // ejemplo: '2020/08/24'
