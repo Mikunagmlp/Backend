@@ -180,6 +180,9 @@ const boletaSchema = new Schema({
     type: Boolean,
     default: false
   },
+  Observaciones: {
+    type: String,
+  },
 }, {
   timestamps: true
 });

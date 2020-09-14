@@ -26,7 +26,11 @@ const reportesRouter = require('./routes/reportes');
 const boletaRouter = require('./routes/boleta');
 const menuRouter = require('./routes/menu');
 const rutaRouter = require('./routes/ruta');
+<<<<<<< HEAD
 const registerphRouter = require('./routes/registerph');
+=======
+//const registerphRouter = require('./routes/registerph');
+>>>>>>> c727a96a7f3c84f3d2bc2f6c6b3601d6c0ab3ee6
 // cargar middlewares
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,5 +63,9 @@ app.use(reportesRouter);
 app.use(boletaRouter);
 app.use(menuRouter);
 app.use(rutaRouter);
+<<<<<<< HEAD
 app.use(registerphRouter);
+=======
+//app.use(registerphRouter);
+>>>>>>> c727a96a7f3c84f3d2bc2f6c6b3601d6c0ab3ee6
 module.exports = app;

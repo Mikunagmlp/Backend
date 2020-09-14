@@ -25,7 +25,6 @@ boletaCtrl.listaAsignaciones = async (req, res) => {
 }
 
 boletaCtrl.crearBoleta = async (req, res) => {
-    const { FirmaEntrega, FirmaRecibido, FirmaSiremu } = req.body;
     try {
         let codigoBoleta = await Boleta.countDocuments() + 1;
         const asignacion = await Asignacion.findOne({ _id: req.params.id })
@@ -88,15 +87,39 @@ boletaCtrl.crearBoleta = async (req, res) => {
             CodigoLiquidoSegundaria: liquidoSegundaria.CodigoProducto,
             LoteSolidoSegundaria: asignacion.LoteSolidoSegundaria,
             LoteLiquidoSegundaria: asignacion.LoteLiquidoSegundaria,
-
-            FirmaEntrega,
-            FirmaRecibido,
-            FirmaSiremu
         })
         await newBoleta.save();
         res.json(newBoleta);
     } catch (e) {
         res.status(400).send(e);
+    }
+}
+
+boletaCtrl.firmaBoleta = async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ['FirmaEntrega', 'FirmaRecibido', 'FirmaSiremu', 'Observaciones'];
+    const isValidOperation = updates.every((update) => {
+        return allowedUpdates.includes(update);
+    });
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Actualizaciones invalidas!' })
+    }
+    try {
+        const boleta = await Boleta.findOne({ _id: req.params.id });
+
+        if (!boleta) {
+            return res.status(404).send();
+        }
+        boleta.Entregado = true;
+        updates.forEach((update) => {
+            boleta[update] = req.body[update];
+        });
+        await boleta.save();
+
+        res.send(boleta);
+
+    } catch (error) {
+        res.status(400).send(error);
     }
 }
 
