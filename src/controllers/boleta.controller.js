@@ -97,7 +97,7 @@ boletaCtrl.crearBoleta = async (req, res) => {
 
 boletaCtrl.firmaBoleta = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['FirmaEntrega', 'FirmaRecibido', 'FirmaSiremu', 'Observaiones'];
+    const allowedUpdates = ['FirmaEntrega', 'FirmaRecibido', 'FirmaSiremu', 'Observaciones'];
     const isValidOperation = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
