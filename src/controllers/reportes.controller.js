@@ -415,8 +415,40 @@ reporteCtrl.menuAprobados = async (req, res) => {
         res.status(400).send(e);
     }
 }
-reporteCtrl.consolidadoEntrega = async (req, res) => {
+reporteCtrl.consolidadoColegio = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio;
+        const fechaFinal = req.body.fechaFin;
 
+        let colegio = req.query.colegio;
+        let getColegio = await Colegio.findOne(
+            {
+                NombreColegio: {
+                    $regex: new RegExp(colegio),
+                    $options: 'i'
+                }
+            }, { __v: 0 }).populate('IdRuta');
+
+        if (getColegio.length == 0) {
+            getColegio = await Colegio.findOne(
+                {
+                    CodColegio: {
+                        $regex: new RegExp(colegio),
+                        $options: 'i'
+                    }
+                }, { __v: 0 }).populate('IdRuta');
+        }
+        let getBoleta = await Boleta.find(
+            {
+                $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
+                Entregado: true,
+                CodColegio: getColegio.CodColegio
+
+            }, { NombreColegio: 1, ProductoSolidoInicial: 1, ProductoLiquidoInicial: 1, LoteSolidoPrimaria: 1, LoteLiquidoPrimaria: 1, LoteSolidoSegundaria: 1, LoteLiquidoSegundaria: 1, CodigoActa: 1, CantidadAlumnosInicial: 1, CantidadAlumnosPrimaria: 1, CantidadAlumnosSegundaria: 1, updatedAt: 1, CodigoActa: 1 });
+        res.status(200).send(getBoleta);
+    } catch (e) {
+        res.status(400).send(e);
+    }
 }
 
 async function getPoblacion() {
