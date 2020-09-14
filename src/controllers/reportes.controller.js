@@ -361,7 +361,7 @@ reporteCtrl.cambiosIncidencias = async (req, res) => {
                 $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
                 Entregado: true
 
-            }, { NombreColegio: 1, Incidencia: 1, CodigoActa: 1 });
+            }, { NombreColegio: 1, Incidencia: 1, CodigoActa: 1, updatedAt: 1 });
 
         res.status(200).send(result);
     } catch (e) {
@@ -369,7 +369,28 @@ reporteCtrl.cambiosIncidencias = async (req, res) => {
     }
 }
 reporteCtrl.estadistico = async (req, res) => {
+    //try {
+    const fechaInicial = req.body.fechaInicio; // ejemplo: '2020/08/24'
+    const fechaFinal = req.body.fechaFin;
+    let result = await Boleta.find(
+        {
+            $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
+            Entregado: true
 
+        }, { NombreColegio: 1, Incidencia: 1, CodigoActa: 1, updatedAt: 1 });
+    let statistics = new Map();
+    for (const detalis of element) {
+        if (statistics.has(detalis)) {
+            statistics.set(detalis, statistics.get(detalis) + 1);
+        }
+    }
+
+    console.log(statistics);
+
+    res.status(200).send(result);
+    // } catch (e) {
+    //     res.status(400).send(e);
+    // }
 }
 reporteCtrl.menuAprobados = async (req, res) => {
     try {
