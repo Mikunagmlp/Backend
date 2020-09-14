@@ -353,7 +353,20 @@ reporteCtrl.productoDisponible = async (req, res) => {
 
 }
 reporteCtrl.cambiosIncidencias = async (req, res) => {
+    try {
+        const fechaInicial = req.body.fechaInicio; // ejemplo: '2020/08/24'
+        const fechaFinal = req.body.fechaFin;
+        let result = await Boleta.find(
+            {
+                $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }],
+                Entregado: true
 
+            }, { NombreColegio: 1, Incidencia: 1, CodigoActa: 1 });
+
+        res.status(200).send(result);
+    } catch (e) {
+        res.status(400).send(e);
+    }
 }
 reporteCtrl.estadistico = async (req, res) => {
 

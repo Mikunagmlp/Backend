@@ -1,6 +1,6 @@
 const express = require('express');
 const router = new express.Router();
-const { calculoDiario, getProductosDetalle,ruteo,entregaLote,menuAprobados,productoDisponible } = require('../controllers/reportes.controller')
+const { calculoDiario, getProductosDetalle, ruteo, entregaLote, menuAprobados, productoDisponible, cambiosIncidencias } = require('../controllers/reportes.controller')
 
 router.get('/reporte/listadoproductos', getProductosDetalle);
 router.get('/reporte/calculodiario/:id', calculoDiario);
@@ -15,4 +15,5 @@ router.get('/reporte/menu/aprobado', menuAprobados);
 
 router.get('/reporte/productos/disponibles', productoDisponible);
 
+router.get('/reporte/cambios/incidencias', cambiosIncidencias);
 module.exports = router;
