@@ -214,6 +214,60 @@ boletaCtrl.firmaSiremu = async (req, res) => {
     }
 }
 
+boletaCtrl.firmaColegioImage = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const boleta = await Boleta.findById(id);
+
+        if (!boleta || !boleta.FirmaColegio) {
+            throw new Error();
+        }
+        // hacemos las configuraciones previas de la imagen
+        res.set('Content-Type', 'image/png');
+        // mandamos como respuesta la imagen
+        res.send(boleta.FirmaColegio);
+
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+boletaCtrl.firmaEbaImage = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const boleta = await Boleta.findById(id);
+
+        if (!boleta || !boleta.FirmaEba) {
+            throw new Error();
+        }
+        // hacemos las configuraciones previas de la imagen
+        res.set('Content-Type', 'image/png');
+        // mandamos como respuesta la imagen
+        res.send(boleta.FirmaEba);
+
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+boletaCtrl.firmaSiremuImage = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const boleta = await Boleta.findById(id);
+
+        if (!boleta || !boleta.FirmaSiremu) {
+            throw new Error();
+        }
+        // hacemos las configuraciones previas de la imagen
+        res.set('Content-Type', 'image/png');
+        // mandamos como respuesta la imagen
+        res.send(boleta.FirmaSiremu);
+
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
 function decodeBase64Image(dataString) {
     var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
         response = {};
