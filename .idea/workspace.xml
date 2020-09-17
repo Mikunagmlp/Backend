@@ -27,11 +27,12 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/asignacion.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/asignacion.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/registerph.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/registerph.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/asignacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/asignacion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/registerph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/registerph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/boleta.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/boleta.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/boleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/boleta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/boleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/boleta.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +225,7 @@
       <workItem from="1600355180303" duration="1066000" />
       <workItem from="1600356772192" duration="54000" />
       <workItem from="1600357491429" duration="3835000" />
-      <workItem from="1600363199005" duration="950000" />
+      <workItem from="1600363199005" duration="6950000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>
@@ -275,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598548665873</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="listar asignaciones">
+      <created>1600364251813</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600364251813</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,13 +321,10 @@
     <MESSAGE value="Configuracion y arreglos de los menus" />
     <MESSAGE value="Reporte menu aprobado" />
     <MESSAGE value="Reporte menu aprobado q/ comentarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reporte menu aprobado q/ comentarios" />
+    <MESSAGE value="listar asignaciones" />
+    <option name="LAST_COMMIT_MESSAGE" value="listar asignaciones" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="659" y="387" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591474484245">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="659" y="387" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1200@0.0.1920.1200" timestamp="1591474484245" />
     <state x="632" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597425435602">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -392,19 +397,15 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="1878" height="423" key="GridCell.Tab.3.right/0.0.1920.1200@0.0.1920.1200" timestamp="1598188144121" />
-    <state x="445" y="281" key="IDE.errors.dialog" timestamp="1591479325063">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="445" y="281" key="IDE.errors.dialog/0.0.1920.1200@0.0.1920.1200" timestamp="1591479325063" />
     <state x="730" y="234" key="SettingsEditor" timestamp="1593710115162">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1598548823263">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1600364973776">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1598548823263" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1600364973776" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1598302842401">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>

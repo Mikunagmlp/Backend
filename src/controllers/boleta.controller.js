@@ -4,6 +4,7 @@ const Colegio = require('../models/colegio');
 const Producto = require('../models/producto');
 const Menu = require('../models/menu');
 const Asignacion = require('../models/asignacion');
+const sharp = require('sharp');
 
 
 boletaCtrl.listaAsignaciones = async (req, res) => {
@@ -123,13 +124,23 @@ boletaCtrl.firmaBoleta = async (req, res) => {
     }
 }
 
+// boletaCtrl.listaBoletas = async (req, res) => {
+//     try {
+//         const fechaInicial = req.body.fechaBusqueda; // ejemplo: '2020/08/24'
+//         const fechaFinal = fechaInicial.substring(0, 8).concat(Number(fechaInicial.substring(8)) + 1);
+//         const { codigoGenerado } = req.body;
+//         const boleta = await Boleta.find({ $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }], Estado: true })
+//         res.status(200).send(boleta);
+//     } catch (e) {
+//         res.status(400).send(e);
+//     }
+// }
+
 boletaCtrl.listaBoletas = async (req, res) => {
     try {
-        const fechaInicial = req.body.fechaBusqueda; // ejemplo: '2020/08/24'
-        const fechaFinal = fechaInicial.substring(0, 8).concat(Number(fechaInicial.substring(8)) + 1);
-        const { codigoGenerado } = req.body;
-        const boleta = await Boleta.find({ $and: [{ updatedAt: { $gte: new Date(fechaInicial) } }, { updatedAt: { $lt: new Date(fechaFinal) } }], Estado: true })
-        res.status(200).send(boleta);
+        const boletas = await Boleta.find({}); // ejemplo: '2020/08/24'
+
+        res.status(200).send(boletas);
     } catch (e) {
         res.status(400).send(e);
     }
@@ -147,10 +158,19 @@ boletaCtrl.listaCodigoActa = async (req, res) => {
 
 boletaCtrl.firmaColegio = async (req, res) => {
     try {
-        const colegioApp = req.body;
+        const codigoBoleta = req.body.CodigoBoleta;
+        const ci = req.body.CI;
+        const nombre = req.body.Nombre;
+        const Observaciones = req.body.Observaciones;
         const imagen = req.body.Imagen;
 
-        // console.log(imagen);
+        const imgBuff = decodeBase64Image(imagen);
+        const buffer = await sharp(imgBuff.data).resize({ width: 250, height: 150 }).png().toBuffer();
+
+        // console.log(colegioApp);
+
+        await Boleta.findOneAndUpdate({ CodigoActa: codigoBoleta },
+            { FirmaColegio: buffer, nombre: nombre, ci: ci, Observaciones: Observaciones });
 
         res.status(200).send({ message: 'Recibido' });
     } catch (e) {
@@ -161,10 +181,14 @@ boletaCtrl.firmaColegio = async (req, res) => {
 
 boletaCtrl.firmaEBA = async (req, res) => {
     try {
-        const ebaApp = req.body;
+        const codigoBoleta = req.body.CodigoBoleta;
         const imagen = req.body.Imagen;
 
-        // console.log(imagen);
+        const imgBuff = decodeBase64Image(imagen);
+        const buffer = await sharp(imgBuff.data).resize({ width: 250, height: 150 }).png().toBuffer();
+
+        await Boleta.findOneAndUpdate({ CodigoActa: codigoBoleta },
+            { FirmaEba: buffer });
 
         res.status(200).send({ message: 'Recibido' });
 
@@ -175,15 +199,33 @@ boletaCtrl.firmaEBA = async (req, res) => {
 
 boletaCtrl.firmaSiremu = async (req, res) => {
     try {
-        const siremuApp = req.body;
+        const codigoBoleta = req.body.CodigoBoleta;
         const imagen = req.body.Imagen;
 
-        // console.log(imagen);
+        const imgBuff = decodeBase64Image(imagen);
+        const buffer = await sharp(imgBuff.data).resize({ width: 250, height: 150 }).png().toBuffer();
+
+        await Boleta.findOneAndUpdate({ CodigoActa: codigoBoleta },
+            { FirmaSiremu: buffer });
 
         res.status(200).send({ message: 'Recibido' });
     } catch (e) {
         res.status(400).send(e);
     }
+}
+
+function decodeBase64Image(dataString) {
+    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+
+    if (matches.length !== 3) {
+        return new Error('Invalid input string');
+    }
+
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+
+    return response;
 }
 
 module.exports = boletaCtrl;

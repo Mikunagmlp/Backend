@@ -167,14 +167,14 @@ const boletaSchema = new Schema({
     type: Boolean,
     default: true
   },
-  FirmaEntrega: {
-    type: String
+  FirmaColegio: {
+    type: Buffer
   },
-  FirmaRecibido: {
-    type: String
+  FirmaEba: {
+    type: Buffer
   },
   FirmaSiremu: {
-    type: String
+    type: Buffer
   },
   Entregado: {
     type: Boolean,
@@ -183,6 +183,12 @@ const boletaSchema = new Schema({
   Observaciones: {
     type: String,
   },
+  nombre: {
+    type: String
+  },
+  ci: {
+    type: String
+  }
 }, {
   timestamps: true
 });
