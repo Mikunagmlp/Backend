@@ -4,8 +4,10 @@ const Registerph = require('../models/registerph');
 registerphCtrl.createRegisterph = async (req, res) => {
     try {
         const { CodigoActa, NombreColegio, Ruta, CodigoRuta,
-            CodColegio, LoteLiquidoInicial,  ProductoLiquidoInicial, phLiquidoInicial, LoteLiquidoPrimaria, ProductoLiquidoPrimaria,
-            phLiquidoPrimaria, LoteLiquidoSegundaria,ProductoLiquidoSegundaria, phLiquidoSegundaria
+            CodColegio, LoteLiquidoInicial,  ProductoLiquidoInicial,
+            phLiquidoInicial, LoteLiquidoPrimaria, ProductoLiquidoPrimaria,
+            phLiquidoPrimaria, LoteLiquidoSegundaria,ProductoLiquidoSegundaria,
+            phLiquidoSegundaria
               } = req.body;
         const newRegisterph = new Registerph({
             CodigoActa,

@@ -27,7 +27,10 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/asignacion.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/asignacion.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/registerph.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/registerph.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/asignacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/asignacion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/registerph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/registerph.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -215,7 +218,13 @@
       <workItem from="1599585542568" duration="536000" />
       <workItem from="1600004600933" duration="8461000" />
       <workItem from="1600032230721" duration="416000" />
-      <workItem from="1600220011467" duration="411000" />
+      <workItem from="1600220011467" duration="3738000" />
+      <workItem from="1600310277873" duration="2637000" />
+      <workItem from="1600353810259" duration="637000" />
+      <workItem from="1600355180303" duration="1066000" />
+      <workItem from="1600356772192" duration="54000" />
+      <workItem from="1600357491429" duration="3835000" />
+      <workItem from="1600363199005" duration="950000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>

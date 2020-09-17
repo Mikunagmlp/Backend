@@ -134,10 +134,6 @@ const asignacionSchema = new Schema({
     Estado: {
         type: Boolean,
         default: true
-    },
-    IdUser: {
-        type: String,
-        required: true
     }
 }, {
     timestamps: true

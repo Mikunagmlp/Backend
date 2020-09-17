@@ -3,7 +3,7 @@ const router = new express.Router();
 
 const {  createRegisterph, listaRegisterph } = require('../controllers/registerph.controller');
 
-router.post('/registerph/registrar/:id', createRegisterph);
+router.post('/registerph/registrar', createRegisterph);
 router.get('/registerph/listado/allregisterph', listaRegisterph);
 
 

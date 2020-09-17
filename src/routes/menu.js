@@ -6,7 +6,7 @@ const { createMenu, getSolidoInicial, getLiquidoInicial, getSolidoPrimario, getL
     aprobarMenuUnace, listarMenu, listarMenuUnaceAprobado } = require('../controllers/menu.controller');
 
 const { createAsignacion, updateAsignacion,listarAsignacionCodigo,
-    listarAsignacionColegio } = require('../controllers/asignacion.controller');
+    listarAsignacionColegio, listarAsignaciones } = require('../controllers/asignacion.controller');
 
 router.post('/menu/registrar/menudiario', createMenu);
 router.patch('/menu/update/menudiario/:id', updateMenu);
@@ -32,6 +32,7 @@ router.get('/menu/productos/getSolidoSegundario', getSolidoSegundario);
 router.get('/menu/productos/getLiquidoSegundario', getLiquidoSegundario);
 
 router.post('/menu/asignacion/registrar/:id', createAsignacion);
+router.get('/listar/asignaciones', listarAsignaciones)
 router.patch('/menu/asignacion/update/:id', updateAsignacion);
 router.get('/menu/asignacion/listcodigo', listarAsignacionCodigo);
 router.get('/menu/asignacion/listcolegio', listarAsignacionColegio);

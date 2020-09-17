@@ -5,7 +5,22 @@ const Menu = require('../models/menu');
 
 asigancionCtrl.createAsignacion = async (req, res) => {
     try {
-        const { LoteSolidoInicial, SolidoInicial, LoteLiquidoInicial, LiquidoInicial, LoteSolidoPrimaria, SolidoPrimaria, LoteLiquidoPrimaria, LiquidoPrimaria, LoteSolidoSegundaria, SolidoSegundaria, LoteLiquidoSegundaria, LiquidoSegundaria, IdUser, IdMenu } = req.body;
+        const {
+            LoteSolidoInicial,
+            SolidoInicial,
+            LoteLiquidoInicial,
+            LiquidoInicial,
+            LoteSolidoPrimaria,
+            SolidoPrimaria,
+            LoteLiquidoPrimaria,
+            LiquidoPrimaria,
+            LoteSolidoSegundaria,
+            SolidoSegundaria,
+            LoteLiquidoSegundaria,
+            LiquidoSegundaria,
+            IdMenu } = req.body;
+
+
         const colegio = await Colegio.findOne({ _id: req.params.id });
         const menu = await Menu.findOne({ _id: IdMenu });
 
@@ -44,7 +59,6 @@ asigancionCtrl.createAsignacion = async (req, res) => {
             LoteLiquidoSegundaria,
             LiquidoSegundaria,
 
-            IdUser
         })
         await newAsignacion.save();
         res.status(200).json(newAsignacion);
@@ -117,6 +131,16 @@ asigancionCtrl.listarAsignacionColegio = async (req, res) => {
         .populate("SolidoSegundaria.IdProveedor")
         .populate("LiquidoSegundaria.IdProveedor")
         res.status(200).send(asignacion);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+}
+
+asigancionCtrl.listarAsignaciones = async (req, res) => {
+    try {
+        const asignaciones = await Asignacion.find({});
+
+        res.status(200).send(asignaciones);
     } catch (e) {
         res.status(400).send(e);
     }
