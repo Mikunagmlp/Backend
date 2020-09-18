@@ -1,11 +1,11 @@
 const express = require('express');
 const router = new express.Router();
 const User = require('../../models/usuario');
-const { getSearch, getUsuario,getRolesUsuario,getUsuarioDisabled } = require('../../controllers/administrador.controller');
+const { getSearch, getUsuario, getRolesUsuario, getUsuarioDisabled } = require('../../controllers/administrador.controller');
 const Rol = require('../../models/rol');
 const passportConfig = require('../../passport/local-auth');
 
-router.post('/administracion/user/registro', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminCreate'), async (req, res) => {
+router.post('/administracion/user/registro', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), async (req, res) => {
     const { NombreCompleto, Email, Password, Telefono, Direccion, Genero, Estado, Rols } = req.body;
 
     try {
@@ -18,8 +18,7 @@ router.post('/administracion/user/registro', passportConfig.verifiToken, passpor
     }
 });
 
-// router.get('/administracion/users', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminList'), async (req, res) => {
-router.get('/administracion/users', passportConfig.verifiToken, passportConfig.isValiPermiso('AdminList'), async (req, res) => {
+router.get('/administracion/users', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), async (req, res) => {
     try {
         let userPermiso = [];
         await User.find({ Estado: true })
@@ -51,7 +50,7 @@ router.get('/administracion/users', passportConfig.verifiToken, passportConfig.i
     }
 });
 
-router.patch('/administracion/user/editar/:id', async (req, res) => {
+router.patch('/administracion/user/editar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['NombreCompleto', 'Email', 'Telefono', 'Direccion', 'Genero', 'Rols', 'Estado'];
     const isValidOperation = updates.every((update) => {
@@ -81,7 +80,7 @@ router.patch('/administracion/user/editar/:id', async (req, res) => {
     }
 });
 
-router.put('/administracion/user/eliminar/:id', async (req, res) => {
+router.put('/administracion/user/eliminar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), async (req, res) => {
     try {
         const { Estado } = req.body;
         await User.findByIdAndUpdate(req.params.id, {
@@ -93,13 +92,13 @@ router.put('/administracion/user/eliminar/:id', async (req, res) => {
     }
 });
 
-router.get('/administracion/user/:id', getUsuario);
+router.get('/administracion/user/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getUsuario);
 
 //localhost:3000/administracion/search/user?q=test
-router.get('/administracion/search/user', getSearch);
+router.get('/administracion/search/user', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getSearch);
 
 //localhost:3000/administracion/rolesusuario?q=tecnico2 el nombre debe ser igual rol
-router.get('/administracion/rolesusuario', getRolesUsuario);
+router.get('/administracion/rolesusuario', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getRolesUsuario);
 
-router.get('/administracion/usersdisabled',getUsuarioDisabled);
+router.get('/administracion/usersdisabled', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getUsuarioDisabled);
 module.exports = router;

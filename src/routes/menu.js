@@ -5,35 +5,37 @@ const { createMenu, getSolidoInicial, getLiquidoInicial, getSolidoPrimario, getL
     listarMenuEbaNoAprobado, listarMenuEbaAprobado, listarMenuUnaceNoAprobado, aprobarMenuEba,
     aprobarMenuUnace, listarMenu, listarMenuUnaceAprobado } = require('../controllers/menu.controller');
 
-const { createAsignacion, updateAsignacion,listarAsignacionCodigo,
+const { createAsignacion, updateAsignacion, listarAsignacionCodigo,
     listarAsignacionColegio, listarAsignaciones } = require('../controllers/asignacion.controller');
 
-router.post('/menu/registrar/menudiario', createMenu);
-router.patch('/menu/update/menudiario/:id', updateMenu);
+const passportConfig = require('../passport/local-auth');
 
-router.get('/menu/listado/aprobado', listarMenuAprobado);
-router.get('/menu/listado/noaprobado', listarMenuNoAprobado);
+router.post('/menu/registrar/menudiario', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), createMenu);
+router.patch('/menu/update/menudiario/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), updateMenu);
 
-router.get('/listarMenu/:id', listarMenu);
-router.get('/menu/listado/eba-no-aprobado', listarMenuEbaNoAprobado);
-router.get('/menu/listado/eba-aprobado', listarMenuEbaAprobado);
+router.get('/menu/listado/aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), listarMenuAprobado);
+router.get('/menu/listado/noaprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), listarMenuNoAprobado);
 
-router.get('/menu/listado/unace-no-aprobado', listarMenuUnaceNoAprobado);
-router.get('/menu/listado/unace-aprobado', listarMenuUnaceAprobado);
+router.get('/listarMenu/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), listarMenu);
+router.get('/menu/listado/eba-no-aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva'), listarMenuEbaNoAprobado);
+router.get('/menu/listado/eba-aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva'), listarMenuEbaAprobado);
 
-router.patch('/menu/aprobar/menueba/:id', aprobarMenuEba);
-router.patch('/menu/aprobar/menuunace/:id', aprobarMenuUnace);
+router.get('/menu/listado/unace-no-aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), listarMenuUnaceNoAprobado);
+router.get('/menu/listado/unace-aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), listarMenuUnaceAprobado);
 
-router.get('/menu/productos/getSolidoInicial', getSolidoInicial);
-router.get('/menu/productos/getLiquidoInicial', getLiquidoInicial);
-router.get('/menu/productos/getSolidoPrimario', getSolidoPrimario);
-router.get('/menu/productos/getLiquidoPrimario', getLiquidoPrimario);
-router.get('/menu/productos/getSolidoSegundario', getSolidoSegundario);
-router.get('/menu/productos/getLiquidoSegundario', getLiquidoSegundario);
+router.patch('/menu/aprobar/menueba/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva'), aprobarMenuEba);
+router.patch('/menu/aprobar/menuunace/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), aprobarMenuUnace);
 
-router.post('/menu/asignacion/registrar/:id', createAsignacion);
-router.get('/listar/asignaciones', listarAsignaciones)
-router.patch('/menu/asignacion/update/:id', updateAsignacion);
-router.get('/menu/asignacion/listcodigo', listarAsignacionCodigo);
-router.get('/menu/asignacion/listcolegio', listarAsignacionColegio);
+router.get('/menu/productos/getSolidoInicial', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), getSolidoInicial);
+router.get('/menu/productos/getLiquidoInicial', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), getLiquidoInicial);
+router.get('/menu/productos/getSolidoPrimario', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), getSolidoPrimario);
+router.get('/menu/productos/getLiquidoPrimario', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), getLiquidoPrimario);
+router.get('/menu/productos/getSolidoSegundario', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), getSolidoSegundario);
+router.get('/menu/productos/getLiquidoSegundario', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'unace'), getLiquidoSegundario);
+
+router.post('/menu/asignacion/registrar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva', 'siremo'), createAsignacion);
+router.get('/listar/asignaciones', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva', 'transporte'), listarAsignaciones)
+router.patch('/menu/asignacion/update/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'siremo'), updateAsignacion);
+router.get('/menu/asignacion/listcodigo', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva', 'transporte', 'siremo'), listarAsignacionCodigo);
+router.get('/menu/asignacion/listcolegio', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'eva', 'transporte', 'siremo'), listarAsignacionColegio);
 module.exports = router;
