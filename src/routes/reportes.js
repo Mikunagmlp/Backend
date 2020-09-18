@@ -23,4 +23,6 @@ router.get('/reporte/consolidado/colegio', passportConfig.verifiToken, passportC
 router.get('/reporte/consolidado/global', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoGlobal);
 
 router.get('/reporte/consolidado/producto', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoProducto);
+
+router.get('/reporte/estadistico/incidencias', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), estadistico);
 module.exports = router;
