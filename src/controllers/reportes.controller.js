@@ -397,7 +397,7 @@ reporteCtrl.menuAprobados = async (req, res) => {
     try {
         const fechaInicial = req.body.fechaInicio;
         const fechaFinal = req.body.fechaFin;
-        const id = req.body.id == undefined ? 0 : req.body.id;
+        const id = req.body.id === undefined ? 0 : req.body.id;
         const menu = await Menu.find({
             $or:
                 [

@@ -10,19 +10,19 @@ router.get('/reporte/calculodiario/:id', passportConfig.verifiToken, passportCon
 router.get('/reporte/ruteo/colegio', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), ruteo);
 
 //localhost:3000/reporte/entrega/lote?codigo=loteLiquido0003
-router.get('/reporte/entrega/lote', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), entregaLote);
+router.post('/reporte/entrega/lote', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), entregaLote);
 
-router.get('/reporte/menu/aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), menuAprobados);
+router.post('/reporte/menu/aprobado', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), menuAprobados);
 
-router.get('/reporte/productos/disponibles', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), productoDisponible);
+router.post('/reporte/productos/disponibles', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), productoDisponible);
 
-router.get('/reporte/cambios/incidencias', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), cambiosIncidencias);
+router.post('/reporte/cambios/incidencias', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), cambiosIncidencias);
 //localhost:3000/reporte/consolidado/colegio?colegio=Brasil
-router.get('/reporte/consolidado/colegio', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoColegio);
+router.post('/reporte/consolidado/colegio', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoColegio);
 
-router.get('/reporte/consolidado/global', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoGlobal);
+router.post('/reporte/consolidado/global', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoGlobal);
 
-router.get('/reporte/consolidado/producto', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoProducto);
+router.post('/reporte/consolidado/producto', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), consolidadoProducto);
 
-router.get('/reporte/estadistico/incidencias', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), estadistico);
+router.post('/reporte/estadistico/incidencias', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'operador'), estadistico);
 module.exports = router;

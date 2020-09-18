@@ -6,7 +6,6 @@ const { crearColegio, listarColegios, updateColegio, getSearch, listarColegiosDi
 
 router.post('/colegio/registrar', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), crearColegio);
 
-// url -> /colegios?limit=10&skip=10
 router.get('/colegios', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'eva'), listarColegios);
 
 router.patch('/colegio/editar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'eva'), updateColegio);
