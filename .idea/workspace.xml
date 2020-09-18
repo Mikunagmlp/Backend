@@ -27,9 +27,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/boleta.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/boleta.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/boleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/boleta.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +219,8 @@
       <workItem from="1600355180303" duration="1066000" />
       <workItem from="1600356772192" duration="54000" />
       <workItem from="1600357491429" duration="3835000" />
-      <workItem from="1600363199005" duration="8050000" />
+      <workItem from="1600363199005" duration="8284000" />
+      <workItem from="1600394652323" duration="2298000" />
     </task>
     <task id="LOCAL-00001" summary="Boleta para la aplicacion">
       <created>1598304450203</created>
@@ -287,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600372968441</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Mostrar firma">
+      <created>1600373984223</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1600373984223</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +332,8 @@
     <MESSAGE value="Reporte menu aprobado q/ comentarios" />
     <MESSAGE value="listar asignaciones" />
     <MESSAGE value="Firma completa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Firma completa" />
+    <MESSAGE value="Mostrar firma" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mostrar firma" />
   </component>
   <component name="WindowStateProjectService">
     <state x="632" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597425435602">
@@ -407,10 +413,10 @@
     </state>
     <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1600364973776">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1600373987543">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1600364973776" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1600373987543" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1598302842401">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
