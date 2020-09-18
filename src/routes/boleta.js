@@ -17,8 +17,8 @@ router.patch('/boleta/aplicacion-colegio', passportConfig.verifiToken, passportC
 router.patch('/boleta/aplicacion-eba', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'siremo'), firmaEBA);
 router.patch('/boleta/aplicacion-siremu', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'siremo'), firmaSiremu);
 
-router.get('/firmaColegio/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'siremo'), firmaColegioImage);
-router.get('/firmaSiremu/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'siremo'), firmaSiremuImage);
-router.get('/firmaEba/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'siremo'), firmaEbaImage);
+router.get('/firmaColegio/:id', firmaColegioImage);
+router.get('/firmaSiremu/:id', firmaSiremuImage);
+router.get('/firmaEba/:id', firmaEbaImage);
 
 module.exports = router;

@@ -27,9 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93055fda-d0b0-4dcd-8191-103d5a2e95a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/reportes.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/reportes.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/colegio.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/colegio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/reportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/reportes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/boleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/boleta.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600373984223</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Arreglos">
+      <created>1600443425437</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1600443425437</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +341,8 @@
     <MESSAGE value="listar asignaciones" />
     <MESSAGE value="Firma completa" />
     <MESSAGE value="Mostrar firma" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mostrar firma" />
+    <MESSAGE value="Arreglos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglos" />
   </component>
   <component name="WindowStateProjectService">
     <state x="632" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597425435602">
@@ -416,10 +422,10 @@
     </state>
     <state x="730" y="234" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1593710115162" />
     <state x="730" y="241" key="SettingsEditor/0.23.1920.1119@0.23.1920.1119" timestamp="1593056238978" />
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1600373987543">
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2" timestamp="1600443471418">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1600373987543" />
+    <state x="560" y="340" key="Vcs.Push.Dialog.v2/0.0.1920.1200@0.0.1920.1200" timestamp="1600443471418" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1598302842401">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
