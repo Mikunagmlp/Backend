@@ -1,17 +1,18 @@
 const express = require('express');
 const router = new express.Router();
-const { createCamion, updateCamion, getCamion, getCamiones, desableCamion,getCamionesDisabled } = require('../controllers/camiones.controller');
+const { createCamion, updateCamion, getCamion, getCamiones, desableCamion, getCamionesDisabled } = require('../controllers/camiones.controller');
+const passportConfig = require('../passport/local-auth');
 
-router.post('/camion/registrar', createCamion);
+router.post('/camion/registrar', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), createCamion);
 
-router.get('/camiones', getCamiones);
+router.get('/camiones', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getCamiones);
 
-router.get('/camion/:id', getCamion);
+router.get('/camion/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getCamion);
 
-router.patch('/camion/editar/:id', updateCamion);
+router.patch('/camion/editar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), updateCamion);
 
-router.put('/camion/desable/:id', desableCamion);
+router.put('/camion/desable/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), desableCamion);
 
-router.get('/camiones/disabled', getCamionesDisabled);
+router.get('/camiones/disabled', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), getCamionesDisabled);
 
 module.exports = router;

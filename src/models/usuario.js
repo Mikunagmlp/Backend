@@ -70,7 +70,6 @@ userSchema.statics.encontrarUsuario = async (email, password) => {
 }
 
 userSchema.methods.encryptPassword = (Password) => {
-    console.log(Password);
     return bcrypt.hashSync(Password, bcrypt.genSaltSync(10));
 };
 

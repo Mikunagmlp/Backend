@@ -13,11 +13,11 @@ exports.isSignin = async (req, res, next) => {
         return res.status(401).json({ auth: false, token: null });
     }
     const token = jwk.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: 60 * 60 * 24
+        expiresIn: '1d'
     });
     //req.user = user;
     req.token = token;
-    res.status(200).json({ user , token });
+    res.status(200).json({ user, token });
     return next();
 }
 
@@ -40,30 +40,28 @@ exports.verifiToken = async (req, res, next) => {
     return next();
 }
 
-exports.isValiPermiso = (p) => async (req, res, next) => {
+exports.isValiPermiso = (p, u, t, s) => async (req, res, next) => {
     const data = await User.find({ _id: req.user.id })
-        .populate('Rols.IdRol').exec(); 
+        .populate('Rols.IdRol').exec();
     if (data[0].Rols.length > 0) {
-    for( i in data[0].Rols )
-    {
-      let obtRoles = data[0].Rols[i].IdRol;
+        for (i in data[0].Rols) {
+            let obtRoles = data[0].Rols[i].IdRol;
 
-      for (r in obtRoles.Permiso) {
-       if (obtRoles.Permiso[r].Idpermiso == p)
-	{
-          return next();
+            for (r in obtRoles.Permiso) {
+                if (obtRoles.Permiso[r].Idpermiso == p || obtRoles.Permiso[r].Idpermiso == u || obtRoles.Permiso[r].Idpermiso == t || obtRoles.Permiso[r].Idpermiso == s) {
+                    return next();
+                }
+            }
+            return res.status(401).json({
+                ok: false,
+                error: 'No tiene permiso'
+            });
         }
-      }      
-      return res.status(401).json({
-            ok: false,
-            error: 'No tiene permiso'
-        });
     }
-    } 
     else {
         return res.status(401).json({
             ok: false,
             error: 'No tiene rol'
         });
-   }     
+    }
 }

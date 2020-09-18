@@ -1,20 +1,21 @@
-const express= require('express');
+const express = require('express');
 const router = new express.Router();
+const passportConfig = require('../passport/local-auth');
 
-const { crearColegio, listarColegios, updateColegio, getSearch, listarColegiosDisabled } =  require('../controllers/colegio.controller');
+const { crearColegio, listarColegios, updateColegio, getSearch, listarColegiosDisabled } = require('../controllers/colegio.controller');
 
-router.post('/colegio/registrar', crearColegio );
+router.post('/colegio/registrar', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), crearColegio);
 
 // url -> /colegios?limit=10&skip=10
-router.get( '/colegios', listarColegios );
+router.get('/colegios', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'eva'), listarColegios);
 
-router.patch('/colegio/editar/:id', updateColegio );
+router.patch('/colegio/editar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'eva'), updateColegio);
 
-router.patch( '/colegio/eliminar/:id', updateColegio );
+router.patch('/colegio/eliminar/:id', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador'), updateColegio);
 
 //localhost:3000/colegio/search?q=Colegio2
-router.get( '/colegio/search', getSearch );
+router.get('/colegio/search', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'eva'), getSearch);
 
-router.get( '/colegios/disabled', listarColegiosDisabled );
+router.get('/colegios/disabled', passportConfig.verifiToken, passportConfig.isValiPermiso('rootAll', 'administrador', 'eva'), listarColegiosDisabled);
 
-module.exports= router;
+module.exports = router;
