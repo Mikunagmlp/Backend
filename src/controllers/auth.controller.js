@@ -76,7 +76,7 @@ module.exports = {
               auth: { user: 'xxxx@gmail.com', pass: 'xxxx' }
           });
 
-          console.log(user.Email);
+         // console.log(user.Email);
 
           var mailOptions = {
               to: user.Email,
