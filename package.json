@@ -30,7 +30,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sharp": "^0.26.0"
+    "sharp": "^0.30.5"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
